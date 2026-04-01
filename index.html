@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI小説下読みくん</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+    <div class="ad-banner-top">
+        <p class="ad-label">ADVERTISEMENT</p>
+        <div class="ad-placeholder-728x90">
+            <a href="#"><img src="https://placehold.jp/24/2c3e50/ffffff/728x90.png?text=ADVERTISEMENT"
+                    alt="Banner AD"></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>AI小説下読みくん</h1>
+        <p>4人の読者と編集者が、あなたの小説をガチ評価します。</p>
+
+        <textarea id="novel-text" placeholder="ここに小説を貼り付けてください..."></textarea>
+
+        <div class="actions">
+            <input type="file" id="novel-file" accept=".txt">
+            <button id="analyze-btn">読んでもらう</button>
+        </div>
+
+
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>精読中...</p>
+
+            <div class="ad-space-loading">
+                <p class="ad-label">SPONSORED</p>
+                <div class="ad-placeholder">
+                    <a href="https://twitter.com/your_id" target="_blank">
+                        <img src="https://placehold.jp/24/2c3e50/ffffff/300x250.png?text=Your+Ad+Here" alt="広告">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-space-inline">
+            <div class="ad-placeholder-horizontal">
+                <p class="ad-label">ADVERTISEMENT</p>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div id="result" class="hidden">
+
+            <div class="score-overview">
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+
+                <div class="result-header">
+                    <h2>総合：<span id="avg-score"></span> / 5.0</h2>
+                    <div class="main-star-container">
+                        <div id="main-star-rating" class="star-rating" style="--rating-width: 0%">☆☆☆☆☆</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ad-space-inline">
+                <div class="ad-placeholder-horizontal">
+                    <p class="ad-label">ADVERTISEMENT</p>
+                </div>
+            </div>
+
+            <div id="reader-cards"></div>
+
+
+
+            <div class="editor-feedback-area">
+
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul id="good-list"></ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul id="bad-list"></ul>
+                    </div>
+                </div>
+
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p id="overall-summary"></p>
+                </div>
+            </div>
+
+            <div class="reward-area">
+                <button id="pdf-unlock-btn">🔒 動画を見て画像を保存する</button>
+                <button id="pdf-download-btn" class="hidden">🖼️ 画像(JPG)をダウンロード</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="ad-banner-bottom">
+        <p class="ad-label">ADVERTISEMENT</p>
+        <div class="ad-placeholder-728x90">
+            <a href="#"><img src="https://placehold.jp/24/2c3e50/ffffff/728x90.png?text=ADVERTISEMENT"
+                    alt="Banner AD"></a>
+        </div>
+    </div>
+    <div id="video-ad-modal" class="hidden">
+        <div class="ad-content">
+            <div class="ad-video-placeholder">
+                <span>AD VIDEO PLAYING...</span>
+            </div>
+            <div class="ad-footer">
+                <p>報酬獲得まであと <span id="countdown-timer">15</span> 秒</p>
+                <div class="progress-bar-container">
+                    <div id="ad-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
