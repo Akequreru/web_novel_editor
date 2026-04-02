@@ -142,13 +142,20 @@ function renderResult(data) {
     cardsContainer.innerHTML = '';
 
     data.readers.forEach(r => {
+        let icon = "👤"; // デフォルト
+        if (r.name === "カイト") icon = "🎧"; // 学生・スピード感
+        if (r.name === "ミユ") icon = "✨"; // 学生・センス
+        if (r.name === "サトウ") icon = "👤"; // 社会人・ロジック
+        if (r.name === "ハルカ") icon = "📚"; // 社会人・深み
+
+
         const card = document.createElement('div');
         card.className = 'card';
 
         const ratingPercent = (r.score / 5) * 100;
 
         card.innerHTML = `
-            <div class="reader-icon">👤</div>
+            <div class="reader-icon">${icon}</div>
             
             <div class="reader-content">
                 <div class="reader-header">
@@ -174,7 +181,14 @@ function renderResult(data) {
 document.getElementById('pdf-download-btn').addEventListener('click', () => {
     saveAsImage();
 });
-
+document.getElementById('novel-file').addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        document.getElementById('novel-text').placeholder = "ファイルが選択されているため、こちらは無視されます";
+        document.getElementById('novel-text').disabled = true; // 入力できなくする
+    } else {
+        document.getElementById('novel-text').disabled = false;
+    }
+});
 document.getElementById('analyze-btn').addEventListener('click', async () => {
     const DEBUG_MODE = false; // テスト時はtrue、本番はfalse
     const text = document.getElementById('novel-text').value;
@@ -185,6 +199,9 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     if (!text && !file) {
         alert("小説を入力するかファイルを選択してください");
         return;
+    }// analyze-btn のクリックイベント内
+    if (text && file) {
+        alert("テキスト入力とファイル選択の両方が行われています。ファイルの内容を優先して解析します。");
     }
 
     // 画面表示をリセット
