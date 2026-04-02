@@ -265,7 +265,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     if (text) formData.append('text', text);
 
     try {
-        const response = await fetch("/api/main", { // 相対パスにする
+        const response = await fetch("/api/main/analyze", { // 相対パスにする
             method: "POST",
             body: formData
         });
