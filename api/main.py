@@ -107,9 +107,20 @@ async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
         )
         
         # テキストを取り出してJSONパース
+        # 修正後の処理
         raw_text = response.text.replace("```json", "").replace("```", "").strip()
-        result_json = json.loads(raw_text)
         
+        # 💡 ここを追加！：制御文字（改行や特殊記号）を安全に処理する
+        import re
+        # JSONとして不正な制御文字（00-1F）を削除または置換
+        clean_text = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', raw_text)
+        
+        try:
+            result_json = json.loads(clean_text)
+        except json.JSONDecodeError:
+            # もし上記でもダメな場合、より強力にクリーンアップしてリトライ
+            result_json = json.loads(json.dumps(raw_text)) 
+            
         return result_json
     except Exception as e:
         return {"error": f"解析に失敗しました: {str(e)}"}
