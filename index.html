@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>AI小説下読みくん</title>
+    <meta name="description" content="4人のAI読者と編集者があなたの小説をガチ評価。数秒で強み・弱みを分析し、画像を保存できます。データ収集なしで安心。">
+    <meta property="og:title" content="AI小説下読みくん">
+    <meta property="og:description" content="AIによる小説執筆支援ツール。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -97,9 +102,8 @@
                 </div>
             </div>
 
-            <div class="reward-area">
-                <button id="pdf-unlock-btn">🔒 動画を見て画像を保存する</button>
-                <button id="pdf-download-btn" class="hidden">🖼️ 画像(JPG)をダウンロード</button>
+            <div class="save-area">
+                <button id="pdf-download-btn">🖼️ 画像(JPG)をダウンロード</button>
             </div>
         </div>
 
@@ -111,17 +115,23 @@
                     alt="Banner AD"></a>
         </div>
     </div>
-    <div id="video-ad-modal" class="hidden">
-        <div class="ad-content">
-            <div class="ad-video-placeholder">
-                <span>AD VIDEO PLAYING...</span>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI小説下読みくん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="#" id="policy-btn">プライバシーポリシー</a>
             </div>
-            <div class="ad-footer">
-                <p>報酬獲得まであと <span id="countdown-timer">15</span> 秒</p>
-                <div class="progress-bar-container">
-                    <div id="ad-progress-bar"></div>
-                </div>
-            </div>
+        </div>
+    </footer>
+
+    <div id="policy-modal" class="hidden">
+        <div class="modal-content">
+            <h3>プライバシーポリシー</h3>
+            <p>・入力された小説本文は解析にのみ使用し、外部には保存したしません。</p>
+            <p>・解析結果の著作権は作者様に帰属します。</p>
+            <p>・Google AdSenseを利用して広告を表示しています。</p>
+            <button id="close-policy">閉じる</button>
         </div>
     </div>
     <script src="script.js"></script>

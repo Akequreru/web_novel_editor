@@ -1,6 +1,13 @@
 // 結果を表示するための共通関数
 let myChart = null; // グラフの重複描画を防ぐための変数
 
+document.getElementById('policy-btn').addEventListener('click', () => {
+    document.getElementById('policy-modal').classList.remove('hidden');
+});
+document.getElementById('close-policy').addEventListener('click', () => {
+    document.getElementById('policy-modal').classList.add('hidden');
+});
+
 // saveAsPDF の中身をこれに入れ替えてみてください
 async function saveAsImage() {
     // ライブラリが存在するかチェック
@@ -164,43 +171,12 @@ function renderResult(data) {
 }
 
 
-document.getElementById('pdf-unlock-btn').addEventListener('click', () => {
-    const modal = document.getElementById('video-ad-modal');
-    const timerText = document.getElementById('countdown-timer');
-    const progressBar = document.getElementById('ad-progress-bar');
-    
-    let timeLeft = 15; // 15秒に設定
-    
-    // モーダル表示
-    modal.classList.remove('hidden');
-    
-    // カウントダウンタイマー
-    const interval = setInterval(() => {
-        timeLeft--;
-        timerText.innerText = timeLeft;
-        
-        // 進捗バーの更新
-        const progress = ((15 - timeLeft) / 15) * 100;
-        progressBar.style.width = `${progress}%`;
-        
-        if (timeLeft <= 0) {
-            clearInterval(interval);
-            modal.classList.add('hidden'); // モーダルを閉じる
-            
-            // 特典の解放
-            alert("報酬を獲得しました！画像保存が有効になりました。");
-            document.getElementById('pdf-unlock-btn').classList.add('hidden');
-            document.getElementById('pdf-download-btn').classList.remove('hidden');
-        }
-    }, 1000);
-});
-
 document.getElementById('pdf-download-btn').addEventListener('click', () => {
     saveAsImage();
 });
 
 document.getElementById('analyze-btn').addEventListener('click', async () => {
-    const DEBUG_MODE = true; // テスト時はtrue、本番はfalse
+    const DEBUG_MODE = false; // テスト時はtrue、本番はfalse
     const text = document.getElementById('novel-text').value;
     const file = document.getElementById('novel-file').files[0];
     const loading = document.getElementById('loading');

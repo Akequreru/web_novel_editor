@@ -59,40 +59,54 @@ button:hover {
 }
 
 /* 報酬・保存エリア全体の調整 */
-.reward-area {
+/* 保存エリア：リワード用からシンプルに書き換え */
+.save-area {
     display: flex;
-    flex-direction: column; /* ボタンを縦に並べる */
-    align-items: center;    /* 左右中央寄せ */
     justify-content: center;
-    margin-top: 40px;       /* 上のコンテンツ（編集者総括）との間隔 */
-    margin-bottom: 40px;    /* ページ最下部との間隔 */
-    padding: 20px;
-    background-color: #f8f9fa; /* 少し背景色をつけると「特別な機能」感が出ます */
-    border-radius: 10px;
-    border: 1px dashed #cbd5e0;
+    margin: 40px 0;
 }
 
-/* ボタン共通のスタイル */
-.reward-area button {
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    border-radius: 50px; /* 角を丸くしてモダンな印象に */
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* 「動画を見て解放」ボタン */
-#pdf-unlock-btn {
-    background-color: #e74c3c; /* 注意を引く赤系 */
+#save-image-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background-color: #27ae60;
     color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
 }
 
-#pdf-unlock-btn:hover {
-    background-color: #c0392b;
-    transform: translateY(-2px);
+/* フッターデザイン */
+.site-footer {
+    margin-top: 60px;
+    padding: 40px 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.footer-links a {
+    margin: 0 15px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* ポリシーモーダル */
+#policy-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+}
+.modal-content {
+    background: white; padding: 30px; border-radius: 10px; max-width: 500px;
 }
 
 /* 「JPGダウンロード」ボタン */
