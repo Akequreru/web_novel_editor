@@ -22,7 +22,8 @@ app.add_middleware(
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+# client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY")) # getenvよりenviron.getが確実です
 
 SYSTEM_PROMPT ="""
 あなたはプロの小説編集者、および4人の極端な読者です。
