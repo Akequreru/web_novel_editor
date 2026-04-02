@@ -100,10 +100,14 @@ async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
         return {"error": "内容が空です"}
 
     try:
-        # 最新のモデル名 'gemini-2.0-flash' を使用
+        # 💡 生成時に system_instruction を個別に渡す
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
-            contents=f"{SYSTEM_PROMPT}\n\n【小説本文】\n{content}"
+            model='gemini-2.5-flash', # または gemini-1.5-flash
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT, # ここにシステムプロンプトを入れる
+                response_mime_type='application/json'
+            ),
+            contents=content # ここはユーザーの小説本文のみを入れる
         )
         
         # テキストを取り出してJSONパース
