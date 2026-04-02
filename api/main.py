@@ -95,7 +95,16 @@ async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
     content = ""
     if file:
         file_content = await file.read()
-        content = file_content.decode("utf-8")
+        # 💡 複数の文字コードを順番に試す「おもてなし読み込み」
+        try:
+            content = file_content.decode("utf-8")
+        except UnicodeDecodeError:
+            try:
+                # 日本語Windowsで標準的な Shift-JIS を試す
+                content = file_content.decode("shift_jis")
+            except UnicodeDecodeError:
+                # それでもダメなら cp932（拡張版Shift-JIS）を試す
+                content = file_content.decode("cp932", errors="ignore")
     elif text:
         content = text
     else:
