@@ -83,8 +83,7 @@ JSON
 }
 """
 
-@app.post("/analyze")
-@app.post("/analyze")
+@app.post("/api/analyze")
 async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
     # --- テストモード開始 ---
     if text == "test":
