@@ -18,7 +18,7 @@ async function saveAsImage() {
 
     const element = document.getElementById('result');
     const btn = document.getElementById('pdf-download-btn');
-    
+
     btn.disabled = true;
     btn.innerText = "📸 画像作成中...";
 
@@ -30,7 +30,7 @@ async function saveAsImage() {
             backgroundColor: "#ffffff",
             // 💡 画面のスクロール位置に関わらず、要素のトップから撮影する設定
             scrollY: -window.scrollY,
-            windowHeight: element.scrollHeight 
+            windowHeight: element.scrollHeight
         });
 
         const dataUrl = canvas.toDataURL("image/jpeg", 0.9);
@@ -265,8 +265,8 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     if (text) formData.append('text', text);
 
     try {
-        const response = await fetch('http://localhost:8000/analyze', {
-            method: 'POST',
+        const response = await fetch("/api/main", { // 相対パスにする
+            method: "POST",
             body: formData
         });
 
