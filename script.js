@@ -8,6 +8,45 @@ document.getElementById('close-policy').addEventListener('click', () => {
     document.getElementById('policy-modal').classList.add('hidden');
 });
 
+// 全ての .zoomable クラスを持つ画像に対して処理
+// script.js の該当箇所を書き換え
+// --- 画像モーダル制御（エラー防止・修正版） ---
+// DOMが完全に読み込まれてから実行する
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('image-modal');
+    const fullImg = document.getElementById('full-img');
+    const closeBtn = document.querySelector('.close-modal');
+    const modalOverlay = document.querySelector('.modal-overlay');
+
+    // モーダル要素が見つからない場合は処理を中断（エラーを防ぐ）
+    if (!modal || !fullImg) {
+        console.warn("警告: 'image-modal' または 'full-img' がHTMLに見つかりません。");
+        return;
+    }
+
+    const closeModal = () => {
+        modal.classList.add('hidden');
+    };
+
+    // 拡大表示
+    document.querySelectorAll('.zoomable').forEach(img => {
+        img.addEventListener('click', function () {
+            modal.classList.remove('hidden');
+            fullImg.src = this.src;
+        });
+    });
+
+    // 閉じる：×ボタン
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // 閉じる：背景
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+
+    // 閉じる：Escキー
+    window.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closeModal();
+    });
+});
 // saveAsPDF の中身をこれに入れ替えてみてください
 async function saveAsImage() {
     // ライブラリが存在するかチェック
@@ -17,7 +56,7 @@ async function saveAsImage() {
     }
 
     const element = document.getElementById('result');
-    const btn = document.getElementById('pdf-download-btn');
+    const btn = document.getElementById('save-image-btn');
 
     btn.disabled = true;
     btn.innerText = "📸 画像作成中...";
@@ -178,7 +217,7 @@ function renderResult(data) {
 }
 
 
-document.getElementById('pdf-download-btn').addEventListener('click', () => {
+document.getElementById('save-image-btn').addEventListener('click', () => {
     saveAsImage();
 });
 document.getElementById('novel-file').addEventListener('change', (e) => {
@@ -195,7 +234,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     const file = document.getElementById('novel-file').files[0];
     const loading = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
-
+    const exampleSection = document.getElementById('example-use-section');
     if (!text && !file) {
         alert("小説を入力するかファイルを選択してください");
         return;
@@ -207,7 +246,9 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     // 画面表示をリセット
     loading.classList.remove('hidden');
     resultDiv.classList.add('hidden');
-
+    if (exampleSection) {
+        exampleSection.classList.add('hidden');
+    }
     if (DEBUG_MODE) {
         const dummyData =
         {

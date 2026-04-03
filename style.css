@@ -77,6 +77,63 @@ button:hover {
     box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
 }
 
+/* 4枚を並べるグリッド */
+.example-grid {
+    display: grid;
+    /* 💡 最小幅を「40%以上」にすることで、3枚目が必ず2行目に落ちるようにします */
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); 
+    gap: 15px; 
+    margin-top: 20px;
+    max-width: 600px; /* 💡 あまり広がりすぎないよう制限 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 画像とラベルを囲む枠 */
+.thumb-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.thumb-wrapper:hover {
+    transform: translateY(-3px);
+    border-color: #3498db;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 画像自体の設定 */
+.zoomable {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* ラベル */
+.thumb-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #555;
+    font-weight: bold;
+}
+
+/* 📱 スマホ画面（幅が狭い時）の設定 */
+@media (max-width: 480px) {
+    .example-grid {
+        /* スマホでも2-2を維持するか、1列にするか選べます */
+        /* 1列にしたい場合はここを 1fr にしてください */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+}
+
 /* フッターデザイン */
 .site-footer {
     margin-top: 60px;
@@ -109,13 +166,102 @@ button:hover {
     background: white; padding: 30px; border-radius: 10px; max-width: 500px;
 }
 
+.service-description {
+    text-align: left;
+    margin-bottom: 40px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.lead-text {
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.role-section h3 {
+    color: #2c3e50;
+    border-left: 5px solid #3498db;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.analysis-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.analysis-points li {
+    background: #eef7ff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid #d0e8ff;
+}
+
+.section-divider {
+    border: 0;
+    border-top: 1px dashed #ddd;
+    margin: 30px 0;
+}
+
+.reader-intro-grid {
+    display: grid;
+    /* 💡 ここがポイント：最小幅を「45%」程度にすることで、3列目を強引に次の行へ送ります */
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    gap: 20px; /* 少し広めに取ると2-2の境界が綺麗に見えます */
+    margin-top: 15px;
+}
+
+/* 📱 スマホ（幅が狭い画面）では1列にするための設定 */
+@media (max-width: 600px) {
+    .reader-intro-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.intro-card {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    /* 💡 高さを揃えるために display: flex を活用 */
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.intro-card:hover {
+    transform: translateY(-3px);
+    border-color: #3498db;
+}
+
+.intro-card h4 {
+    margin: 0 0 10px 0;
+    color: #3498db;
+    font-size: 1rem;
+}
+
+.guide-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 30px;
+}
+
 /* 「JPGダウンロード」ボタン */
-#pdf-download-btn {
+#save-image-btn {
     background-color: #27ae60; /* 成功・保存をイメージする緑系 */
     color: white;
 }
 
-#pdf-download-btn:hover {
+#save-image-btn:hover {
     background-color: #219150;
     transform: translateY(-2px);
 }
@@ -449,4 +595,56 @@ button:hover {
     text-align: center;
     font-weight: bold;
     color: #3498db;
+}
+
+/* style.css の末尾に追加 */
+#image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-modal.hidden {
+    display: none !important; /* hiddenクラスがある時は完全に消す */
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: pointer; /* 「ここを押せば閉じられる」と視覚的に伝える */
+}
+
+.modal-content-wrapper {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    z-index: 10000;
+}
+
+#full-img {
+    width: 100%;
+    height: auto;
+    border: 3px solid white;
+    border-radius: 5px;
+}
+
+.close-modal {
+    position: absolute;
+    top: -45px; /* 少し上に余裕を持たせる */
+    right: 0;
+    color: white;
+    font-size: 40px; /* 少し大きく */
+    cursor: pointer;
+    padding: 10px; /* クリックできる範囲を広げる */
+    line-height: 1;
 }

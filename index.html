@@ -36,8 +36,55 @@
 
     <div class="container">
         <h1>AI小説下読みくん</h1>
-        <p>AIが読者視点と編集者視点から、あなたの小説をガチ評価します。<br>フォームに本文を入力するか、txtファイルをアップロードして「読んでもらう」ボタンを押してください。</p>
+        <section class="service-description">
+            <p class="lead-text">
+                最新のAI（Gemini）を活用し、プロの編集者と4人の個性豊かな読者による多角的なフィードバックを提供する執筆支援ツールです。
+                投稿前のブラッシュアップや、客観的な評価が欲しい時にご活用ください。
+                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+            </p>
 
+            <div class="role-section editor-role">
+                <h3>🧐 プロの編集者視点による厳格な分析</h3>
+                <p>作品を「市場に出せるクオリティか」というプロの視点で評価します。物語の骨組みから細部の表現まで、以下の5項目を10点満点で厳しく採点します。</p>
+                <ul class="analysis-points">
+                    <li><strong>構成・テンポ</strong>: 物語の起承転結、飽きさせない展開の速さ。</li>
+                    <li><strong>キャラクター</strong>: 行動の動機、魅力、口調の一貫性。</li>
+                    <li><strong>文章・表現</strong>: 語彙の豊かさ、情景描写の具体性。</li>
+                    <li><strong>設定・独創性</strong>: アイデアの斬新さ、独自の世界観。</li>
+                    <li><strong>ロジック</strong>: 物語の矛盾、リアリティ、納得感。</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="role-section reader-role">
+                <h3>👥 4人の読者による本音のレビュー</h3>
+                <p>作品を「一人の読者として楽しめるか」という観点で評価します。あえて極端な好みを持つ4人をシミュレートすることで、ターゲット層の反応を予測できます。</p>
+                <div class="reader-intro-grid">
+                    <div class="intro-card">
+                        <h4>🎧 カイト（学生男性）</h4>
+                        <p>刺激とスピード感を重視。スカッとする展開や、勢いのある物語を好み、冗長な描写には厳しい読者です。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>✨ ミユ（学生女性）</h4>
+                        <p>心の機微やセンスを重視。エモい感情表現や、キャラクター間の繊細な関係性、透明感のある描写を評価します。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>👤 サトウ（社会人男性）</h4>
+                        <p>理屈と整合性を重視。設定の矛盾や、SF・ミステリーにおけるガジェットの説得力、論理的な帰結を求めます。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>📚 ハルカ（社会人女性）</h4>
+                        <p>深みと文章の品位を重視。テーマの深掘りや、重厚な日本語表現、読後に考えさせられるような余韻を好みます。</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <p class="guide-text">
+            フォームに本文を入力するか、txtファイルをアップロードして「読んでもらう」ボタンを押してください。
+        </p>
         <textarea id="novel-text" placeholder="ここに小説を貼り付けてください..."></textarea>
 
         <div class="actions">
@@ -46,6 +93,29 @@
         </div>
 
 
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📊 実際の解析例（クリックで拡大）</h3>
+
+
+            <div class="example-grid">
+                <div class="thumb-wrapper">
+                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
+                    <span class="thumb-label">総合スコア</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
+                    <span class="thumb-label">編集者講評</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
+                    <span class="thumb-label">読者レビュー(前)</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
+                    <span class="thumb-label">読者レビュー(後)</span>
+                </div>
+            </div>
+        </div>
 
         <div id="loading" class="hidden">
             <div class="loading-spinner"></div>
@@ -114,7 +184,7 @@
             </div>
 
             <div class="save-area">
-                <button id="pdf-download-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
             </div>
         </div>
 
@@ -139,7 +209,7 @@
     <div id="policy-modal" class="hidden">
         <div class="modal-content">
             <h3>プライバシーポリシー</h3>
-            
+
             <p><strong>【小説データの取り扱い】</strong></p>
             <p>・入力された小説本文は解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
             <p>・解析結果の著作権は作者様に帰属します。</p>
@@ -148,13 +218,24 @@
             <p>・当サイトでは、第三者配信の広告サービス（Google AdSense）を利用しています。広告配信事業者は、ユーザーの興味に応じた広告を表示するためにCookie（クッキー）を使用することがあります。</p>
 
             <p><strong>【アクセス解析ツールについて】</strong></p>
-            <p>・当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。</p>
-            <p>・この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。詳細については<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">Googleアナリティクス利用規約</a>をご覧ください。</p>
-            
+            <p>・当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。
+            </p>
+            <p>・この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。詳細については<a
+                    href="https://marketingplatform.google.com/about/analytics/terms/jp/"
+                    target="_blank">Googleアナリティクス利用規約</a>をご覧ください。</p>
+
             <button id="close-policy">閉じる</button>
         </div>
     </div>
     <script src="script.js"></script>
+
+    <div id="image-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content-wrapper">
+            <span class="close-modal">&times;</span>
+            <img id="full-img" src="" alt="拡大画像">
+        </div>
+    </div>
 </body>
 
 </html>
