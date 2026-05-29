@@ -726,6 +726,48 @@ async def analyze_poetry_comments(text: str = Form(None), mode: str = Form("sing
     except Exception as e:
         return {"error": f"コメントの生成に失敗しました: {str(e)}"}
 
+# 例：クローラーが巡回してきたときにエラーを吐かせないための対策
+@app.get("/api/comment/novel")
+async def dummy_novel_get():
+    return {"message": "API is active. Please use POST request to analyze novel content."}
+
+@app.get("/api/comment/tanka")
+async def get_tanka_comment_stub():
+    return {
+        "status": "active",
+        "message": "AI短歌コメント欄くんのAPIは正常に稼働しています。解析を行うには、短歌（一首または歌集）をPOSTリクエストで送信してください。"
+    }
+
+@app.get("/api/comment/haiku")
+async def get_haiku_comment_stub():
+    return {
+        "status": "active",
+        "message": "AI俳句・川柳コメント欄くんのAPIは正常に稼働しています。解析を行うには、五七五の作品をPOSTリクエストで送信してください。"
+    }
+
+@app.get("/api/comment/poetry")
+async def get_poetry_comment_stub():
+    return {
+        "status": "active",
+        "message": "AI詩コメント欄くんのAPIは正常に稼働しています。解析を行うには、詩の本文をPOSTリクエストで送信してください。"
+    }
+
+@app.get("/api/shitayomi/novel")
+async def get_novel_shitayomi_stub():
+    return {"status": "active", "message": "AI小説下読みくんAPI。POSTリクエストをお待ちしています。"}
+
+@app.get("/api/shitayomi/poetry")
+async def get_poetry_shitayomi_stub():
+    return {"status": "active", "message": "AI詩下読みくんAPI。POSTリクエストをお待ちしています。"}
+
+@app.get("/api/shitayomi/tanka")
+async def get_tanka_hyoron_stub():
+    return {"status": "active", "message": "AI短歌下読みくんAPI。POSTリクエストをお待ちしています。"}
+
+@app.get("/api/shitayomi/haiku")
+async def get_haiku_hyoron_stub():
+    return {"status": "active", "message": "AI俳句・川柳下読みくんAPI。POSTリクエストをお待ちしています。"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
