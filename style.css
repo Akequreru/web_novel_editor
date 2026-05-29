@@ -648,3 +648,181 @@ button:hover {
     padding: 10px; /* クリックできる範囲を広げる */
     line-height: 1;
 }
+
+/* ポータル用の追加スタイル */
+.portal-grid {
+    margin-top: 40px;
+}
+
+.portal-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.portal-link:hover {
+    transform: translateY(-5px);
+    border-color: #3498db;
+    background: #f8fbff;
+}
+
+.portal-link.full-width {
+    grid-column: 1 / -1; /* 2列をぶち抜いて表示 */
+    text-align: center;
+}
+
+.portal-link.full-width .reader-icon {
+    margin: 0 auto 10px auto;
+}
+
+.portal-about {
+    margin-top: 50px;
+    border-left: 5px solid #2c3e50;
+    background: #f9f9f9;
+}
+
+.portal-about a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.portal-about a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   🚀 ポータル専用 タイルリンクデザイン
+   ========================================== */
+.portal-tile-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+/* 左側の大きな絵文字アイコン */
+.tile-icon {
+    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #f8fafc;
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.tile-main {
+    flex-grow: 1;
+}
+
+.tile-main h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.tile-main p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* 🟦 下読みシリーズ（ブルー）のホバー効果 */
+.text-blue:hover {
+    border-color: #3498db;
+    background: #f0f7fc;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.15);
+}
+.text-blue:hover .tile-main h4 { color: #3498db; }
+.text-blue:hover .tile-icon { transform: scale(1.1); background: #e1f0fa; }
+
+/* 🟩 コメント欄シリーズ（グリーン）のホバー効果 */
+.text-green:hover {
+    border-color: #27ae60;
+    background: #f0fbf4;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.15);
+}
+.text-green:hover .tile-main h4 { color: #27ae60; }
+.text-green:hover .tile-icon { transform: scale(1.1); background: #e1f7e9; }
+
+/* ==========================================
+   ✒️ 総合ポータル用 サイトロゴ・スタイル
+   ========================================== */
+.site-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* センターに美しく配置 */
+    gap: 18px;
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+
+/* ロゴマーク（SVG）の浮遊ホバーエフェクト */
+.site-logo-mark {
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.site-logo-container:hover .site-logo-mark {
+    transform: translateY(-4px) rotate(3deg); /* マウスを乗せると可愛く弾む */
+}
+
+.site-logo-text {
+    text-align: left;
+}
+
+/* もともとのH1をロゴの横に収まるサイズに最適化 */
+.site-logo-text .main-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+/* 「AI」の文字だけテック感のあるシアンブルーにしてメリハリを出す */
+.highlight-ai {
+    color: #3498db;
+    font-family: 'Inter', 'Futura', sans-serif;
+    margin-right: 4px;
+}
+
+/* サイトが何であるかを1秒で伝えるサブタグライン */
+.sub-tagline {
+    margin: 4px 0 0 2px;
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* スマホ画面でのレスポンシブ対応 */
+@media (max-width: 480px) {
+    .site-logo-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .site-logo-text {
+        text-align: center;
+    }
+    .site-logo-text .main-title {
+        font-size: 1.6rem;
+    }
+}

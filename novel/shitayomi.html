@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
+    <meta charset="UTF-8">
+    <title>AI小説下読みくん | AI文芸チェッカー</title>
+    <meta name="description" content="4人のAI読者と編集者があなたの小説をガチ評価。数秒で強み・弱みを分析し、画像を保存できます。データ収集なしで安心。">
+    <meta property="og:title" content="AI小説下読みくん">
+    <meta property="og:description" content="AIによる小説執筆支援ツール。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901"
+        crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DGFSC9SSPG');
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        
+        <h1>AI小説下読みくん</h1>
+        <section class="service-description">
+            <p class="lead-text">
+                最新のAI（Gemini）を活用し、プロの編集者と4人の個性豊かな読者による多角的なフィードバックを提供する執筆支援ツールです。
+                投稿前のブラッシュアップや、客観的な評価が欲しい時にご活用ください。
+                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+            </p>
+
+            <div class="role-section editor-role">
+                <h3>🧐 プロの編集者視点による厳格な分析</h3>
+                <p>作品を「市場に出せるクオリティか」というプロの視点で評価します。物語の骨組みから細部の表現まで、以下の5項目を10点満点で厳しく採点します。</p>
+                <ul class="analysis-points">
+                    <li><strong>構成・テンポ</strong>: 物語の起承転結、飽きさせない展開の速さ</li>
+                    <li><strong>キャラクター</strong>: 行動の動機、魅力、口調の一貫性</li>
+                    <li><strong>文章・表現</strong>: 語彙の豊かさ、情景描写の具体性</li>
+                    <li><strong>設定・独創性</strong>: アイデアの斬新さ、独自の世界観</li>
+                    <li><strong>ロジック</strong>: 物語の矛盾、リアリティ、納得感</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="role-section reader-role">
+                <h3>👥 4人の読者による本音のレビュー</h3>
+                <p>作品を「一人の読者として楽しめるか」という観点で評価します。あえて極端な好みを持つ4人をシミュレートすることで、ターゲット層の反応を予測できます。</p>
+                <div class="reader-intro-grid">
+                    <div class="intro-card">
+                        <h4>🎧 カイト（学生男性）</h4>
+                        <p>刺激とスピード感を重視。スカッとする展開や、勢いのある物語を好み、冗長な描写には厳しい読者です。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>✨ ミユ（学生女性）</h4>
+                        <p>心の機微やセンスを重視。エモい感情表現や、キャラクター間の繊細な関係性、透明感のある描写を評価します。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>👤 サトウ（社会人男性）</h4>
+                        <p>理屈と整合性を重視。設定の矛盾や、SF・ミステリーにおけるガジェットの説得力、論理的な帰結を求めます。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>📚 ハルカ（社会人女性）</h4>
+                        <p>深みと文章の品位を重視。テーマの深掘りや、重厚な日本語表現、読後に考えさせられるような余韻を好みます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <p class="guide-text">
+            フォームに本文を入力するか、txtファイルをアップロードして「読ってもらう」ボタンを押してください。
+        </p>
+        <textarea id="novel-text" placeholder="ここに小説を貼り付けてください..."></textarea>
+
+        <div class="actions">
+            <input type="file" id="novel-file" accept=".txt">
+            <button id="analyze-btn">読んでもらう</button>
+        </div>
+
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📊 実際の解析例（クリックで拡大）</h3>
+            <div class="example-grid">
+                <div class="thumb-wrapper">
+                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
+                    <span class="thumb-label">総合スコア</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
+                    <span class="thumb-label">編集者講評</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
+                    <span class="thumb-label">読者レビュー(前)</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
+                    <span class="thumb-label">読者レビュー(後)</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>精読中...</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div id="result" class="hidden">
+            <div class="score-overview">
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+                <div class="result-header">
+                    <h2>総合：<span id="avg-score"></span> / 5.0</h2>
+                    <div class="main-star-container">
+                        <div id="main-star-rating" class="star-rating" style="--rating-width: 0%">☆☆☆☆☆</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reader-cards"></div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul id="good-list"></ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul id="bad-list"></ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p id="overall-summary"></p>
+                </div>
+            </div>
+
+            <div class="save-area">
+                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI小説下読みくん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="#" id="policy-btn">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="policy-modal" class="hidden">
+        <div class="modal-content">
+            <h3>プライバシーポリシー</h3>
+            <p><strong>【小説データの取り扱い】</strong></p>
+            <p>・入力された小説本文は解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
+            <p>・解析結果の著作権は作者様に帰属します。</p>
+            <p><strong>【広告について】</strong></p>
+            <p>・当サイトでは、第三者配信の広告サービス（Google AdSense）を利用しています。Cookieを使用することがあります。</p>
+            <p><strong>【アクセス解析ツールについて】</strong></p>
+            <p>・当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このデータは匿名で収集されており、個人を特定するものではありません。</p>
+            <button id="close-policy">閉じる</button>
+        </div>
+    </div>
+
+    <script src="./script.js" defer></script>
+
+    <div id="image-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content-wrapper">
+            <span class="close-modal">&times;</span>
+            <img id="full-img" src="" alt="拡大画像">
+        </div>
+    </div>
+</body>
+
+</html>

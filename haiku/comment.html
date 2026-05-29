@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
+    <meta charset="UTF-8">
+    <title>AI俳句・川柳コメント欄くん | AI文芸チェッカー</title>
+    <meta name="description" content="AI読者や俳人たちが、あなたの俳句・川柳にリアルな感想や現代的なコメントを書き込みます。SNSや句会のリアルな熱量を再現。">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .comment-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+            padding-right: 10px;
+        }
+        .comment-card {
+            display: flex;
+            gap: 15px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .comment-card:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+        }
+        .comment-avatar {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .comment-main {
+            flex-grow: 1;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-user-name {
+            font-weight: bold;
+            color: #1e293b;
+        }
+        .comment-meta {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .comment-text {
+            color: #334155;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        .save-area {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        #save-image-btn {
+            background: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        #save-image-btn:hover {
+            background: #219653;
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        
+        <h1>AI俳句・川柳コメント欄くん</h1>
+        <section class="service-description">
+            <p class="lead-text">
+                あなたの俳句や川柳を投稿すると、現代のSNSやWEB句会のタイムラインをシミュレートし、仮想の愛好家や宗匠からリアルな本音コメントが届きます。
+                「一句モード」では5人前後からピリッとした感想が、「句集モード」では20〜30人の大勢の読者から賑やかな感想欄が生成されます。
+            </p>
+        </section>
+
+        <p class="guide-text">
+            モードを選択し、俳句・川柳を入力して「投稿する」ボタンを押してください。
+        </p>
+
+        <div class="mode-select-container" style="margin-bottom: 15px; display: flex; gap: 20px; background: #eef7ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #d0e8ff;">
+            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <input type="radio" name="analyze-mode" value="single" checked style="transform: scale(1.2);"> 
+                🔮 一句モード（感想5件前後）
+            </label>
+            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <input type="radio" name="analyze-mode" value="collection" style="transform: scale(1.2);"> 
+                📚 句集・連句モード（感想20〜30件）
+            </label>
+        </div>
+
+        <textarea id="novel-text" style="height: 120px;" placeholder="例：古池や 蛙飛びこむ 水の音"></textarea>
+
+        <div class="actions">
+            <input type="file" id="novel-file" accept=".txt">
+            <button id="post-btn" style="background: #e67e22; color: white; padding: 12px 30px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">作品を投稿する</button>
+        </div>
+
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📊 実際のコメント欄の例</h3>
+            <div class="example-grid" style="display: block; text-align: center;">
+                <div class="thumb-wrapper" style="max-width: 400px; margin: 0 auto; width: 100%;">
+                    <img src="example-comment.jpg" alt="コメント欄の出力例" class="zoomable" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <span class="thumb-label">俳句・川柳に集まる読者感想タイムライン（イメージ）</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>俳人や川柳ファンたちが集まっています。しばらくお待ちください...</p>
+        </div>
+
+        <div id="comment-result" class="hidden">
+            <h2 style="border-bottom: 2px solid #e67e22; padding-bottom: 8px; margin-top: 30px; color: #2c3e50;">
+                💬 読者の感想・レビュー一覧（<span id="comment-count">0</span>件）
+            </h2>
+            
+            <div class="comment-timeline" id="comment-timeline-root"></div>
+
+            <div class="save-area">
+                <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content-wrapper">
+            <span class="close-modal">&times;</span>
+            <img id="full-img" src="" alt="拡大画像">
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI読者コメント欄くん</p>
+        </div>
+    </footer>
+    <script src="./comment_script.js" defer></script>
+</body>
+
+</html>

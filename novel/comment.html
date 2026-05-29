@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
+    <meta charset="UTF-8">
+    <title>AI小説コメント欄くん | AI文芸チェッカー</title>
+    <meta name="description" content="総勢20人の多種多様なAI読者が、あなたの作品にリアルな感想・コメントを書き込みます。ネットの感想欄やSNSのリアルな熱量を再現。">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .comment-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+            /* 💡 max-height や overflow を削除したことで、下に限界なく並ぶようになります */
+            padding-right: 10px;
+        }
+        .comment-card {
+            display: flex;
+            gap: 15px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .comment-card:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+        }
+        .comment-avatar {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .comment-main {
+            flex-grow: 1;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-user-name {
+            font-weight: bold;
+            color: #1e293b;
+        }
+        .comment-meta {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .comment-text {
+            color: #334155;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* 💡 追加：画像保存ボタン用のレイアウト */
+        .save-area {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        #save-image-btn {
+            background: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        #save-image-btn:hover {
+            background: #219653;
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        
+        <h1>AI小説コメント欄くん</h1>
+        <section class="service-description">
+            <p class="lead-text">
+                あなたの作品を投稿すると、ネット小説の感想欄やSNSのタイムラインをシミュレートし、総勢20人の仮想読者から多種多様なコメントが届きます。
+                「信者系ファン」「辛口批評家」「通りすがりの浪漫派」「長文考察班」など、ネット風の空気感をお楽しみください。
+            </p>
+        </section>
+
+        <p class="guide-text">
+            フォームに小説のあらすじ、または本文（一部でも可）を入力して「投稿する」ボタンを押してください。
+        </p>
+
+        <textarea id="novel-text" style="height: 250px;" placeholder="ここにあなたの小説、またはプロット・あらすじを入力してください..."></textarea>
+
+        <div class="actions">
+            <input type="file" id="novel-file" accept=".txt">
+            <button id="post-btn" style="background: #e67e22; color: white; padding: 12px 30px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">作品を投稿する</button>
+        </div>
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📊 実際のコメント欄の例</h3>
+            <div class="example-grid" style="display: block; text-align: center;">
+                <div class="thumb-wrapper" style="max-width: 400px; margin: 0 auto; width: 100%;">
+                    <img src="example-comment.jpg" alt="コメント欄の出力例" class="zoomable" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <span class="thumb-label">20人の読者感想タイムライン（イメージ）</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>読者が集まっています。しばらくお待ちください...</p>
+        </div>
+
+        <div id="comment-result" class="hidden">
+            <h2 style="border-bottom: 2px solid #e67e22; padding-bottom: 8px; margin-top: 30px; color: #2c3e50;">
+                💬 読者の感想・レビュー一覧（<span id="comment-count">0</span>件）
+            </h2>
+            
+            <div class="comment-timeline" id="comment-timeline-root">
+                </div>
+
+            <div class="save-area">
+                <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI読者コメント欄くん</p>
+        </div>
+    </footer>
+
+    <div id="image-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content-wrapper">
+            <span class="close-modal">&times;</span>
+            <img id="full-img" src="" alt="拡大画像">
+        </div>
+    </div>
+    <script src="./comment_script.js" defer></script>
+</body>
+
+</html>
+</body>
+
+</html>

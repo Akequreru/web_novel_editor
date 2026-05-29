@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
+    <meta charset="UTF-8">
+    <title>AI詩下読みくん | AI文芸チェッカー</title>
+    <meta name="description" content="独自のAI詩人と編集者があなたの詩をガチ評価。比喩表現の深さや言葉のリズム、世界観を数秒で分析し、結果を画像保存できます。">
+    <meta property="og:title" content="AI詩下読みくん">
+    <meta property="og:description" content="AIによる詩・詩集の推敲支援ツール。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901"
+        crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DGFSC9SSPG');
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        
+        <h1>AI詩下読みくん</h1>
+        <section class="service-description">
+            <p class="lead-text">
+                最新のAIを活用し、プロの文芸編集者と4人の個性豊かな詩の愛好家による多角的なフィードバックを提供する詩作支援ツールです。
+                言葉の響き、抽象的なイメージ、作品の奥底に潜む感情のうねりを言語化・推敲する際にご活用ください。
+                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+            </p>
+
+            <div class="role-section editor-role">
+                <h3>🧐 編集者視点による精密な詩評分析</h3>
+                <p>一篇の詩（または連作詩・詩集）を現代詩・文芸の視点から厳格に評価します。言葉選びのセンスから全体の思想性まで、以下の5項目を10点満点で採点します。</p>
+                <ul class="analysis-points">
+                    <li><strong>比喩</strong>: 独自の言葉選びによって、新鮮なイメージや隠喩が喚起されているか</li>
+                    <li><strong>韻律</strong>: 心地よいテンポ、言葉のうねり、朗読したくなるような響きがあるか</li>
+                    <li><strong>独創性</strong>: 既存のありきたりな表現にとらわれない、唯一無二の視点が描かれているか</li>
+                    <li><strong>感情の深度</strong>: 言葉の奥底から湧き上がるような、強い情熱や切なさが伝わるか</li>
+                    <li><strong>文章</strong>: フレーズの美しさ、言葉を置く配置や「余白」の持たせ方が洗練されているか</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="role-section reader-role">
+                <h3>👥 4人の現代詩読者による本音レビュー</h3>
+                <p>あえて異なる感性を持つ4人の読者をシミュレート。あなたの詩がどのような受け手に深く刺さるのか、本音の感想から予測できます。</p>
+                <div class="reader-intro-grid">
+                    <div class="intro-card">
+                        <h4>🎧 カイト（ストリート派）</h4>
+                        <p>難解な言葉を使わず、ダイレクトに心に刺さるポエトリーリーディング（朗読詩）のような熱量やリアルさを好む読者です。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>✨ ミユ（叙情派）</h4>
+                        <p>美しい風景や切ない恋愛、言葉そのものが持つ「きらめき」や透明感のある世界観を愛する読者です。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>👤 サトウ（批評・現代詩派）</h4>
+                        <p>現代詩の難解なロジックや、文章の裏に隠された鋭いメタファー（暗号）、文脈の構造美を読み解きたい知性派です。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>📚 ハルカ（思想・文学派）</h4>
+                        <p>思想の深さ、歴史や人間社会を鋭く見つめる重厚なテーマ性、文学としての格調の高さを求めるベテラン読者です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <p class="guide-text">
+            フォームに詩を入力して「読んでもらう」ボタンを押してください。
+        </p>
+
+        <div class="mode-select-container" style="margin-bottom: 15px; display: flex; gap: 20px; background: #eef7ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #d0e8ff;">
+            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <input type="radio" name="analyze-mode" value="single" checked style="transform: scale(1.2);"> 
+                🔮 一篇評モード
+            </label>
+            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <input type="radio" name="analyze-mode" value="collection" style="transform: scale(1.2);"> 
+                📚 詩集・連作モード（複数一括）
+            </label>
+        </div>
+        <textarea id="novel-text" style="height: 300px;" placeholder="ここに詩を貼り付けてください..."></textarea>
+
+        <div class="actions">
+            <input type="file" id="novel-file" accept=".txt">
+            <button id="analyze-btn">読んでもらう</button>
+        </div>
+
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📊 実際の解析例（クリックで拡大）</h3>
+            <div class="example-grid">
+                <div class="thumb-wrapper">
+                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
+                    <span class="thumb-label">総合スコア</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
+                    <span class="thumb-label">編集者講評</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
+                    <span class="thumb-label">読者レビュー(前)</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
+                    <span class="thumb-label">読者レビュー(後)</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>精読中...</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div id="result" class="hidden">
+            <div class="score-overview">
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+                <div class="result-header">
+                    <h2>総合：<span id="avg-score"></span> / 5.0</h2>
+                    <div class="main-star-container">
+                        <div id="main-star-rating" class="star-rating" style="--rating-width: 0%">☆☆☆☆☆</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reader-cards"></div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul id="good-list"></ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul id="bad-list"></ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p id="overall-summary"></p>
+                </div>
+            </div>
+
+            <div class="save-area">
+                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI詩下読みくん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="#" id="policy-btn">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="policy-modal" class="hidden">
+        <div class="modal-content">
+            <h3>プライバシーポリシー</h3>
+            <p><strong>【詩データの取り扱い】</strong></p>
+            <p>・入力された文章データは解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
+            <p>・解析結果の著作権は作者様に帰属します。</p>
+            <p><strong>【広告とアクセス解析】</strong></p>
+            <p>・当サイトではGoogle AdSenseおよびGoogleアナリティクスを利用しており、匿名でのデータ収集のためにCookieを使用することがあります。</p>
+            <button id="close-policy">閉じる</button>
+        </div>
+    </div>
+
+    <script src="./script.js" defer></script>
+
+    <div id="image-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content-wrapper">
+            <span class="close-modal">&times;</span>
+            <img id="full-img" src="" alt="拡大画像">
+        </div>
+    </div>
+</body>
+
+</html>

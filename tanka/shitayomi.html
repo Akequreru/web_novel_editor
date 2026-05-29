@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
+    <meta charset="UTF-8">
+    <title>AI短歌下読みくん | AI文芸チェッカー</title>
+    <meta name="description" content="独自のAI歌人と編集者があなたの短歌をガチ評価。三十一音の密度や情景描写、リズムを数秒で分析し、結果を画像保存できます。">
+    <meta property="og:title" content="AI短歌評論くん">
+    <meta property="og:description" content="AIによる短歌・歌集の推敲支援ツール。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901"
+        crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DGFSC9SSPG');
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        
+        <h1>AI短歌評論くん</h1>
+        <section class="service-description">
+            <p class="lead-text">
+                最新のAIを活用し、プロの文芸編集者と4人の個性豊かな短歌ファンによる多角的な講評フィードバックを提供する短歌・歌集支援ツールです。
+                五七五七七の限られた音数の中に込められた、あなたの言葉の魅力を引き出す推敲にご活用ください。
+                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+            </p>
+
+            <div class="role-section editor-role">
+                <h3>🧐 編集者視点による精密な歌評分析</h3>
+                <p>一首の短歌（または連歌・歌集）を文芸の視点から厳格に評価します。三十一音の構造から表現の技法まで、以下の5項目を10点満点で採点します。</p>
+                <ul class="analysis-points">
+                    <li><strong>構成</strong>:歌集としての並びの妙、または一首の中の構造美。</li>
+                    <li><strong>情景</strong>: 読者の脳裏に鮮明な映像や感情が浮かび上がるか</li>
+                    <li><strong>調べ</strong>: 句切れや字余り・字足らずが効果的に機能しているか</li>
+                    <li><strong>表現技法</strong>: 比喩、見立て、倒置法などの技法が洗練されているか</li>
+                    <li><strong>余情・余韻</strong>: 言葉の裏にあるドラマや深い感情が残るか</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="role-section reader-role">
+                <h3>👥 4人の現代短歌読者による本音レビュー</h3>
+                <p>あえて異なる好みを持つ4人の短歌ファンをシミュレート。あなたの歌がどのような層に刺さるのか、本音の感想から予測できます。</p>
+                <div class="reader-intro-grid">
+                    <div class="intro-card">
+                        <h4>🎧 カイト（ライト層）</h4>
+                        <p>直感的な分かりやすさと口語（現代語）の瑞々しさを重視。日常の切り取りや、エモい共感性を好む読者です。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>✨ ミユ（情緒派）</h4>
+                        <p>恋の歌や、切ない心の揺れ動き、美しい言葉選びを重視。詩的なエッセンスと繊細な関係性の描写を評価します。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>👤 サトウ（技巧・知性派）</h4>
+                        <p>古典への本歌取りや、緻密な言葉のハメ技・ロジックを重視。一筋縄ではいかない捻りの利いた構造を求めます。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>📚 ハルカ（伝統・品位派）</h4>
+                        <p>言葉の品格、伝統的な和歌の響き、そしてテーマの深掘りを重視。古典的文語の扱いにも厳しいベテラン読者です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <p class="guide-text">
+            フォームに短歌を入力して「詠んでもらう」ボタンを押してください。
+        </p>
+
+        <div class="mode-select-container" style="margin-bottom: 15px; display: flex; gap: 20px; background: #eef7ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #d0e8ff;">
+            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <input type="radio" name="analyze-mode" value="single" checked style="transform: scale(1.2);"> 
+                🔮 一首評モード
+            </label>
+            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                <input type="radio" name="analyze-mode" value="collection" style="transform: scale(1.2);"> 
+                📚 歌集・連作モード（複数一括）
+            </label>
+        </div>
+        <textarea id="novel-text" style="height: 150px;" placeholder="例：ひさかたの 光のどけき 春の日に しづ心なく 花のちるらむ"></textarea>
+
+        <div class="actions">
+            <input type="file" id="novel-file" accept=".txt">
+            <button id="analyze-btn">詠んでもらう</button>
+        </div>
+
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📊 実際の解析例（クリックで拡大）</h3>
+            <div class="example-grid">
+                <div class="thumb-wrapper">
+                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
+                    <span class="thumb-label">総合スコア</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
+                    <span class="thumb-label">編集者講評</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
+                    <span class="thumb-label">読者レビュー(前)</span>
+                </div>
+                <div class="thumb-wrapper">
+                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
+                    <span class="thumb-label">読者レビュー(後)</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>精読中...</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div id="result" class="hidden">
+            <div class="score-overview">
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+                <div class="result-header">
+                    <h2>総合：<span id="avg-score"></span> / 5.0</h2>
+                    <div class="main-star-container">
+                        <div id="main-star-rating" class="star-rating" style="--rating-width: 0%">☆☆☆☆☆</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reader-cards"></div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul id="good-list"></ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul id="bad-list"></ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p id="overall-summary"></p>
+                </div>
+            </div>
+
+            <div class="save-area">
+                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI短歌評論くん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="#" id="policy-btn">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="policy-modal" class="hidden">
+        <div class="modal-content">
+            <h3>プライバシーポリシー</h3>
+            <p><strong>【短歌データの取り扱い】</strong></p>
+            <p>・入力された文章データは解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
+            <p>・解析結果の著作権は作者様に帰属します。</p>
+            <p><strong>【広告とアクセス解析】</strong></p>
+            <p>・当サイトではGoogle AdSenseおよびGoogleアナリティクスを利用しており、匿名でのデータ収集のためにCookieを使用することがあります。</p>
+            <button id="close-policy">閉じる</button>
+        </div>
+    </div>
+
+    <script src="./script.js" defer></script>
+
+    <div id="image-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content-wrapper">
+            <span class="close-modal">&times;</span>
+            <img id="full-img" src="" alt="拡大画像">
+        </div>
+    </div>
+</body>
+
+</html>
