@@ -323,7 +323,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     if (text) formData.append('text', text);
 
     try {
-        const response = await fetch("/api/analyze", { // 相対パスにする
+        const response = await fetch("/api/shitayomi", { // 相対パスにする
             method: "POST",
             body: formData
         });

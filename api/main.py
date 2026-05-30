@@ -448,7 +448,7 @@ def clean_json_text(raw_text):
 # ==========================================
 # ⚙️ 小説用エンドポイント (既存)
 # ==========================================
-@app.post("/api/analyze")
+@app.post("/api/shitayomi")
 async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
     if text == "test":
         with open("test_data.json", "r", encoding="utf-8") as f:
@@ -483,7 +483,7 @@ async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
 # ==========================================
 # ⚙️ 短歌・歌集用エンドポイント (新規)
 # ==========================================
-@app.post("/api/analyze/tanka")
+@app.post("/api/shitayomi/tanka")
 async def analyze_tanka(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
     content = ""
     if file:
@@ -514,7 +514,7 @@ async def analyze_tanka(text: str = Form(None), mode: str = Form("single"), file
 # ==========================================
 # ⚙️ 俳句・川柳用エンドポイント (新規)
 # ==========================================
-@app.post("/api/analyze/haiku")
+@app.post("/api/shitayomi/haiku")
 async def analyze_haiku(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
     content = ""
     if file:
@@ -544,7 +544,7 @@ async def analyze_haiku(text: str = Form(None), mode: str = Form("single"), file
 # ==========================================
 # ⚙️ 詩・詩集用エンドポイント (新規)
 # ==========================================
-@app.post("/api/analyze/poetry")
+@app.post("/api/shitayomi/poetry")
 async def analyze_poetry(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
     content = ""
     if file:

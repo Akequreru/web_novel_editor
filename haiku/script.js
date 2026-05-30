@@ -179,7 +179,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
 
     try {
         // 💡 Live ServerからFastAPI（8000ポート）へ明示的に送信
-        const response = await fetch("/api/analyze/haiku", { method: "POST", body: formData });
+        const response = await fetch("/api/shitayomi/haiku", { method: "POST", body: formData });
         const data = await response.json();
         if (data.error) throw new Error(data.error);
         renderResult(data);

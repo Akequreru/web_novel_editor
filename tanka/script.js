@@ -191,7 +191,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
 
     try {
         // 💡 ポート番号を「8000」に変更して、FastAPIを狙い撃ちします
-        const response = await fetch("/api/analyze/tanka", { 
+        const response = await fetch("/api/shitayomi/tanka", { 
             method: "POST", 
             body: formData 
         });
