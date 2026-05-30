@@ -1,7 +1,8 @@
 import os
 import json
 import re
-from fastapi import FastAPI, UploadFile, File, Form
+# 💡 FastAPIからのインポートに「Request」を追加します
+from fastapi import FastAPI, UploadFile, File, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from google import genai 
@@ -448,8 +449,12 @@ def clean_json_text(raw_text):
 # ==========================================
 # ⚙️ 小説用エンドポイント (既存)
 # ==========================================
-@app.post("/api/shitayom/novel")
-async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
+@app.api_route("/api/shitayomi/novel", methods=["POST", "GET"])
+async def analyze_novel(request: Request = None, text: str = Form(None), file: UploadFile = File(None)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI小説下読みくんAPI。POSTリクエストをお待ちしています。"}
+
+    # --- ここから下は元の解析ロジックのまま ---
     if text == "test":
         with open("test_data.json", "r", encoding="utf-8") as f:
             return json.load(f)
@@ -481,10 +486,13 @@ async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
 
 
 # ==========================================
-# ⚙️ 短歌・歌集用エンドポイント (新規)
+# ⚙️ 短歌・歌集用エンドポイント (POST/GET統合版)
 # ==========================================
-@app.post("/api/shitayomi/tanka")
-async def analyze_tanka(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
+@app.api_route("/api/shitayomi/tanka", methods=["POST", "GET"])
+async def analyze_tanka(request: Request = None, text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI短歌下読みくんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -496,7 +504,6 @@ async def analyze_tanka(text: str = Form(None), mode: str = Form("single"), file
         return {"error": "短歌テキストが空です"}
 
     try:
-        # モード情報をプロンプトに動的に付与してGeminiに送る
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
         
         response = client.models.generate_content(
@@ -514,8 +521,11 @@ async def analyze_tanka(text: str = Form(None), mode: str = Form("single"), file
 # ==========================================
 # ⚙️ 俳句・川柳用エンドポイント (新規)
 # ==========================================
-@app.post("/api/shitayomi/haiku")
-async def analyze_haiku(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
+@app.api_route("/api/shitayomi/haiku", methods=["POST", "GET"])
+async def analyze_haiku(request: Request = None, text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI俳句下読みくんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -544,8 +554,11 @@ async def analyze_haiku(text: str = Form(None), mode: str = Form("single"), file
 # ==========================================
 # ⚙️ 詩・詩集用エンドポイント (新規)
 # ==========================================
-@app.post("/api/shitayomi/poetry")
-async def analyze_poetry(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
+@app.api_route("/api/shitayomi/poetry", methods=["POST", "GET"])
+async def analyze_poetry(request: Request = None, text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI詩下読みくんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -574,8 +587,11 @@ async def analyze_poetry(text: str = Form(None), mode: str = Form("single"), fil
 # ==========================================
 # ⚙️ 小説コメント欄用エンドポイント (可変人数対応版)
 # ==========================================
-@app.post("/api/comment/novel")
-async def analyze_novel_comments(text: str = Form(None), file: UploadFile = File(None), count: int = Form(20)):
+@app.api_route("/api/comment/novel", methods=["POST", "GET"])
+async def analyze_novel_comments(request: Request = None, text: str = Form(None), file: UploadFile = File(None), count: int = Form(20)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI小説コメント欄くんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -613,8 +629,11 @@ async def analyze_novel_comments(text: str = Form(None), file: UploadFile = File
 # ==========================================
 # ⚙️ 短歌コメント欄用エンドポイント (新規)
 # ==========================================
-@app.post("/api/comment/tanka")
-async def analyze_tanka_comments(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None), count: int = Form(5)):
+@app.api_route("/api/comment/tanka", methods=["POST", "GET"])
+async def analyze_tanka_comments(request: Request = None, text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None), count: int = Form(5)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI短歌コメント欄くんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -652,8 +671,11 @@ async def analyze_tanka_comments(text: str = Form(None), mode: str = Form("singl
 # ==========================================
 # ⚙️ 俳句・川柳コメント欄用エンドポイント (新規)
 # ==========================================
-@app.post("/api/comment/haiku")
-async def analyze_haiku_comments(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None), count: int = Form(5)):
+@app.api_route("/api/comment/haiku", methods=["POST", "GET"])
+async def analyze_haiku_comments(request: Request = None, text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None), count: int = Form(5)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI俳句コメント欄くんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -691,8 +713,11 @@ async def analyze_haiku_comments(text: str = Form(None), mode: str = Form("singl
 # ==========================================
 # ⚙️ 詩コメント欄用エンドポイント (新規)
 # ==========================================
-@app.post("/api/comment/poetry")
-async def analyze_poetry_comments(text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None), count: int = Form(5)):
+@app.api_route("/api/comment/poetry", methods=["POST", "GET"])
+async def analyze_poetry_comments(request: Request = None, text: str = Form(None), mode: str = Form("single"), file: UploadFile = File(None), count: int = Form(5)):
+    if request and request.method == "GET":
+        return {"status": "active", "message": "AI詩コメントコメント欄くんAPI。POSTリクエストをお待ちしています。"}
+
     content = ""
     if file:
         file_content = await file.read()
@@ -726,47 +751,6 @@ async def analyze_poetry_comments(text: str = Form(None), mode: str = Form("sing
     except Exception as e:
         return {"error": f"コメントの生成に失敗しました: {str(e)}"}
 
-# 例：クローラーが巡回してきたときにエラーを吐かせないための対策
-@app.get("/api/comment/novel")
-async def dummy_novel_get():
-    return {"message": "API is active. Please use POST request to analyze novel content."}
-
-@app.get("/api/comment/tanka")
-async def get_tanka_comment_stub():
-    return {
-        "status": "active",
-        "message": "AI短歌コメント欄くんのAPIは正常に稼働しています。解析を行うには、短歌（一首または歌集）をPOSTリクエストで送信してください。"
-    }
-
-@app.get("/api/comment/haiku")
-async def get_haiku_comment_stub():
-    return {
-        "status": "active",
-        "message": "AI俳句・川柳コメント欄くんのAPIは正常に稼働しています。解析を行うには、五七五の作品をPOSTリクエストで送信してください。"
-    }
-
-@app.get("/api/comment/poetry")
-async def get_poetry_comment_stub():
-    return {
-        "status": "active",
-        "message": "AI詩コメント欄くんのAPIは正常に稼働しています。解析を行うには、詩の本文をPOSTリクエストで送信してください。"
-    }
-
-@app.get("/api/shitayomi/novel")
-async def get_novel_shitayomi_stub():
-    return {"status": "active", "message": "AI小説下読みくんAPI。POSTリクエストをお待ちしています。"}
-
-@app.get("/api/shitayomi/poetry")
-async def get_poetry_shitayomi_stub():
-    return {"status": "active", "message": "AI詩下読みくんAPI。POSTリクエストをお待ちしています。"}
-
-@app.get("/api/shitayomi/tanka")
-async def get_tanka_hyoron_stub():
-    return {"status": "active", "message": "AI短歌下読みくんAPI。POSTリクエストをお待ちしています。"}
-
-@app.get("/api/shitayomi/haiku")
-async def get_haiku_hyoron_stub():
-    return {"status": "active", "message": "AI俳句・川柳下読みくんAPI。POSTリクエストをお待ちしています。"}
 
 if __name__ == "__main__":
     import uvicorn
