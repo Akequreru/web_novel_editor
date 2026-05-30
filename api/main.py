@@ -448,7 +448,7 @@ def clean_json_text(raw_text):
 # ==========================================
 # ⚙️ 小説用エンドポイント (既存)
 # ==========================================
-@app.post("/api/shitayomi")
+@app.post("/api/shitayom/novel")
 async def analyze_novel(text: str = Form(None), file: UploadFile = File(None)):
     if text == "test":
         with open("test_data.json", "r", encoding="utf-8") as f:
