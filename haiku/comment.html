@@ -115,7 +115,7 @@
             </label>
         </div>
 
-        <textarea id="novel-text" style="height: 120px;" placeholder="例：古池や 蛙飛びこむ 水の音"></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 120px;" placeholder="例：古池や 蛙飛びこむ 水の音"></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
@@ -148,6 +148,35 @@
                 <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #27ae60;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>句会やWeb句会に出す前に、合評の雰囲気を確認したいとき</li>
+                <li>一句の解釈や評価が、読み手によってどう変わるかを知りたいとき</li>
+                <li>句集として読んだときの全体の印象を確認したいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 厳しい指摘も含まれますか？</p>
+                <p class="faq-a">A. はい。「辛口の宗匠・ベテラン批評家」の視点を必ず含めているため、技術的な指摘を含むリアルな合評を再現します。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 俳句・川柳どちらでも使えますか？</p>
+                <p class="faq-a">A. はい。作品の内容を判断し、俳句的な視点・川柳的な視点それぞれに応じたコメントが生成されます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 一句と句集、どちらにも対応していますか？</p>
+                <p class="faq-a">A. はい。モードを切り替えることで、一句単体への感想と、句集・連句全体への感想の両方に対応しています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. どんな場面で使うとよいですか？</p>
+                <p class="faq-a">A. 句会やSNSに投稿する前のイメージトレーニングとして使うとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <div id="image-modal" class="hidden">
@@ -161,6 +190,10 @@
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI読者コメント欄くん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
+            </div>
         </div>
     </footer>
     <script src="./comment_script.js" defer></script>

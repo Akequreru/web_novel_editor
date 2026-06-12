@@ -88,31 +88,107 @@
                 📚 句集・連句モード（複数一括）
             </label>
         </div>
-        <textarea id="novel-text" style="height: 120px;" placeholder="例：古池や 蛙飛びこむ 水の音"></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 120px;" placeholder="例：古池や 蛙飛びこむ 水の音"></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
             <button id="analyze-btn">詠んでもらう</button>
         </div>
 
-        <div class="role-section example-use" id="example-use-section">
-            <h3>📊 実際の解析例（クリックで拡大）</h3>
-            <div class="example-grid">
-                <div class="thumb-wrapper">
-                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
-                    <span class="thumb-label">総合スコア</span>
+        <div class="role-section example-use" id="example-use-text-section">
+            <h3>📝 解析サンプル</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
+                「扇風機 一人分だけ 回る部屋」という一句を「一句評」モードで分析した結果の例です。
+            </p>
+
+            <div class="result-header">
+                <h2>総合：2.9 / 5.0</h2>
+                <div class="main-star-container">
+                    <div class="star-rating" style="--rating-width: 58%">☆☆☆☆☆</div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
-                    <span class="thumb-label">編集者講評</span>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="reader-icon">🎧</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">カイト</span>
+                            <span class="reader-meta">男 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 70%">☆☆☆☆☆</div>
+                            <span class="reader-score">3.5</span>
+                        </div>
+                        <p class="reader-comment">「一人分だけ」がじわじわくる。あるあるすぎて笑っちゃうけど、ちょっと切ない感じも分かる。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
-                    <span class="thumb-label">読者レビュー(前)</span>
+                <div class="card">
+                    <div class="reader-icon">✨</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ミユ</span>
+                            <span class="reader-meta">女 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 40%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.0</span>
+                        </div>
+                        <p class="reader-comment">少し寂しい雰囲気は伝わるけれど、もう少し情景に色やきらめきのようなものがあると、印象に残りやすいかも。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
-                    <span class="thumb-label">読者レビュー(後)</span>
+                <div class="card">
+                    <div class="reader-icon">👤</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">サトウ</span>
+                            <span class="reader-meta">男 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 70%">☆☆☆☆☆</div>
+                            <span class="reader-score">3.5</span>
+                        </div>
+                        <p class="reader-comment">「一人分だけ」という数量表現で空間の広さと孤独を同時に示す構成が巧み。夏の季語「扇風機」の使い方も自然。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">📚</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ハルカ</span>
+                            <span class="reader-meta">女 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 50%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.5</span>
+                        </div>
+                        <p class="reader-comment">写生としては成立しているが、季語「扇風機」の本来持つ涼やかさが、孤独感に少し埋もれてしまっている。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul>
+                            <li>「一人分だけ」という言葉選びが、部屋の広さと詠み手の孤独感を同時に表現している。</li>
+                            <li>夏の季語「扇風機」を、日常のワンシーンとして自然に取り入れている。</li>
+                            <li>下五「回る部屋」の体言止めにより、映像が静かに残る余白が生まれている。</li>
+                        </ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul>
+                            <li>切れ字が使われておらず、句全体のリズムがやや平坦になっている。</li>
+                            <li>「一人分だけ」がやや説明的で、もう少し削ぎ落とした言葉でも伝わる可能性がある。</li>
+                            <li>季語「扇風機」の涼やかさと、句全体の寂しい雰囲気がやや競合している。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p>本作は、扇風機の音だけが響く部屋という日常の一場面から、静かな孤独感を切り取った一句です。意識すべきターゲット層は、日常の何気ない一瞬に共感を覚える層と、季語の使い方を重視する伝統派の両方です。今すぐ取り組むべきは、切れ字や間の活かし方です。「や」や「かな」などを効果的に配置することで、句全体のリズムに余韻が生まれ、孤独感がより深く読者に伝わる一句へと仕上がる可能性があります。</p>
                 </div>
             </div>
         </div>
@@ -160,6 +236,36 @@
                 <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #3498db;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>一句詠んだあと、季語や切れ字の効果を確認したいとき</li>
+                <li>句集・連句として、全体の流れや季節感を見直したいとき</li>
+                <li>俳句と川柳、どちらの方向性が強いかを知りたいとき</li>
+                <li>句会やSNSに出す前に、推敲のポイントを整理しておきたいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 俳句と川柳、どちらにも対応していますか？</p>
+                <p class="faq-a">A. はい。作品の内容に応じて、俳句的な情景描写と川柳的なユーモア・風刺の両方の観点から評価します。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 字余り・字足らずがある句でも評価できますか？</p>
+                <p class="faq-a">A. はい。五七五の規律だけでなく、あえての破調が効果的かどうかも評価項目に含まれています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 句集・連句の場合、何を見てくれますか？</p>
+                <p class="faq-a">A. 複数の句の並びや季節感のグラデーション、連作全体を貫く余白の流れなどをマクロな視点で分析します。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 結果はどう活用すればいいですか？</p>
+                <p class="faq-a">A. 4人の読者の反応を参考に、季語の選び方や切れ字の効果を見直す材料として使うとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">
@@ -167,22 +273,10 @@
             <p>© 2026 AI俳句・川柳評論くん</p>
             <div class="footer-links">
                 <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
-                <a href="#" id="policy-btn">プライバシーポリシー</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
             </div>
         </div>
     </footer>
-
-    <div id="policy-modal" class="hidden">
-        <div class="modal-content">
-            <h3>プライバシーポリシー</h3>
-            <p><strong>【俳句・川柳データの取り扱い】</strong></p>
-            <p>・入力された文章データは解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
-            <p>・解析結果の著作権は作者様に帰属します。</p>
-            <p><strong>【広告とアクセス解析】</strong></p>
-            <p>・当サイトではGoogle AdSenseおよびGoogleアナリティクスを利用しており、匿名でのデータ収集のためにCookieを使用することがあります。</p>
-            <button id="close-policy">閉じる</button>
-        </div>
-    </div>
 
     <script src="./script.js" defer></script>
 

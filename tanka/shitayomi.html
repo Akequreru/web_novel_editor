@@ -88,31 +88,107 @@
                 📚 歌集・連作モード（複数一括）
             </label>
         </div>
-        <textarea id="novel-text" style="height: 150px;" placeholder="例：ひさかたの 光のどけき 春の日に しづ心なく 花のちるらむ"></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 150px;" placeholder="例：ひさかたの 光のどけき 春の日に しづ心なく 花のちるらむ"></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
             <button id="analyze-btn">詠んでもらう</button>
         </div>
 
-        <div class="role-section example-use" id="example-use-section">
-            <h3>📊 実際の解析例（クリックで拡大）</h3>
-            <div class="example-grid">
-                <div class="thumb-wrapper">
-                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
-                    <span class="thumb-label">総合スコア</span>
+        <div class="role-section example-use" id="example-use-text-section">
+            <h3>📝 解析サンプル</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
+                「終電を一本逃した改札で スマホの光だけが頬を照らす」という一首を「一首評」モードで分析した結果の例です。
+            </p>
+
+            <div class="result-header">
+                <h2>総合：3.0 / 5.0</h2>
+                <div class="main-star-container">
+                    <div class="star-rating" style="--rating-width: 60%">☆☆☆☆☆</div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
-                    <span class="thumb-label">編集者講評</span>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="reader-icon">🎧</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">カイト</span>
+                            <span class="reader-meta">男 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 80%">☆☆☆☆☆</div>
+                            <span class="reader-score">4.0</span>
+                        </div>
+                        <p class="reader-comment">「終電を一本逃した」のリアルさがすごく共感できる。スマホの光だけ、っていう情景も今っぽくて好き。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
-                    <span class="thumb-label">読者レビュー(前)</span>
+                <div class="card">
+                    <div class="reader-icon">✨</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ミユ</span>
+                            <span class="reader-meta">女 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 60%">☆☆☆☆☆</div>
+                            <span class="reader-score">3.0</span>
+                        </div>
+                        <p class="reader-comment">「頬を照らす」の光の質感が好き。でも、その後に何があったのか、もう少し心情がにじむ言葉が欲しいかも。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
-                    <span class="thumb-label">読者レビュー(後)</span>
+                <div class="card">
+                    <div class="reader-icon">👤</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">サトウ</span>
+                            <span class="reader-meta">男 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 40%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.0</span>
+                        </div>
+                        <p class="reader-comment">情景としては成立しているが、「改札」と「スマホの光」の取り合わせに、もう一段の仕掛けや本歌取りの工夫があれば奥行きが出る。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">📚</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ハルカ</span>
+                            <span class="reader-meta">女 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 50%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.5</span>
+                        </div>
+                        <p class="reader-comment">現代的な情景を切り取る手つきは丁寧だが、結句の着地がやや軽く、一首としての品格にもう一歩の深みを求めたい。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul>
+                            <li>「終電を一本逃した」という具体的な状況設定が、誰にでも想像しやすい情景を生んでいる。</li>
+                            <li>「スマホの光だけが頬を照らす」という、現代的で静かな映像表現が効果的。</li>
+                            <li>初句から結句までの視線の流れが自然で、すっと情景に入り込める。</li>
+                        </ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul>
+                            <li>状況描写に留まっており、詠み手の心情がどこにあるのかが伝わりにくい。</li>
+                            <li>結句「頬を照らす」がやや説明的で、余情を残す言葉選びの余地がある。</li>
+                            <li>「改札」「スマホ」という現代語のみで構成されており、調べの強弱に乏しい。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p>本作は、終電を逃した夜の孤独感を、現代的な小道具を使って丁寧に切り取った一首です。意識すべきターゲット層は、口語短歌のリアルな共感を求める層と、調べの確かさを重視する伝統派の両方です。今すぐ取り組むべきは、結句における心情の見せ方です。状況をそのまま言い切るのではなく、一語だけ感情のにじむ言葉を残すことで、余情のある一首へと深化する可能性があります。</p>
                 </div>
             </div>
         </div>
@@ -160,6 +236,36 @@
                 <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #3498db;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>一首詠んだあと、すぐに客観的な評価を知りたいとき</li>
+                <li>歌集や連作として、全体の流れやテーマ性を確認したいとき</li>
+                <li>句切れや字余り・字足らずの効果が意図通りに伝わるか確認したいとき</li>
+                <li>結社や歌会に出す前に、推敲のポイントを整理しておきたいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 一首だけでも評価できますか？</p>
+                <p class="faq-a">A. はい。「一首評」モードでは、三十一音の言葉選びやリズム、余情などをミクロな視点で精読します。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 歌集・連作の評価では何を見てくれますか？</p>
+                <p class="faq-a">A. 「歌集・連作」モードでは、歌の並び順や時間経過、連作全体を貫くテーマ性など、マクロな視点で分析します。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 複数の短歌を入力した場合、すべて評価されますか？</p>
+                <p class="faq-a">A. 「一首評」モードでは最初の一首のみが対象になります。複数首をまとめて評価したい場合は「歌集・連作」モードをお使いください。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 結果はどのように活用すればいいですか？</p>
+                <p class="faq-a">A. 4人の読者の反応をもとに、言葉選びや句切れの方向性を見直したり、推敲時の参考にするとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">
@@ -167,22 +273,10 @@
             <p>© 2026 AI短歌評論くん</p>
             <div class="footer-links">
                 <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
-                <a href="#" id="policy-btn">プライバシーポリシー</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
             </div>
         </div>
     </footer>
-
-    <div id="policy-modal" class="hidden">
-        <div class="modal-content">
-            <h3>プライバシーポリシー</h3>
-            <p><strong>【短歌データの取り扱い】</strong></p>
-            <p>・入力された文章データは解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
-            <p>・解析結果の著作権は作者様に帰属します。</p>
-            <p><strong>【広告とアクセス解析】</strong></p>
-            <p>・当サイトではGoogle AdSenseおよびGoogleアナリティクスを利用しており、匿名でのデータ収集のためにCookieを使用することがあります。</p>
-            <button id="close-policy">閉じる</button>
-        </div>
-    </div>
 
     <script src="./script.js" defer></script>
 

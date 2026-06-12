@@ -761,6 +761,29 @@ button:hover {
 .text-green:hover .tile-icon { transform: scale(1.1); background: #e1f7e9; }
 
 /* ==========================================
+   ❓ FAQ・利用シーン セクション
+   ========================================== */
+.faq-item {
+    margin-bottom: 18px;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-q {
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 5px 0;
+}
+
+.faq-a {
+    margin: 0;
+    padding-left: 1.2em;
+    color: #555;
+}
+
+/* ==========================================
    ✒️ 総合ポータル用 サイトロゴ・スタイル
    ========================================== */
 .site-logo-container {

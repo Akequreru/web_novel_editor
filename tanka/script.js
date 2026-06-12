@@ -1,13 +1,5 @@
 let myChart = null;
 
-// プライバシーポリシーの制御
-document.getElementById('policy-btn').addEventListener('click', () => {
-    document.getElementById('policy-modal').classList.remove('hidden');
-});
-document.getElementById('close-policy').addEventListener('click', () => {
-    document.getElementById('policy-modal').classList.add('hidden');
-});
-
 // 画像拡大・モーダル制御
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('image-modal');
@@ -131,17 +123,17 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     const fileInput = document.getElementById('novel-file');
     const loading = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
-    const exampleSection = document.getElementById('example-use-section');
+    const exampleTextSection = document.getElementById('example-use-text-section');
 
     // テキストもファイルも両方空なら弾く
-    if (!text && (!fileInput.files || fileInput.files.length === 0)) { 
-        alert("短歌を入力するか、テキストファイルをアップロードしてください"); 
-        return; 
+    if (!text && (!fileInput.files || fileInput.files.length === 0)) {
+        alert("短歌を入力するか、テキストファイルをアップロードしてください");
+        return;
     }
 
     loading.classList.remove('hidden');
     resultDiv.classList.add('hidden');
-    if (exampleSection) exampleSection.classList.add('hidden');
+    if (exampleTextSection) exampleTextSection.classList.add('hidden');
 
     if (DEBUG_MODE) {
         // 💻 テスト用のダミーデータ

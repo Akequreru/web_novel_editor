@@ -107,7 +107,7 @@
             フォームに小説のあらすじ、または本文（一部でも可）を入力して「投稿する」ボタンを押してください。
         </p>
 
-        <textarea id="novel-text" style="height: 250px;" placeholder="ここにあなたの小説、またはプロット・あらすじを入力してください..."></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 250px;" placeholder="ここにあなたの小説、またはプロット・あらすじを入力してください..."></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
@@ -140,11 +140,44 @@
                 <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #27ae60;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>投稿前に、読者がどんな反応をするかをあらかじめ確認したいとき</li>
+                <li>作品の「刺さりやすい層」や気になるポイントを可視化したいとき</li>
+                <li>感想欄を見るのが初めての作品で、リアクションのイメージを掴みたいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 生成されるコメントは実際の読者の声と同じですか？</p>
+                <p class="faq-a">A. AIが想定する仮想読者によるシミュレーションです。実際の感想とは異なる場合がありますが、作品の特徴を客観的に把握する参考材料としてご活用ください。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. コメントの人数は変えられますか？</p>
+                <p class="faq-a">A. はい、人数を指定して生成できます。要点を絞った感想を見たい場合や、賑やかなコメント欄の雰囲気を再現したい場合など、用途に応じて調整してください。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 辛口な意見が出たらどう受け止めればいいですか？</p>
+                <p class="faq-a">A. あえて批判的な視点を持つ読者も含めています。改善のヒントとして受け止めつつ、すべての意見に対応する必要はありません。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 小説投稿サイトに公開する前に使うとよいですか？</p>
+                <p class="faq-a">A. はい。公開後の反応をあらかじめイメージしておくことで、不安なく投稿できるようになります。</p>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI読者コメント欄くん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
+            </div>
         </div>
     </footer>
 

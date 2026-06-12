@@ -88,31 +88,107 @@
                 📚 詩集・連作モード（複数一括）
             </label>
         </div>
-        <textarea id="novel-text" style="height: 300px;" placeholder="ここに詩を貼り付けてください..."></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 300px;" placeholder="ここに詩を貼り付けてください..."></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
             <button id="analyze-btn">読んでもらう</button>
         </div>
 
-        <div class="role-section example-use" id="example-use-section">
-            <h3>📊 実際の解析例（クリックで拡大）</h3>
-            <div class="example-grid">
-                <div class="thumb-wrapper">
-                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
-                    <span class="thumb-label">総合スコア</span>
+        <div class="role-section example-use" id="example-use-text-section">
+            <h3>📝 解析サンプル</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
+                「硝子の雨」という一篇の詩を実際に分析した結果の例です。入力した詩が、このような形式で多角的に評価されます。
+            </p>
+
+            <div class="result-header">
+                <h2>総合：3.1 / 5.0</h2>
+                <div class="main-star-container">
+                    <div class="star-rating" style="--rating-width: 62%">☆☆☆☆☆</div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
-                    <span class="thumb-label">編集者講評</span>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="reader-icon">🎧</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">カイト</span>
+                            <span class="reader-meta">男 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 40%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.0</span>
+                        </div>
+                        <p class="reader-comment">言葉が綺麗なのは分かるけど、結局何が言いたいのかピンと来なかった。もっと直接的な一行が欲しい。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
-                    <span class="thumb-label">読者レビュー(前)</span>
+                <div class="card">
+                    <div class="reader-icon">✨</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ミユ</span>
+                            <span class="reader-meta">女 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 80%">☆☆☆☆☆</div>
+                            <span class="reader-score">4.0</span>
+                        </div>
+                        <p class="reader-comment">「昨日の言葉の残響」という表現がすごく綺麗。雨の冷たさと寂しさが、そのまま伝わってくる。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
-                    <span class="thumb-label">読者レビュー(後)</span>
+                <div class="card">
+                    <div class="reader-icon">👤</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">サトウ</span>
+                            <span class="reader-meta">男 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 60%">☆☆☆☆☆</div>
+                            <span class="reader-score">3.0</span>
+                        </div>
+                        <p class="reader-comment">「落ちて、消えて、また満ちる」という循環の構造は面白いが、もう一段階のロジックの飛躍があれば、より読み解きごたえが出る。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">📚</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ハルカ</span>
+                            <span class="reader-meta">女 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 70%">☆☆☆☆☆</div>
+                            <span class="reader-score">3.5</span>
+                        </div>
+                        <p class="reader-comment">「濡れることを選んでいる」という一節に、静かな覚悟のようなものを感じる。テーマの深まりに期待したい。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul>
+                            <li>「昨日の言葉の残響」という、雨の滴に記憶を重ねる比喩が新鮮で印象的。</li>
+                            <li>「落ちて、消えて、また満ちる」という循環のリズムが、詩全体に静かな余韻を生んでいる。</li>
+                            <li>硝子・雨・滴という冷たく透明なイメージが統一感を持って構成されている。</li>
+                        </ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul>
+                            <li>全体的に抽象度が高く、読者によっては何を描いているのか掴みにくい。</li>
+                            <li>「誰も傘を持たず」という設定の意図が、後半まで活かされていない。</li>
+                            <li>結句がやや静かに収まりすぎており、もう一段の飛躍があると印象が強まる。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p>本作は、雨・硝子・記憶という冷たく透明なモチーフを丁寧に積み重ねた一篇です。意識すべきターゲット層は、説明的な言葉よりも余白から情景を感じ取りたい読者層です。今すぐ取り組むべきは、「誰も傘を持たず」という設定が持つ意味を、後半の循環の構造とどう結びつけるかという点です。そこに一行の飛躍が加わることで、雰囲気の良さだけでなく、強い余韻を残す作品へと深化する可能性があります。</p>
                 </div>
             </div>
         </div>
@@ -160,6 +236,36 @@
                 <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #3498db;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>詩を書いたあと、表現や構成がきちんと伝わるか確認したいとき</li>
+                <li>同人誌やWeb詩誌に出す前に、客観的な評価を知りたいとき</li>
+                <li>改行やリズムが意図通りの効果を生んでいるか見直したいとき</li>
+                <li>自分の作品がどんな読者層に向いているかを知りたいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 一篇だけでなく、詩集としてまとめて評価できますか？</p>
+                <p class="faq-a">A. はい。「一篇評」と「詩集・連作」のモードを切り替えることで、一篇単位の精読と、複数篇を通した世界観・テーマ性の評価の両方に対応しています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 抽象的な表現や前衛的な詩でも評価できますか？</p>
+                <p class="faq-a">A. 可能です。比喩や象徴、独創性なども評価項目に含まれているため、実験的な作品も多角的にフィードバックします。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. どのくらいの長さの詩に対応していますか？</p>
+                <p class="faq-a">A. 一行の短い詩から詩集規模のテキストまで、最大50,000文字まで入力できます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 評価結果はどう活用すればいいですか？</p>
+                <p class="faq-a">A. 「良い点」「悪い点」を参考に推敲のポイントを絞り込んだり、4人の読者の反応からターゲット層を確認したりするのに使うとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">
@@ -167,22 +273,10 @@
             <p>© 2026 AI詩下読みくん</p>
             <div class="footer-links">
                 <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
-                <a href="#" id="policy-btn">プライバシーポリシー</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
             </div>
         </div>
     </footer>
-
-    <div id="policy-modal" class="hidden">
-        <div class="modal-content">
-            <h3>プライバシーポリシー</h3>
-            <p><strong>【詩データの取り扱い】</strong></p>
-            <p>・入力された文章データは解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
-            <p>・解析結果の著作権は作者様に帰属します。</p>
-            <p><strong>【広告とアクセス解析】</strong></p>
-            <p>・当サイトではGoogle AdSenseおよびGoogleアナリティクスを利用しており、匿名でのデータ収集のためにCookieを使用することがあります。</p>
-            <button id="close-policy">閉じる</button>
-        </div>
-    </div>
 
     <script src="./script.js" defer></script>
 

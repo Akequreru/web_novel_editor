@@ -115,7 +115,7 @@
             </label>
         </div>
 
-        <textarea id="novel-text" style="height: 150px;" placeholder="例：ひさかたの 光のどけき 春の日に しづ心なく 花のちるらむ"></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 150px;" placeholder="例：ひさかたの 光のどけき 春の日に しづ心なく 花のちるらむ"></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
@@ -148,6 +148,35 @@
                 <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #27ae60;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>一首を発表する前に、歌会やSNSでの反応をイメージしたいとき</li>
+                <li>辛口の意見も含めたリアルな評価を確認したいとき</li>
+                <li>連作・歌集として読んだときの印象を確認したいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 本当に厳しい意見も出ますか？</p>
+                <p class="faq-a">A. はい。「辛口の批評家・ベテラン歌人」のような視点を必ず含めているため、甘い評価だけではないリアルなコメントが生成されます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 一首と歌集、どちらにも対応していますか？</p>
+                <p class="faq-a">A. はい。モードを切り替えることで、一首単体への感想と、歌集・連作全体への感想の両方に対応しています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. コメントの人数は調整できますか？</p>
+                <p class="faq-a">A. はい。人数を指定して生成できるため、少人数でじっくり読みたい場合にも対応しています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. どんな場面で使うとよいですか？</p>
+                <p class="faq-a">A. 短歌を投稿する前のセルフチェックや、結社・歌会に出す前のイメージトレーニングとして使うとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <div id="image-modal" class="hidden">
@@ -161,6 +190,10 @@
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI読者コメント欄くん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
+            </div>
         </div>
     </footer>
     <script src="./comment_script.js" defer></script>

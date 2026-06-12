@@ -146,33 +146,12 @@
             <p>© 2026 AI文芸チェッカー (ainovelchecker.com)</p>
             <div class="footer-links">
                 <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
-                <a href="#" id="policy-btn">プライバシーポリシー</a>
+                <a href="./privacy.html">プライバシーポリシー</a>
             </div>
         </div>
     </footer>
 
-    <div id="policy-modal" class="hidden">
-        <div class="modal-content">
-            <h3>プライバシーポリシー</h3>
-            <p><strong>【データの取り扱いについて】</strong></p>
-            <p>・入力された文章データは解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。解析結果の著作権は作者様に帰属します。</p>
-            <p><strong>【広告について】</strong></p>
-            <p>・当サイトでは、第三者配信の広告サービス（Google AdSense）を利用しています。Cookieを使用することがあります。</p>
-            <p><strong>【アクセス解析について】</strong></p>
-            <p>・当サイトではGoogleアナリティクスを利用しています。データは匿名で収集されており、個人を特定するものではありません。</p>
-            <button id="close-policy">閉じる</button>
-        </div>
-    </div>
-
     <script>
-        document.getElementById('policy-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('policy-modal').classList.remove('hidden');
-        });
-        document.getElementById('close-policy').addEventListener('click', () => {
-            document.getElementById('policy-modal').classList.add('hidden');
-        });
-
         // リンクカードにホバーエフェクト用スタイルをJSから適用、またはcssに書いてもOKです
         document.querySelectorAll('.intro-card').forEach(card => {
             card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-5px)');

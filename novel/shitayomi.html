@@ -77,31 +77,107 @@
         <p class="guide-text">
             フォームに本文を入力するか、txtファイルをアップロードして「読ってもらう」ボタンを押してください。
         </p>
-        <textarea id="novel-text" placeholder="ここに小説を貼り付けてください..."></textarea>
+        <textarea id="novel-text" maxlength="50000" placeholder="ここに小説を貼り付けてください..."></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
             <button id="analyze-btn">読んでもらう</button>
         </div>
 
-        <div class="role-section example-use" id="example-use-section">
-            <h3>📊 実際の解析例（クリックで拡大）</h3>
-            <div class="example-grid">
-                <div class="thumb-wrapper">
-                    <img src="example-1.jpg" alt="解析例1：総合スコア" class="zoomable">
-                    <span class="thumb-label">総合スコア</span>
+        <div class="role-section example-use" id="example-use-text-section">
+            <h3>📝 解析サンプル</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
+                「巨大な猫が地球を滅ぼす」というSFショートショートを実際に分析した結果の例です。入力した小説が、このような形式で多角的に評価されます。
+            </p>
+
+            <div class="result-header">
+                <h2>総合：2.4 / 5.0</h2>
+                <div class="main-star-container">
+                    <div class="star-rating" style="--rating-width: 48%">☆☆☆☆☆</div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-2.jpg" alt="解析例2：編集者講評" class="zoomable">
-                    <span class="thumb-label">編集者講評</span>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="reader-icon">🎧</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">カイト</span>
+                            <span class="reader-meta">男 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 70%">☆☆☆☆☆</div>
+                            <span class="reader-score">3.5</span>
+                        </div>
+                        <p class="reader-comment">猫の可愛さと地球滅亡のギャップが面白すぎる。ネコダマシ作戦の名前もセンスあって好き。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-3.jpg" alt="解析例3：読者レビュー1" class="zoomable">
-                    <span class="thumb-label">読者レビュー(前)</span>
+                <div class="card">
+                    <div class="reader-icon">✨</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ミユ</span>
+                            <span class="reader-meta">女 / 学生</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 50%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.5</span>
+                        </div>
+                        <p class="reader-comment">シュールで怖い！でも、結末があまりに投げやりで、ちょっと後味が悪いかな。</p>
+                    </div>
                 </div>
-                <div class="thumb-wrapper">
-                    <img src="example-4.jpg" alt="解析例4：読者レビュー2" class="zoomable">
-                    <span class="thumb-label">読者レビュー(後)</span>
+                <div class="card">
+                    <div class="reader-icon">👤</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">サトウ</span>
+                            <span class="reader-meta">男 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 30%">☆☆☆☆☆</div>
+                            <span class="reader-score">1.5</span>
+                        </div>
+                        <p class="reader-comment">350デシベルの説明など物理的整合性が皆無で、SFとして読むにはあまりに粗雑。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">📚</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ハルカ</span>
+                            <span class="reader-meta">女 / 社会人</span>
+                        </div>
+                        <div class="reader-rating-row">
+                            <div class="star-rating" style="--rating-width: 40%">☆☆☆☆☆</div>
+                            <span class="reader-score">2.0</span>
+                        </div>
+                        <p class="reader-comment">語彙が平坦で物語の重厚感がありません。アイデアは良いのに文章がそれを殺しています。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-points">
+                    <div class="point-box good">
+                        <h3>👍 良い点</h3>
+                        <ul>
+                            <li>「猫が動くものを叩く」という習性を人類が「オペレーション・ネコダマシ」で逆手に取るアイデアは非常に独創的。</li>
+                            <li>「ゴロゴロ音による地殻崩壊」という、猫の可愛さと破滅的被害のギャップが強いフックになっている。</li>
+                            <li>「質量がないが実体はある」というSF的な不気味さが物語の不穏な空気を醸成している。</li>
+                        </ul>
+                    </div>
+                    <div class="point-box bad">
+                        <h3>⚠️ 悪い点</h3>
+                        <ul>
+                            <li>「なんと」「驚きました」などの説明的で単調な文体が物語の緊張感を削いでいる。</li>
+                            <li>デシベルの理論的矛盾や、後半のガスの動きがご都合主義的でリアリティを損なっている。</li>
+                            <li>猫の動機が「観察に来ただけ」という設定に対し、地球滅亡に至る因果関係の描写が唐突すぎる。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="editor-section">
+                    <h3>今後のヒント</h3>
+                    <p>本作は「巨大猫が地球を滅ぼす」というインパクト重視の奇想天外なプロットが最大の武器です。今すぐ直すべき最優先事項は、物語の「語り口」の改善です。現状では状況説明が羅列されているだけで、キャラクターのドラマが不足しています。物理的な矛盾をSF的ガジェットで補強するか、あるいは「理屈など通じない怪異」としてホラーテイストを強めるかの二択で方向性を絞るべきです。</p>
                 </div>
             </div>
         </div>
@@ -149,6 +225,36 @@
                 <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #3498db;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>小説投稿サイトに公開する前に、客観的な視点で作品をチェックしたいとき</li>
+                <li>改稿の前後でスコアを比較し、修正の効果を確認したいとき</li>
+                <li>自分の作品がどんな読者層に向いているかを知りたいとき</li>
+                <li>友人や編集者に見せる前に、強み・弱みを整理しておきたいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. どのくらいの文字数を入力すればいいですか？</p>
+                <p class="faq-a">A. 短いシーンの一部でも分析できますが、文脈が伝わるようまとまった文章（1000文字程度〜）がおすすめです。最大50,000文字まで入力できます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 評価結果は何度でもやり直せますか？</p>
+                <p class="faq-a">A. はい、何度でも無料で再分析できます。修正前後でスコアを比較しながら、改稿の効果を確認するのに便利です。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 4人の読者の評価が割れているのはなぜですか？</p>
+                <p class="faq-a">A. あえて好みが極端な読者を設定しているためです。全員に高評価でなくても、「どの層に刺さる作品か」を把握する手がかりとして活用してください。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 小説投稿サイトに投稿する前に使うとよいですか？</p>
+                <p class="faq-a">A. はい。投稿前のセルフチェックとして、誤字脱字以外の「構成」「キャラクター」「ロジック」面の弱点を客観的に把握するのに使うとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">
@@ -156,24 +262,10 @@
             <p>© 2026 AI小説下読みくん</p>
             <div class="footer-links">
                 <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
-                <a href="#" id="policy-btn">プライバシーポリシー</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
             </div>
         </div>
     </footer>
-
-    <div id="policy-modal" class="hidden">
-        <div class="modal-content">
-            <h3>プライバシーポリシー</h3>
-            <p><strong>【小説データの取り扱い】</strong></p>
-            <p>・入力された小説本文は解析の瞬間のみ使用され、サーバー及び外部に保存されることは一切ありません。</p>
-            <p>・解析結果の著作権は作者様に帰属します。</p>
-            <p><strong>【広告について】</strong></p>
-            <p>・当サイトでは、第三者配信の広告サービス（Google AdSense）を利用しています。Cookieを使用することがあります。</p>
-            <p><strong>【アクセス解析ツールについて】</strong></p>
-            <p>・当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このデータは匿名で収集されており、個人を特定するものではありません。</p>
-            <button id="close-policy">閉じる</button>
-        </div>
-    </div>
 
     <script src="./script.js" defer></script>
 

@@ -446,6 +446,15 @@ def clean_json_text(raw_text):
     return re.sub(r'[\x00-\x1f\x7f-\x9f]', '', clean)
 
 
+# 入力文字数の上限チェック
+MAX_CHARS = 50000
+
+def check_length(content):
+    if len(content) > MAX_CHARS:
+        return {"error": f"入力可能な文字数は{MAX_CHARS}文字までです。文字数を減らして再度お試しください。"}
+    return None
+
+
 # ==========================================
 # ⚙️ 小説用エンドポイント (既存)
 # ==========================================
@@ -470,6 +479,10 @@ async def analyze_novel(request: Request = None, text: str = Form(None), file: U
         content = text
     else:
         return {"error": "内容が空です"}
+
+    length_error = check_length(content)
+    if length_error:
+        return length_error
 
     try:
         response = client.models.generate_content(
@@ -502,6 +515,10 @@ async def analyze_tanka(request: Request = None, text: str = Form(None), mode: s
         content = text
     else:
         return {"error": "短歌テキストが空です"}
+
+    length_error = check_length(content)
+    if length_error:
+        return length_error
 
     try:
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
@@ -536,6 +553,10 @@ async def analyze_haiku(request: Request = None, text: str = Form(None), mode: s
     else:
         return {"error": "俳句・川柳テキストが空です"}
 
+    length_error = check_length(content)
+    if length_error:
+        return length_error
+
     try:
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
         
@@ -568,6 +589,10 @@ async def analyze_poetry(request: Request = None, text: str = Form(None), mode: 
         content = text
     else:
         return {"error": "詩のテキストが空です"}
+
+    length_error = check_length(content)
+    if length_error:
+        return length_error
 
     try:
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
@@ -602,9 +627,13 @@ async def analyze_novel_comments(request: Request = None, text: str = Form(None)
     else:
         return {"error": "作品テキストが空です"}
 
+    length_error = check_length(content)
+    if length_error:
+        return length_error
+
     try:
         user_input = f"[[TEXT_START]]\n{content}\n[[TEXT_END]]"
-        
+
         # 💡 プロンプトの先頭に「今回は〇〇人分生成してください」という強制上書きルールを差し込みます
         custom_instruction = f"""
 {SYSTEM_PROMPT_COMMENT_NOVEL}
@@ -644,9 +673,13 @@ async def analyze_tanka_comments(request: Request = None, text: str = Form(None)
     else:
         return {"error": "短歌テキストが空です"}
 
+    length_error = check_length(content)
+    if length_error:
+        return length_error
+
     try:
         user_input = f"【実行モード】: {mode}\n\n[[TEXT_START]]\n{content}\n[[TEXT_END]]"
-        
+
         custom_instruction = f"""
 {SYSTEM_PROMPT_COMMENT_TANKA}
 
@@ -686,9 +719,13 @@ async def analyze_haiku_comments(request: Request = None, text: str = Form(None)
     else:
         return {"error": "作品テキストが空です"}
 
+    length_error = check_length(content)
+    if length_error:
+        return length_error
+
     try:
         user_input = f"【実行モード】: {mode}\n\n[[TEXT_START]]\n{content}\n[[TEXT_END]]"
-        
+
         custom_instruction = f"""
 {SYSTEM_PROMPT_COMMENT_HAIKU}
 
@@ -728,9 +765,13 @@ async def analyze_poetry_comments(request: Request = None, text: str = Form(None
     else:
         return {"error": "作品テキストが空です"}
 
+    length_error = check_length(content)
+    if length_error:
+        return length_error
+
     try:
         user_input = f"【実行モード】: {mode}\n\n[[TEXT_START]]\n{content}\n[[TEXT_END]]"
-        
+
         custom_instruction = f"""
 {SYSTEM_PROMPT_COMMENT_POETRY}
 

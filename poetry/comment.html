@@ -115,7 +115,7 @@
             </label>
         </div>
 
-        <textarea id="novel-text" style="height: 200px;" placeholder="ここにあなたの詩を入力してください（改行やスペースもそのまま反映されます）..."></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 200px;" placeholder="ここにあなたの詩を入力してください（改行やスペースもそのまま反映されます）..."></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
@@ -149,6 +149,35 @@
                 <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
             </div>
         </div>
+
+        <section class="editor-section" style="border-left-color: #27ae60;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>詩を投稿する前に、読者がどんな解釈をするかを知りたいとき</li>
+                <li>自分では気づかなかった行間の意味やイメージを発見したいとき</li>
+                <li>詩集全体の印象を、複数の視点からチェックしたいとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. 難解な詩でもコメントしてもらえますか？</p>
+                <p class="faq-a">A. はい。前衛的・実験的な作品にも対応した読者属性を用意しているため、解釈や考察を含むコメントが生成されます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 辛口の感想ばかりにならないようにできますか？</p>
+                <p class="faq-a">A. 様々な属性の読者をバランスよく生成するため、共感や称賛のコメントも含まれます。文芸としての緊張感を持たせるため、一部に批評的な視点も含めています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 一篇だけでなく、詩集としての感想ももらえますか？</p>
+                <p class="faq-a">A. はい。モードを切り替えることで、一篇への感想と、詩集全体を通した感想の両方に対応しています。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 結果をどう活かせばいいですか？</p>
+                <p class="faq-a">A. 自分の意図と読者の解釈のズレを確認し、伝えたいテーマがうまく伝わっているかを見直す材料として使うとよいでしょう。</p>
+            </div>
+        </section>
     </div>
 
     <!-- 画像拡大用のモーダル構造 -->
@@ -163,6 +192,10 @@
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI読者コメント欄くん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
+            </div>
         </div>
     </footer>
     <script src="./comment_script.js" defer></script>

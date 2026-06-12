@@ -1,13 +1,6 @@
 // 結果を表示するための共通関数
 let myChart = null; // グラフの重複描画を防ぐための変数
 
-document.getElementById('policy-btn').addEventListener('click', () => {
-    document.getElementById('policy-modal').classList.remove('hidden');
-});
-document.getElementById('close-policy').addEventListener('click', () => {
-    document.getElementById('policy-modal').classList.add('hidden');
-});
-
 // 全ての .zoomable クラスを持つ画像に対して処理
 // script.js の該当箇所を書き換え
 // --- 画像モーダル制御（エラー防止・修正版） ---
@@ -234,7 +227,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     const file = document.getElementById('novel-file').files[0];
     const loading = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
-    const exampleSection = document.getElementById('example-use-section');
+    const exampleTextSection = document.getElementById('example-use-text-section');
     if (!text && !file) {
         alert("小説を入力するかファイルを選択してください");
         return;
@@ -246,8 +239,8 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     // 画面表示をリセット
     loading.classList.remove('hidden');
     resultDiv.classList.add('hidden');
-    if (exampleSection) {
-        exampleSection.classList.add('hidden');
+    if (exampleTextSection) {
+        exampleTextSection.classList.add('hidden');
     }
     if (DEBUG_MODE) {
         const dummyData =
