@@ -12,8 +12,17 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="./style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901"
-     crossorigin="anonymous"></script>
+    <style>
+        .ad-slot { text-align: center; margin: 40px auto; }
+        #ad-slot-1 { min-height: 90px; }
+        #ad-slot-2 { min-height: 250px; }
+        .ad-sp { display: none; }
+        @media (max-width: 768px) {
+            .ad-pc { display: none !important; }
+            .ad-sp { display: block; }
+            body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
+        }
+    </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -97,6 +106,9 @@
             </div>
         </div>
 
+        <!-- 広告①（PCのみ）：シリーズ間 -->
+        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
+
         <div class="role-section reader-role" style="margin-bottom: 40px;">
             <h3>💬 AI文芸コメント欄シリーズ</h3>
             <p style="margin-bottom: 20px;">作品を投稿すると、様々な属性（熱狂的ファン、辛口批評家、通りすがり等）を持つAI読者がWeb上のコメント欄を再現し、賑やかに感想を書き込みます。</p>
@@ -133,6 +145,9 @@
             </div>
         </div>
 
+        <!-- 広告②（PCのみ）：トップ下部 -->
+        <div id="ad-slot-2" class="ad-slot ad-pc"></div>
+
         <div class="editor-section" style="background: #f8f9fa; border-left: 5px solid #2c3e50;">
             <h3>インフォメーション & ガイド</h3>
             <ul class="analysis-points" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
@@ -150,6 +165,50 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- 広告③のスマホ用（画面下固定）。スマホ幅のときだけ読み込む -->
+    <div id="ad-slot-sp" class="ad-sp"></div>
+
+    <script>
+    // i-mobile 広告：PC用2枠とスマホ用1枠を画面幅で出し分けて読み込む
+    (function () {
+        var isPC = window.matchMedia('(min-width: 769px)').matches;
+        var scriptLoaded = false;
+        function loadSpotJs() {
+            if (scriptLoaded) return;
+            scriptLoaded = true;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
+            document.head.appendChild(s);
+        }
+        function showAd(slotId, mid, asid, elementId) {
+            var slot = document.getElementById(slotId);
+            if (!slot || slot.getAttribute('data-loaded')) return;
+            slot.setAttribute('data-loaded', '1');
+            var box = document.createElement('div');
+            box.id = elementId;
+            slot.appendChild(box);
+            loadSpotJs();
+            (window.adsbyimobile = window.adsbyimobile || []).push({
+                pid: 85497, mid: mid, asid: asid, type: 'banner', display: 'inline', elementid: elementId
+            });
+        }
+
+        if (isPC) {
+            // ① シリーズ間（ビッグバナー）
+            showAd('ad-slot-1', 596678, 1946949, 'im-d3920e8532cb47bbaefc0fcbe9091da3');
+            // ② トップ下部（レクタングル）
+            showAd('ad-slot-2', 596678, 1946950, 'im-142f1d3ccf2b4320bd698e949b0eedc1');
+        } else {
+            // スマホ（画面下固定）
+            var sp = document.getElementById('ad-slot-sp');
+            sp.style.cssText = 'position:fixed;bottom:0;left:0;right:0;width:100%;background:rgba(0,0,0,0.7);z-index:99998;text-align:center;transform:translate3d(0,0,0);';
+            showAd('ad-slot-sp', 596679, 1946951, 'im-76718169a1a44655a39a4279729cdf89');
+        }
+    })();
+    </script>
 
     <script>
         // リンクカードにホバーエフェクト用スタイルをJSから適用、またはcssに書いてもOKです

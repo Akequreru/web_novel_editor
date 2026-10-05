@@ -69,9 +69,9 @@ document.getElementById('post-btn').addEventListener('click', async () => {
 
     // 💡 変数のバグを完全に回避するため、document.getElementByIdを直接使って画像を非表示にします
     const exampleSection = document.getElementById('example-use-section');
-    if (exampleSection) {
-        exampleSection.classList.add('hidden');
-    }
+    if (exampleSection) exampleSection.classList.add('hidden');
+    const exampleCommentSection = document.getElementById('example-use-comment-section');
+    if (exampleCommentSection) exampleCommentSection.classList.add('hidden');
 
     loading.classList.remove('hidden');
     resultDiv.classList.add('hidden');

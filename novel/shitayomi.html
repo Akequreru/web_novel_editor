@@ -12,9 +12,18 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        .ad-slot { text-align: center; margin: 20px auto; }
+        #ad-slot-1 { min-height: 250px; margin-top: 40px; }
+        #ad-slot-3 { min-height: 90px; }
+        .ad-sp { display: none; }
+        @media (max-width: 768px) {
+            .ad-pc { display: none !important; }
+            .ad-sp { display: block; }
+            body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901"
-     crossorigin="anonymous"></script>
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -83,6 +92,9 @@
             <input type="file" id="novel-file" accept=".txt">
             <button id="analyze-btn">読んでもらう</button>
         </div>
+
+        <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
+        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
 
         <div class="role-section example-use" id="example-use-text-section">
             <h3>📝 解析サンプル</h3>
@@ -226,6 +238,9 @@
             </div>
         </div>
 
+        <!-- 広告②（PCのみ・結果表示後に読み込み。画像保存に写らないよう result の外に配置） -->
+        <div id="ad-slot-2" class="ad-slot ad-pc hidden"></div>
+
         <section class="editor-section" style="border-left-color: #3498db;">
             <h3>💡 こんな時に使ってみてください</h3>
             <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
@@ -257,6 +272,9 @@
         </section>
     </div>
 
+    <!-- 広告③（PCのみ） -->
+    <div id="ad-slot-3" class="ad-slot ad-pc"></div>
+
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI小説下読みくん</p>
@@ -267,6 +285,60 @@
         </div>
     </footer>
 
+
+    <!-- 広告④のスマホ用（画面下固定）。スマホ幅のときだけ読み込む -->
+    <div id="ad-slot-sp" class="ad-sp"></div>
+
+    <script>
+    // i-mobile 広告：PC用3枠とスマホ用1枠を画面幅で出し分けて読み込む
+    (function () {
+        var isPC = window.matchMedia('(min-width: 769px)').matches;
+        var scriptLoaded = false;
+        function loadSpotJs() {
+            if (scriptLoaded) return;
+            scriptLoaded = true;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
+            document.head.appendChild(s);
+        }
+        function showAd(slotId, mid, asid, elementId) {
+            var slot = document.getElementById(slotId);
+            if (!slot || slot.getAttribute('data-loaded')) return;
+            slot.setAttribute('data-loaded', '1');
+            var box = document.createElement('div');
+            box.id = elementId;
+            slot.appendChild(box);
+            loadSpotJs();
+            (window.adsbyimobile = window.adsbyimobile || []).push({
+                pid: 85497, mid: mid, asid: asid, type: 'banner', display: 'inline', elementid: elementId
+            });
+        }
+
+        if (isPC) {
+            // ① 結果上（レクタングル）
+            showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
+            // ③ フッターPC（ビッグバナー）
+            showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
+            // ② 結果下：結果が表示されたときに一度だけ読み込む
+            var result = document.getElementById('result');
+            var slot2 = document.getElementById('ad-slot-2');
+            var observer = new MutationObserver(function () {
+                if (!result.classList.contains('hidden')) {
+                    slot2.classList.remove('hidden');
+                    showAd('ad-slot-2', 596678, 1946946, 'im-568aa2d3916a4c9389fe8bbf9e6403bd');
+                    observer.disconnect();
+                }
+            });
+            observer.observe(result, { attributes: true, attributeFilter: ['class'] });
+        } else {
+            // フッターSP（画面下固定）
+            var sp = document.getElementById('ad-slot-sp');
+            sp.style.cssText = 'position:fixed;bottom:0;left:0;right:0;width:100%;background:rgba(0,0,0,0.7);z-index:99998;text-align:center;transform:translate3d(0,0,0);';
+            showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
+        }
+    })();
+    </script>
     <script src="./script.js" defer></script>
 
     <div id="image-modal" class="hidden">

@@ -62,7 +62,9 @@ document.getElementById('post-btn').addEventListener('click', async () => {
     }
 
     const exampleSection = document.getElementById('example-use-section');
-    if (exampleSection) { exampleSection.classList.add('hidden'); }
+    if (exampleSection) exampleSection.classList.add('hidden');
+    const exampleCommentSection = document.getElementById('example-use-comment-section');
+    if (exampleCommentSection) exampleCommentSection.classList.add('hidden');
 
     loading.classList.remove('hidden');
     resultDiv.classList.add('hidden');

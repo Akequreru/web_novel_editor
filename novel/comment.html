@@ -9,6 +9,15 @@
     <meta name="description" content="総勢20人の多種多様なAI読者が、あなたの作品にリアルな感想・コメントを書き込みます。ネットの感想欄やSNSのリアルな熱量を再現。">
     <link rel="stylesheet" href="../style.css">
     <style>
+        .ad-slot { text-align: center; margin: 20px auto; }
+        #ad-slot-1 { min-height: 250px; margin-top: 40px; }
+        #ad-slot-3 { min-height: 90px; }
+        .ad-sp { display: none; }
+        @media (max-width: 768px) {
+            .ad-pc { display: none !important; }
+            .ad-sp { display: block; }
+            body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
+        }
         .comment-timeline {
             display: flex;
             flex-direction: column;
@@ -86,8 +95,6 @@
             background: #219653;
         }
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5170081980364901"
-     crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
@@ -113,12 +120,102 @@
             <input type="file" id="novel-file" accept=".txt">
             <button id="post-btn" style="background: #e67e22; color: white; padding: 12px 30px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">作品を投稿する</button>
         </div>
+        <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
+        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
+
         <div class="role-section example-use" id="example-use-section">
             <h3>📊 実際のコメント欄の例</h3>
             <div class="example-grid" style="display: block; text-align: center;">
                 <div class="thumb-wrapper" style="max-width: 400px; margin: 0 auto; width: 100%;">
                     <img src="example-comment.jpg" alt="コメント欄の出力例" class="zoomable" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                     <span class="thumb-label">20人の読者感想タイムライン（イメージ）</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="role-section example-use" id="example-use-comment-section">
+            <h3>📝 コメント欄サンプル（テキスト版）</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">「記憶を売って生きる少女」というSF短編を投稿した際に届いたコメントの例です。このような形でリアルな読者反応がシミュレートされます。</p>
+            <div class="comment-timeline">
+                <div class="comment-card">
+                    <div class="comment-avatar">🐱</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">nekko_chi</span>
+                            <span class="comment-meta">熱狂的ファン</span>
+                        </div>
+                        <p class="comment-text">最新話まで一気読みしました！！「記憶を売ったあとの彼女は誰なの？」って問いかけが頭から離れません。早く続きが読みたい……作者様更新お願いします！！</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">🔍</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">考察厨_太郎</span>
+                            <span class="comment-meta">長文考察班</span>
+                        </div>
+                        <p class="comment-text">3話でユイが「昨日のことは覚えていない」と言ったあのシーン、実はあの瞬間すでに記憶を売っていたんですよね。伏線の張り方が絶妙で鳥肌が立ちました</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">🌙</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">午前3時の読書</span>
+                            <span class="comment-meta">深夜読み</span>
+                        </div>
+                        <p class="comment-text">眠れなくて読み始めたら朝まで読んでました。記憶を売るたびに少しずつ自分が消えていく感覚、リアルすぎて怖いくらいです</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">👀</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">通りすがり_kkk</span>
+                            <span class="comment-meta">通りすがり</span>
+                        </div>
+                        <p class="comment-text">友達に勧められて読んだら思ったより面白かった。続きが気になるので明日も読みます</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">✍️</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">文芸好きmike</span>
+                            <span class="comment-meta">文体評価派</span>
+                        </div>
+                        <p class="comment-text">文体がとても丁寧で読みやすい。「売れる記憶」と「売れない記憶」の差の描写が特に好きです。作者さんの他の作品も読んでみたい</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">😤</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">辛口批評_α</span>
+                            <span class="comment-meta">辛口批評家</span>
+                        </div>
+                        <p class="comment-text">設定は唯一無二で好きなんですが、恋愛要素が入り始めてからテンポが落ちた気がします。本筋の記憶取引の謎をもっと掘り下げてほしい</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">💙</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">共感_hana</span>
+                            <span class="comment-meta">感情型読者</span>
+                        </div>
+                        <p class="comment-text">記憶って自分そのものだから、売るって究極の自己犠牲じゃないですか。ユイが何のために売り続けているのかを考えると胸が痛くて……読んでよかったです</p>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-avatar">❓</div>
+                    <div class="comment-main">
+                        <div class="comment-header">
+                            <span class="comment-user-name">疑問マン</span>
+                            <span class="comment-meta">設定深掘り</span>
+                        </div>
+                        <p class="comment-text">記憶を買った側はどうなるんですか？他人の記憶を持って生活できるんでしょうか。いつか作品内で説明されますか？</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,6 +237,9 @@
                 <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
             </div>
         </div>
+
+        <!-- 広告②（PCのみ・結果表示後に読み込み。画像保存に写らないよう comment-result の外に配置） -->
+        <div id="ad-slot-2" class="ad-slot ad-pc hidden"></div>
 
         <section class="editor-section" style="border-left-color: #27ae60;">
             <h3>💡 こんな時に使ってみてください</h3>
@@ -171,6 +271,9 @@
         </section>
     </div>
 
+    <!-- 広告③（PCのみ） -->
+    <div id="ad-slot-3" class="ad-slot ad-pc"></div>
+
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI読者コメント欄くん</p>
@@ -188,6 +291,61 @@
             <img id="full-img" src="" alt="拡大画像">
         </div>
     </div>
+
+    <!-- 広告②のスマホ用（画面下固定）。スマホ幅のときだけ読み込む -->
+    <div id="ad-slot-sp" class="ad-sp"></div>
+
+    <script>
+    // i-mobile 広告：PC用3枠とスマホ用1枠を画面幅で出し分けて読み込む
+    (function () {
+        var isPC = window.matchMedia('(min-width: 769px)').matches;
+        var scriptLoaded = false;
+        function loadSpotJs() {
+            if (scriptLoaded) return;
+            scriptLoaded = true;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
+            document.head.appendChild(s);
+        }
+        function showAd(slotId, mid, asid, elementId) {
+            var slot = document.getElementById(slotId);
+            if (!slot || slot.getAttribute('data-loaded')) return;
+            slot.setAttribute('data-loaded', '1');
+            var box = document.createElement('div');
+            box.id = elementId;
+            slot.appendChild(box);
+            loadSpotJs();
+            (window.adsbyimobile = window.adsbyimobile || []).push({
+                pid: 85497, mid: mid, asid: asid, type: 'banner', display: 'inline', elementid: elementId
+            });
+        }
+
+        if (isPC) {
+            // ① 結果上（レクタングル）
+            showAd('ad-slot-1', 596678, 1946941, 'im-f58d6dfb3e3c476895be19ee07ce51e6');
+            // ③ フッターPC（ビッグバナー）
+            showAd('ad-slot-3', 596678, 1946943, 'im-023340f25e2e4ed39a1f60c6e3e865b7');
+            // ② 結果下：結果が表示されたときに一度だけ読み込む
+            var result = document.getElementById('comment-result');
+            var slot2 = document.getElementById('ad-slot-2');
+            var reveal = function () {
+                if (!result.classList.contains('hidden')) {
+                    slot2.classList.remove('hidden');
+                    showAd('ad-slot-2', 596678, 1946942, 'im-0457de5045894802be1639a8cf877fd0');
+                    observer.disconnect();
+                }
+            };
+            var observer = new MutationObserver(reveal);
+            observer.observe(result, { attributes: true, attributeFilter: ['class'] });
+        } else {
+            // フッターSP（画面下固定）
+            var sp = document.getElementById('ad-slot-sp');
+            sp.style.cssText = 'position:fixed;bottom:0;left:0;right:0;width:100%;background:rgba(0,0,0,0.7);z-index:99998;text-align:center;transform:translate3d(0,0,0);';
+            showAd('ad-slot-sp', 596679, 1946944, 'im-584c9788b0544e2189b83100119327b6');
+        }
+    })();
+    </script>
     <script src="./comment_script.js" defer></script>
 </body>
 
