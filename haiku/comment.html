@@ -100,6 +100,7 @@
         #save-image-btn:hover {
             background: #219653;
         }
+        #share-btn { padding: 12px 25px; font-size: 1rem; font-weight: bold; }
     </style>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -117,7 +118,7 @@
         </section>
 
         <!-- 広告（PCのみ）：概要の下 -->
-        <div id="ad-slot-4" class="ad-slot ad-pc"></div>
+        <div id="ad-slot-4" class="ad-slot"></div>
 
 
         <p class="guide-text">
@@ -143,7 +144,7 @@
         </div>
 
         <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
-        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
+        <div id="ad-slot-1" class="ad-slot"></div>
 
         <div class="role-section example-use" id="example-use-section">
             <h3>📊 実際のコメント欄の例</h3>
@@ -226,11 +227,12 @@
 
             <div class="save-area">
                 <button id="save-image-btn">コメント欄を画像(JPG)で保存する</button>
+                <button id="share-btn" data-share-target="comment-result" data-share-score-id="comment-count" data-share-file="AI俳句・川柳コメント欄くん" data-share-split='{"count":3,"items":".comment-card","names":["前半","中盤","後半"]}' data-share-text="AI俳句・川柳コメント欄くんで、作品に{score}件のコメントをもらいました。">Xで共有</button>
             </div>
         </div>
 
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
-        <div id="ad-slot-2" class="ad-slot ad-pc"></div>
+        <div id="ad-slot-2" class="ad-slot"></div>
 
         <section class="editor-section" style="border-left-color: #27ae60;">
             <h3>💡 こんな時に使ってみてください</h3>
@@ -321,6 +323,10 @@
                 showAd('ad-slot-2', 596678, 1946942, 'im-0457de5045894802be1639a8cf877fd0');
             } else {
                 showAd('ad-slot-sp', 596679, 1946944, 'im-584c9788b0544e2189b83100119327b6');
+                // スマホ用の本文中の広告
+                showAd('ad-slot-4', 596679, 1947456, 'im-e9d35e480d664efa857d464c1d3a30ab');
+                showAd('ad-slot-1', 596679, 1947455, 'im-9425152230d8434c8de8a5e8f9728af2');
+                showAd('ad-slot-2', 596679, 1947454, 'im-dfb46e3d11e04168ae4307903fc81217');
             }
         }
 
@@ -330,6 +336,7 @@
     })();
     </script>
     <script src="./comment_script.js" defer></script>
+    <script src="../share.js?v=3" defer></script>
 </body>
 
 </html>

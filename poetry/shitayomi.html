@@ -55,7 +55,7 @@
             </p>
 
             <!-- 広告（PCのみ）：リード文の下、「プロの編集者視点による厳格な分析」の上 -->
-            <div id="ad-slot-4" class="ad-slot ad-pc"></div>
+            <div id="ad-slot-4" class="ad-slot"></div>
 
             <div class="role-section editor-role">
                 <h3>🧐 編集者視点による精密な詩評分析</h3>
@@ -118,7 +118,7 @@
         </div>
 
         <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
-        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
+        <div id="ad-slot-1" class="ad-slot"></div>
 
         <div class="role-section example-use" id="example-use-text-section">
             <h3>📝 解析サンプル</h3>
@@ -259,11 +259,12 @@
 
             <div class="save-area">
                 <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="share-btn" data-share-target="result" data-share-score-id="avg-score" data-share-file="AI詩下読みくん" data-share-parts='[{"selector":".score-overview","name":"グラフと総合"},{"selector":"#reader-cards","name":"コメント"},{"selector":".editor-feedback-area","name":"総評"}]' data-share-text="AI詩下読みくんに、作品を読んでもらいました。\n総合 {score} / 5.0">Xで共有</button>
             </div>
         </div>
 
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
-        <div id="ad-slot-2" class="ad-slot ad-pc"></div>
+        <div id="ad-slot-2" class="ad-slot"></div>
 
         <section class="editor-section" style="border-left-color: #3498db;">
             <h3>💡 こんな時に使ってみてください</h3>
@@ -348,6 +349,10 @@
                 showAd('ad-slot-2', 596678, 1946946, 'im-568aa2d3916a4c9389fe8bbf9e6403bd');
             } else {
                 showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
+                // スマホ用の本文中の広告
+                showAd('ad-slot-4', 596679, 1947456, 'im-e9d35e480d664efa857d464c1d3a30ab');
+                showAd('ad-slot-1', 596679, 1947455, 'im-9425152230d8434c8de8a5e8f9728af2');
+                showAd('ad-slot-2', 596679, 1947454, 'im-dfb46e3d11e04168ae4307903fc81217');
             }
         }
 
@@ -357,6 +362,7 @@
     })();
     </script>
     <script src="./script.js?v=2" defer></script>
+    <script src="../share.js?v=3" defer></script>
 
     <div id="image-modal" class="hidden">
         <div class="modal-overlay"></div>

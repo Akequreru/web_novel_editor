@@ -16,6 +16,7 @@
     <style>
         .ad-slot { text-align: center; margin: 40px auto; }
         #ad-slot-1 { min-height: 90px; }
+        .is-mobile #ad-slot-1 { min-height: 50px; } /* スマホは 320x50 のバナー */
         #ad-slot-2 { min-height: 250px; }
         .ad-sp { display: none; }
         .is-mobile .ad-pc { display: none !important; }
@@ -27,7 +28,7 @@
         }
         .is-mobile body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
         @media (max-width: 768px) {
-            .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
+            html:not(.is-mobile) .ad-wide { display: none !important; } /* 728px幅のバナーは、パソコンの狭い窓では隠す */
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
@@ -77,7 +78,7 @@
         </section>
         
         <!-- 広告①（PCのみ）：概要の下 -->
-        <div id="ad-slot-1" class="ad-slot ad-pc ad-wide"></div>
+        <div id="ad-slot-1" class="ad-slot ad-wide"></div>
 
         <div class="role-section editor-role" style="margin-bottom: 40px;">
             <h3>🔍 AI文芸下読みシリーズ</h3>
@@ -168,7 +169,7 @@
         </div>
 
         <!-- 広告②（PCのみ）：トップ下部 -->
-        <div id="ad-slot-2" class="ad-slot ad-pc"></div>
+        <div id="ad-slot-2" class="ad-slot"></div>
 
         <div class="editor-section" style="background: #f8f9fa; border-left: 5px solid #2c3e50;">
             <h3>インフォメーション & ガイド</h3>
@@ -225,6 +226,9 @@
                 }
             } else {
                 showAd('ad-slot-sp', 596679, 1946951, 'im-76718169a1a44655a39a4279729cdf89');
+                // スマホ用の本文中の広告
+                showAd('ad-slot-1', 596679, 1947458, 'im-2a0b6323c5b2479ca9617c8f79458ccd');
+                showAd('ad-slot-2', 596679, 1947457, 'im-7c5eff47158a4320867bbf6aa7d345f6');
             }
         }
 
