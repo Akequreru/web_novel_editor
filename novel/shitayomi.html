@@ -18,15 +18,16 @@
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
         #ad-slot-3 { min-height: 90px; }
         .ad-sp { display: none; }
+        .is-mobile .ad-pc { display: none !important; }
+        .is-mobile .ad-sp {
+            display: block;
+            position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 99998; text-align: center;
+            transform: translate3d(0, 0, 0);
+        }
+        .is-mobile body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
         @media (max-width: 768px) {
-            .ad-pc { display: none !important; }
-            .ad-sp {
-                display: block;
-                position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
-                background: rgba(0, 0, 0, 0.7); z-index: 99998; text-align: center;
-                transform: translate3d(0, 0, 0);
-            }
-            body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
+            .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -279,7 +280,7 @@
     </div>
 
     <!-- 広告③（PCのみ） -->
-    <div id="ad-slot-3" class="ad-slot ad-pc"></div>
+    <div id="ad-slot-3" class="ad-slot ad-pc ad-wide"></div>
 
     <footer class="site-footer">
         <div class="footer-content">
@@ -296,9 +297,14 @@
     <div id="ad-slot-sp" class="ad-sp"></div>
 
     <script>
-    // i-mobile 広告：PC用とスマホ用を画面幅で出し分けて読み込む（ウィンドウサイズの変更にも追従）
+    // i-mobile 広告：端末の種類（スマホ・タブレット／パソコン）で出し分ける。
+    // パソコンでは、横幅が足りないときだけ728pxのバナーを読み込まない（CSSでも隠す）。
     (function () {
-        var mq = window.matchMedia('(min-width: 769px)');
+        var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+            !!(navigator.userAgentData && navigator.userAgentData.mobile);
+        if (isMobile) { document.documentElement.classList.add('is-mobile'); }
+        var wideMq = window.matchMedia('(min-width: 769px)');
+
         function showAd(slotId, mid, asid, elementId) {
             var slot = document.getElementById(slotId);
             if (!slot || slot.getAttribute('data-loaded')) return;
@@ -316,9 +322,11 @@
         }
 
         function apply() {
-            if (mq.matches) {
+            if (!isMobile) {
                 showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
-                showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
+                if (wideMq.matches) {
+                    showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
+                }
                 // ② 結果下：結果が表示されているときだけ読み込む
                 var result = document.getElementById('result');
                 if (result && !result.classList.contains('hidden')) {
@@ -331,7 +339,7 @@
         }
 
         apply();
-        if (mq.addEventListener) { mq.addEventListener('change', apply); } else { mq.addListener(apply); }
+        if (wideMq.addEventListener) { wideMq.addEventListener('change', apply); } else { wideMq.addListener(apply); }
         window.addEventListener('resize', apply);
         var resultEl = document.getElementById('result');
         if (resultEl) { new MutationObserver(apply).observe(resultEl, { attributes: true, attributeFilter: ['class'] }); }
