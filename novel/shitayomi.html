@@ -248,6 +248,7 @@
 
             <div class="save-area">
                 <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="share-btn" data-share-target="result" data-share-score-id="avg-score" data-share-file="AI小説下読みくん" data-share-parts='[{"selector":".score-overview","name":"グラフと総合"},{"selector":"#reader-cards","name":"コメント"},{"selector":".editor-feedback-area","name":"総評"}]' data-share-text="AI小説下読みくんに、作品を読んでもらいました。\n総合 {score} / 5.0">Xで共有</button>
             </div>
         </div>
 
@@ -346,7 +347,8 @@
         window.addEventListener('resize', apply);
     })();
     </script>
-    <script src="./script.js" defer></script>
+    <script src="./script.js?v=2" defer></script>
+    <script src="../share.js" defer></script>
 
     <div id="image-modal" class="hidden">
         <div class="modal-overlay"></div>

@@ -66,8 +66,22 @@ button:hover {
 .save-area {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
     margin: 40px 0;
 }
+
+#share-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+#share-btn:hover { background-color: #333333; }
+#share-btn:disabled { opacity: 0.6; cursor: default; }
 
 #save-image-btn {
     padding: 15px 40px;

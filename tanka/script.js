@@ -1,3 +1,9 @@
+// 点数は、整数のときも「3.0」のように、小数第1位まで表示する
+function formatScore(v) {
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toFixed(1) : v;
+}
+
 let myChart = null;
 
 // 画像拡大・モーダル制御
@@ -29,7 +35,7 @@ function renderResult(data) {
 
     // スコアと星の更新
     const avgScore = data.average_score;
-    document.getElementById('avg-score').innerText = avgScore;
+    document.getElementById('avg-score').innerText = formatScore(avgScore);
     const mainStar = document.getElementById('main-star-rating');
     mainStar.style.setProperty('--rating-width', `${(avgScore / 5) * 100}%`);
 
@@ -105,7 +111,7 @@ function renderResult(data) {
                 </div>
                 <div class="reader-rating-row">
                     <div class="star-rating" style="--rating-width: ${(r.score / 5) * 100}%">☆☆☆☆☆</div>
-                    <span class="reader-score">${r.score}</span>
+                    <span class="reader-score">${formatScore(r.score)}</span>
                 </div>
                 <p class="reader-comment">${r.comment}</p>
             </div>

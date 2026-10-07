@@ -1,3 +1,9 @@
+// 点数は、整数のときも「3.0」のように、小数第1位まで表示する
+function formatScore(v) {
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toFixed(1) : v;
+}
+
 // 結果を表示するための共通関数
 let myChart = null; // グラフの重複描画を防ぐための変数
 
@@ -86,7 +92,7 @@ function renderResult(data) {
 
     // 0. 平均スコアの数字と星を更新
     const avgScore = data.average_score;
-    document.getElementById('avg-score').innerText = avgScore;
+    document.getElementById('avg-score').innerText = formatScore(avgScore);
 
     const mainStar = document.getElementById('main-star-rating');
     const mainPercent = (avgScore / 5) * 100;
@@ -197,7 +203,7 @@ function renderResult(data) {
                 
                 <div class="reader-rating-row">
                     <div class="star-rating" style="--rating-width: ${ratingPercent}%">☆☆☆☆☆</div>
-                    <span class="reader-score">${r.score}</span>
+                    <span class="reader-score">${formatScore(r.score)}</span>
                 </div>
                 
                 <p class="reader-comment">${r.comment}</p>
