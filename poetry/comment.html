@@ -10,6 +10,22 @@
     <meta name="description" content="AI読者や詩人たちが、あなたの詩・詩集にリアルな感想や文学的なコメントを書き込みます。WEB詩誌やSNSのリアルな熱量を再現。">
     <link rel="stylesheet" href="../style.css">
     <style>
+        .ad-slot { text-align: center; margin: 20px auto; }
+        #ad-slot-1 { min-height: 250px; margin-top: 40px; }
+        #ad-slot-3 { min-height: 90px; }
+        #ad-slot-4 { min-height: 250px; }
+        .ad-sp { display: none; }
+        .is-mobile .ad-pc { display: none !important; }
+        .is-mobile .ad-sp {
+            display: block;
+            position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 99998; text-align: center;
+            transform: translate3d(0, 0, 0);
+        }
+        .is-mobile body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
+        @media (max-width: 768px) {
+            .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
+        }
         .comment-timeline {
             display: flex;
             flex-direction: column;
@@ -99,6 +115,10 @@
             </p>
         </section>
 
+        <!-- 広告（PCのみ）：概要の下 -->
+        <div id="ad-slot-4" class="ad-slot ad-pc"></div>
+
+
         <p class="guide-text">
             モードを選択し、詩の本文を入力して「投稿する」ボタンを押してください。
         </p>
@@ -122,6 +142,9 @@
         </div>
 
         <!-- 実際のコメント欄の例（1枚画像・クリック拡大対応） -->
+        <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
+        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
+
         <div class="role-section example-use" id="example-use-section">
             <h3>📊 実際のコメント欄の例</h3>
             <div class="example-grid" style="display: block; text-align: center;">
@@ -206,6 +229,9 @@
             </div>
         </div>
 
+        <!-- 広告②（PCのみ・結果表示後に読み込み。画像保存に写らないよう結果の外に配置） -->
+        <div id="ad-slot-2" class="ad-slot ad-pc hidden"></div>
+
         <section class="editor-section" style="border-left-color: #27ae60;">
             <h3>💡 こんな時に使ってみてください</h3>
             <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
@@ -245,6 +271,9 @@
         </div>
     </div>
 
+    <!-- 広告③（PCのみ） -->
+    <div id="ad-slot-3" class="ad-slot ad-pc ad-wide"></div>
+
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI読者コメント欄くん</p>
@@ -254,6 +283,59 @@
             </div>
         </div>
     </footer>
+    <!-- 広告④のスマホ用（画面下固定）。スマホの端末のときだけ読み込む -->
+    <div id="ad-slot-sp" class="ad-sp"></div>
+
+    <script>
+    // i-mobile 広告：端末の種類（スマホ・タブレット／パソコン）で出し分ける。
+    // パソコンでは、横幅が足りないときだけ728pxのバナーを読み込まない（CSSでも隠す）。
+    (function () {
+        var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+            !!(navigator.userAgentData && navigator.userAgentData.mobile);
+        if (isMobile) { document.documentElement.classList.add('is-mobile'); }
+        var wideMq = window.matchMedia('(min-width: 769px)');
+
+        function showAd(slotId, mid, asid, elementId) {
+            var slot = document.getElementById(slotId);
+            if (!slot || slot.getAttribute('data-loaded')) return;
+            slot.setAttribute('data-loaded', '1');
+            var box = document.createElement('div');
+            box.id = elementId;
+            slot.appendChild(box);
+            (window.adsbyimobile = window.adsbyimobile || []).push({
+                pid: 85497, mid: mid, asid: asid, type: 'banner', display: 'inline', elementid: elementId
+            });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
+            box.appendChild(s);
+        }
+
+        function apply() {
+            if (!isMobile) {
+                showAd('ad-slot-1', 596678, 1946941, 'im-f58d6dfb3e3c476895be19ee07ce51e6');
+                showAd('ad-slot-4', 596678, 1947155, 'im-0f1b67ebfb4c4fbcb6e69205aee8ca65');
+                if (wideMq.matches) {
+                    showAd('ad-slot-3', 596678, 1946943, 'im-023340f25e2e4ed39a1f60c6e3e865b7');
+                }
+                // ② 結果下：結果が表示されているときだけ読み込む
+                var result = document.getElementById('comment-result');
+                if (result && !result.classList.contains('hidden')) {
+                    document.getElementById('ad-slot-2').classList.remove('hidden');
+                    showAd('ad-slot-2', 596678, 1946942, 'im-0457de5045894802be1639a8cf877fd0');
+                }
+            } else {
+                showAd('ad-slot-sp', 596679, 1946944, 'im-584c9788b0544e2189b83100119327b6');
+            }
+        }
+
+        apply();
+        if (wideMq.addEventListener) { wideMq.addEventListener('change', apply); } else { wideMq.addListener(apply); }
+        window.addEventListener('resize', apply);
+        var resultEl = document.getElementById('comment-result');
+        if (resultEl) { new MutationObserver(apply).observe(resultEl, { attributes: true, attributeFilter: ['class'] }); }
+    })();
+    </script>
     <script src="./comment_script.js" defer></script>
 </body>
 

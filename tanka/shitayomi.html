@@ -13,6 +13,24 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        .ad-slot { text-align: center; margin: 20px auto; }
+        #ad-slot-1 { min-height: 250px; margin-top: 40px; }
+        #ad-slot-3 { min-height: 90px; }
+        #ad-slot-4 { min-height: 250px; }
+        .ad-sp { display: none; }
+        .is-mobile .ad-pc { display: none !important; }
+        .is-mobile .ad-sp {
+            display: block;
+            position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 99998; text-align: center;
+            transform: translate3d(0, 0, 0);
+        }
+        .is-mobile body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
+        @media (max-width: 768px) {
+            .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
@@ -73,6 +91,10 @@
             </div>
         </section>
 
+        <!-- 広告（PCのみ）：概要の下 -->
+        <div id="ad-slot-4" class="ad-slot ad-pc"></div>
+
+
         <p class="guide-text">
             フォームに短歌を入力して「詠んでもらう」ボタンを押してください。
         </p>
@@ -93,6 +115,9 @@
             <input type="file" id="novel-file" accept=".txt">
             <button id="analyze-btn">詠んでもらう</button>
         </div>
+
+        <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
+        <div id="ad-slot-1" class="ad-slot ad-pc"></div>
 
         <div class="role-section example-use" id="example-use-text-section">
             <h3>📝 解析サンプル</h3>
@@ -236,6 +261,9 @@
             </div>
         </div>
 
+        <!-- 広告②（PCのみ・結果表示後に読み込み。画像保存に写らないよう結果の外に配置） -->
+        <div id="ad-slot-2" class="ad-slot ad-pc hidden"></div>
+
         <section class="editor-section" style="border-left-color: #3498db;">
             <h3>💡 こんな時に使ってみてください</h3>
             <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
@@ -267,6 +295,9 @@
         </section>
     </div>
 
+    <!-- 広告③（PCのみ） -->
+    <div id="ad-slot-3" class="ad-slot ad-pc ad-wide"></div>
+
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2026 AI短歌評論くん</p>
@@ -277,6 +308,59 @@
         </div>
     </footer>
 
+    <!-- 広告④のスマホ用（画面下固定）。スマホの端末のときだけ読み込む -->
+    <div id="ad-slot-sp" class="ad-sp"></div>
+
+    <script>
+    // i-mobile 広告：端末の種類（スマホ・タブレット／パソコン）で出し分ける。
+    // パソコンでは、横幅が足りないときだけ728pxのバナーを読み込まない（CSSでも隠す）。
+    (function () {
+        var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+            !!(navigator.userAgentData && navigator.userAgentData.mobile);
+        if (isMobile) { document.documentElement.classList.add('is-mobile'); }
+        var wideMq = window.matchMedia('(min-width: 769px)');
+
+        function showAd(slotId, mid, asid, elementId) {
+            var slot = document.getElementById(slotId);
+            if (!slot || slot.getAttribute('data-loaded')) return;
+            slot.setAttribute('data-loaded', '1');
+            var box = document.createElement('div');
+            box.id = elementId;
+            slot.appendChild(box);
+            (window.adsbyimobile = window.adsbyimobile || []).push({
+                pid: 85497, mid: mid, asid: asid, type: 'banner', display: 'inline', elementid: elementId
+            });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
+            box.appendChild(s);
+        }
+
+        function apply() {
+            if (!isMobile) {
+                showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
+                showAd('ad-slot-4', 596678, 1947156, 'im-c2046639608d4e2c8a5b980896b42b2d');
+                if (wideMq.matches) {
+                    showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
+                }
+                // ② 結果下：結果が表示されているときだけ読み込む
+                var result = document.getElementById('result');
+                if (result && !result.classList.contains('hidden')) {
+                    document.getElementById('ad-slot-2').classList.remove('hidden');
+                    showAd('ad-slot-2', 596678, 1946946, 'im-568aa2d3916a4c9389fe8bbf9e6403bd');
+                }
+            } else {
+                showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
+            }
+        }
+
+        apply();
+        if (wideMq.addEventListener) { wideMq.addEventListener('change', apply); } else { wideMq.addListener(apply); }
+        window.addEventListener('resize', apply);
+        var resultEl = document.getElementById('result');
+        if (resultEl) { new MutationObserver(apply).observe(resultEl, { attributes: true, attributeFilter: ['class'] }); }
+    })();
+    </script>
     <script src="./script.js" defer></script>
 
     <div id="image-modal" class="hidden">
