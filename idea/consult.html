@@ -17,6 +17,7 @@
         .ad-slot { text-align: center; margin: 20px auto; }
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
         #ad-slot-3 { min-height: 90px; }
+        #ad-slot-4 { min-height: 250px; }
         .ad-sp { display: none; }
         .is-mobile .ad-pc { display: none !important; }
         .is-mobile .ad-sp {
@@ -61,6 +62,9 @@
                 構想は粗くて当然なので、情報が足りなくても減点はしません。
                 <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
             </p>
+
+            <!-- 広告（PCのみ）：リード文の下、「5つの観点で評価」の上 -->
+            <div id="ad-slot-4" class="ad-slot ad-pc"></div>
 
             <div class="role-section editor-role">
                 <h3>🧭 5つの観点で評価</h3>
@@ -267,6 +271,7 @@
         function apply() {
             if (!isMobile) {
                 showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
+                showAd('ad-slot-4', 596678, 1947156, 'im-c2046639608d4e2c8a5b980896b42b2d');
                 if (wideMq.matches) {
                     showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
                 }
