@@ -174,15 +174,7 @@
     // i-mobile 広告：PC用2枠とスマホ用1枠を画面幅で出し分けて読み込む
     (function () {
         var isPC = window.matchMedia('(min-width: 769px)').matches;
-        var scriptLoaded = false;
-        function loadSpotJs() {
-            if (scriptLoaded) return;
-            scriptLoaded = true;
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
-            document.head.appendChild(s);
-        }
+        // 標準タグと同じく、広告ごとに spot.js を読み込む（読み込み済みの後から追加した枠も処理させるため）
         function showAd(slotId, mid, asid, elementId) {
             var slot = document.getElementById(slotId);
             if (!slot || slot.getAttribute('data-loaded')) return;
@@ -190,10 +182,13 @@
             var box = document.createElement('div');
             box.id = elementId;
             slot.appendChild(box);
-            loadSpotJs();
             (window.adsbyimobile = window.adsbyimobile || []).push({
                 pid: 85497, mid: mid, asid: asid, type: 'banner', display: 'inline', elementid: elementId
             });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104';
+            box.appendChild(s);
         }
 
         if (isPC) {
