@@ -5,6 +5,7 @@
     <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI小説下読みくん | AI文芸チェッカー</title>
     <meta name="description" content="4人のAI読者と編集者があなたの小説をガチ評価。数秒で強み・弱みを分析し、画像を保存できます。データ収集なしで安心。">
     <meta property="og:title" content="AI小説下読みくん">
@@ -19,7 +20,12 @@
         .ad-sp { display: none; }
         @media (max-width: 768px) {
             .ad-pc { display: none !important; }
-            .ad-sp { display: block; }
+            .ad-sp {
+                display: block;
+                position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
+                background: rgba(0, 0, 0, 0.7); z-index: 99998; text-align: center;
+                transform: translate3d(0, 0, 0);
+            }
             body { padding-bottom: 70px; } /* 画面下固定の広告に隠れないための余白 */
         }
     </style>
@@ -290,10 +296,9 @@
     <div id="ad-slot-sp" class="ad-sp"></div>
 
     <script>
-    // i-mobile 広告：PC用3枠とスマホ用1枠を画面幅で出し分けて読み込む
+    // i-mobile 広告：PC用とスマホ用を画面幅で出し分けて読み込む（ウィンドウサイズの変更にも追従）
     (function () {
-        var isPC = window.matchMedia('(min-width: 769px)').matches;
-        // 標準タグと同じく、広告ごとに spot.js を読み込む（読み込み済みの後から追加した枠も処理させるため）
+        var mq = window.matchMedia('(min-width: 769px)');
         function showAd(slotId, mid, asid, elementId) {
             var slot = document.getElementById(slotId);
             if (!slot || slot.getAttribute('data-loaded')) return;
@@ -310,28 +315,26 @@
             box.appendChild(s);
         }
 
-        if (isPC) {
-            // ① 結果上（レクタングル）
-            showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
-            // ③ フッターPC（ビッグバナー）
-            showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
-            // ② 結果下：結果が表示されたときに一度だけ読み込む
-            var result = document.getElementById('result');
-            var slot2 = document.getElementById('ad-slot-2');
-            var observer = new MutationObserver(function () {
-                if (!result.classList.contains('hidden')) {
-                    slot2.classList.remove('hidden');
+        function apply() {
+            if (mq.matches) {
+                showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
+                showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
+                // ② 結果下：結果が表示されているときだけ読み込む
+                var result = document.getElementById('result');
+                if (result && !result.classList.contains('hidden')) {
+                    document.getElementById('ad-slot-2').classList.remove('hidden');
                     showAd('ad-slot-2', 596678, 1946946, 'im-568aa2d3916a4c9389fe8bbf9e6403bd');
-                    observer.disconnect();
                 }
-            });
-            observer.observe(result, { attributes: true, attributeFilter: ['class'] });
-        } else {
-            // フッターSP（画面下固定）
-            var sp = document.getElementById('ad-slot-sp');
-            sp.style.cssText = 'position:fixed;bottom:0;left:0;right:0;width:100%;background:rgba(0,0,0,0.7);z-index:99998;text-align:center;transform:translate3d(0,0,0);';
-            showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
+            } else {
+                showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
+            }
         }
+
+        apply();
+        if (mq.addEventListener) { mq.addEventListener('change', apply); } else { mq.addListener(apply); }
+        window.addEventListener('resize', apply);
+        var resultEl = document.getElementById('result');
+        if (resultEl) { new MutationObserver(apply).observe(resultEl, { attributes: true, attributeFilter: ['class'] }); }
     })();
     </script>
     <script src="./script.js" defer></script>
