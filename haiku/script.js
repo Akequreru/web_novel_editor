@@ -58,9 +58,9 @@ function renderResult(data) {
                 ],
                 fill: true,
                 // 以下省略
-                backgroundColor: 'rgba(241, 196, 15, 0.2)', // 俳句らしく風情のある山吹・ゴールド系に
-                borderColor: 'rgb(230, 126, 34)',
-                pointBackgroundColor: 'rgb(230, 126, 34)',
+                backgroundColor: 'rgba(232, 100, 60, 0.2)', // 俳句らしく風情のある山吹・ゴールド系に
+                borderColor: 'rgb(232, 100, 60)',
+                pointBackgroundColor: 'rgb(232, 100, 60)',
                 borderWidth: 3
             }]
         },
@@ -68,7 +68,7 @@ function renderResult(data) {
             scales: {
                 r: {
                     ticks: { display: false, stepSize: 1 },
-                    pointLabels: { font: { size: 14, weight: 'bold' }, color: '#2c3e50' },
+                    pointLabels: { font: { family: "'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif", size: 16, weight: '600' }, color: '#26231f' },
                     suggestedMin: 0,
                     suggestedMax: 10
                 }
@@ -76,6 +76,11 @@ function renderResult(data) {
             plugins: { legend: { display: false } }
         }
     });
+
+    // 字体の読み込みが間に合わなかった場合に備え、読み込み後にグラフを描き直す
+    if (document.fonts && document.fonts.load) {
+        document.fonts.load("600 16px 'Shippori Mincho'").then(function () { if (myChart) { myChart.update(); } });
+    }
 
     // 良い点・悪い点リストの生成
     const goodList = document.getElementById('good-list');

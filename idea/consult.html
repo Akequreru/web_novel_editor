@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <!-- ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,9 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .ad-slot { text-align: center; margin: 20px auto; }
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
@@ -41,6 +44,7 @@
         .next-steps li { margin-bottom: 8px; }
         .overview-box { background: #fff8ec; border-left: 6px solid #e67e22; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; line-height: 1.7; }
     </style>
+    <link rel="stylesheet" href="../design.css?v=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
@@ -53,60 +57,60 @@
 
 <body>
     <div class="container">
-        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        <p class="nav-back"><a href="../index.html">← 総合トップへ戻る</a></p>
 
         <h1>AI構想相談くん</h1>
         <section class="service-description">
             <p class="lead-text">
-                書き始める前の「構想」や「プロット」を、AIに相談できるツールです。
-                小説、シナリオ、詩、短歌、俳句など、どんな文芸作品でも構いません。
+                書き始める前の構想やプロットを、AIに相談できるツールです。
+                小説、シナリオ、詩、短歌、俳句など、どんな文芸作品でも使えます。
                 構想は粗くて当然なので、情報が足りなくても減点はしません。
-                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+                <br>※入力した文章は分析のためだけに使われ、サーバーには保存されません。
             </p>
 
             <!-- 広告（PCのみ）：リード文の下、「5つの観点で評価」の上 -->
             <div id="ad-slot-4" class="ad-slot"></div>
 
             <div class="role-section editor-role">
-                <h3>🧭 5つの観点で評価</h3>
-                <p>構想の現時点での見込みを、5段階の★で評価します。短歌・俳句・詩では、観点を言葉の流れやテーマに置き換えて評価します。</p>
+                <h3>5つの観点で評価</h3>
+                <p>構想の現時点での見込みを、5段階の★で評価します。短歌・俳句・詩では、「言葉の流れ」や「テーマ」に置き換えて見ます。</p>
                 <ul class="analysis-points">
-                    <li><strong>独創性</strong>: ありきたりでない切り口か</li>
-                    <li><strong>展開</strong>: 先が気になる流れ、起伏が作れそうか（短い作品では「言葉の流れ」）</li>
-                    <li><strong>一貫性</strong>: 設定や筋、テーマにぶれがないか（短い作品では「テーマの一貫性」）</li>
-                    <li><strong>形式</strong>: その形式に合った題材か</li>
-                    <li><strong>発展性</strong>: 長編化、連作、シリーズ化などの余地があるか</li>
+                    <li><strong>独創性</strong>：ありきたりでない切り口か</li>
+                    <li><strong>展開</strong>：先が気になる流れ、起伏が作れそうか（短い作品では「言葉の流れ」）</li>
+                    <li><strong>一貫性</strong>：設定や筋、テーマにぶれがないか（短い作品では「テーマの一貫性」）</li>
+                    <li><strong>形式</strong>：その形式に合った題材か</li>
+                    <li><strong>発展性</strong>：長編化、連作、シリーズ化などの余地があるか</li>
                 </ul>
             </div>
 
             <hr class="section-divider">
 
             <div class="role-section reader-role">
-                <h3>👥 4人の読者からの期待コメント</h3>
+                <h3>4人の読者からの期待コメント</h3>
                 <p>4人の読者が、構想を読んで「読んでみたい」と感じた点を、前向きに伝えます。最後に、まとめと「次に考えること」もお渡しします。</p>
                 <div class="reader-intro-grid">
                     <div class="intro-card">
-                        <h4>🎧 カイト（学生男性）</h4>
-                        <p>刺激と意外性が好き。</p>
+                        <h4>カイト（学生男性）</h4>
+                        <p>意外性と刺激が好きな読者。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>✨ ミユ（学生女性）</h4>
-                        <p>心の機微とセンスが好き。</p>
+                        <h4>ミユ（学生女性）</h4>
+                        <p>心の機微や雰囲気を大事にする読者。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>👤 サトウ（社会人男性）</h4>
-                        <p>理屈と構成が好き。</p>
+                        <h4>サトウ（社会人男性）</h4>
+                        <p>理屈と構成を大事にする読者。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>📚 ハルカ（社会人女性）</h4>
-                        <p>深みと言葉の品位が好き。</p>
+                        <h4>ハルカ（社会人女性）</h4>
+                        <p>深みと、きれいな言葉を大切にする読者。</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <p class="guide-text">
-            考えている構想やプロットを入力して「相談する」ボタンを押してください。メモ書きや箇条書きでも構いません。
+            構想やプロットを入力して、「相談する」を押してください。メモ書きや箇条書きでも構いません。
         </p>
         <textarea id="idea-text" maxlength="50000" placeholder="例：閉館間際の図書館で、返却されない本が一冊だけ増えていく。司書は、その本の持ち主を探し始める……"></textarea>
 
@@ -118,13 +122,17 @@
         <div id="ad-slot-1" class="ad-slot"></div>
 
         <div class="role-section example-use" id="example-use-section">
-            <h3>📝 相談サンプル</h3>
+            <h3>相談サンプル</h3>
             <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
                 「返却されない本が増えていく図書館」という構想を相談した結果の例です。入力した構想が、このような形式で返ってきます。
             </p>
 
             <div class="overview-box">
                 <strong>見立て：</strong>図書館を舞台にした、ミステリー風の現代ファンタジー（小説）の構想ですね。
+            </div>
+
+            <div class="chart-container">
+                <canvas id="sample-chart"></canvas>
             </div>
 
             <div class="axis-list">
@@ -150,16 +158,72 @@
                 </div>
             </div>
 
-            <h4 style="margin: 24px 0 8px; color: #2c3e50;">次に考えること（抜粋）</h4>
-            <ol class="next-steps">
-                <li>増えていく本は、誰が、何のために置いているのでしょうか？</li>
-                <li>司書は、なぜこの謎を自分で追うことになったのでしょうか？</li>
-            </ol>
+            <h4 class="sample-heading">4人の読者からの期待コメント</h4>
+            <div class="sample-cards">
+                <div class="card">
+                    <div class="reader-icon">🎧</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">カイト</span>
+                            <span class="reader-meta">男 / 学生</span>
+                        </div>
+                        <p class="reader-comment">増えていく本の正体が気になって仕方ありません！持ち主が意外な存在だったら、最高に刺激的です。「本が増えるルール」に意外な仕掛けがあると、さらに引き込まれそうです。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">✨</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ミユ</span>
+                            <span class="reader-meta">女 / 学生</span>
+                        </div>
+                        <p class="reader-comment">閉館間際の静かな図書館、という空気にひかれました。司書さんの気持ちの動きや、本が語りかけてくるものを、丁寧に描いてもらえたら嬉しいです。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">👤</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">サトウ</span>
+                            <span class="reader-meta">男 / 社会人</span>
+                        </div>
+                        <p class="reader-comment">「増える」仕組みに理屈の裏付けがあると、読み応えがぐっと増しそうです。増え方に法則があって、そこに伏線が仕込まれていたら、きっと夢中になります。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="reader-icon">📚</div>
+                    <div class="reader-content">
+                        <div class="reader-header">
+                            <span class="reader-name">ハルカ</span>
+                            <span class="reader-meta">女 / 社会人</span>
+                        </div>
+                        <p class="reader-comment">本と記憶、人と物語のつながりを、静かに掘り下げる作品になりそうで、期待しています。本が何かの象徴として描かれると、余韻が深くなりそうです。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-section">
+                    <h3>まとめ</h3>
+                    <p class="sample-summary">「返却されない本が増えていく」という、静かで不思議なフックが、この構想の最大の強みです。図書館という舞台と、司書が持ち主を探すという行動が、無理なく物語を動かしてくれます。
+
+一方で、いまの課題は、増えていく本の正体と、司書がこの謎を追う理由が、まだ見えていないことです。ここが決まると、中盤の山場も、結末の方向も、自然に定まっていきます。短編としても、本ごとの物語を重ねた連作としても広げられる、可能性の大きな構想です。</p>
+                </div>
+                <div class="editor-section">
+                    <h3>次に考えること</h3>
+                    <ol class="next-steps">
+                        <li>増えていく本は、誰が、何のために置いているのでしょうか？</li>
+                        <li>司書は、なぜこの謎を自分で追うことになったのでしょうか？</li>
+                        <li>本が増える現象には、どんなルールや条件があるのでしょうか？</li>
+                        <li>物語の終わりで、持ち主は見つかるのでしょうか？　見つからない場合、司書は何を得るのでしょうか？</li>
+                    </ol>
+                </div>
+            </div>
         </div>
 
         <div id="loading" class="hidden">
             <div class="loading-spinner"></div>
-            <p>構想を読んでいます...</p>
+            <p>構想を読んでいます。しばらくお待ちください…</p>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -175,7 +239,7 @@
 
             <div class="axis-list" id="axis-list"></div>
 
-            <h3 style="margin: 30px 0 0; color: #2c3e50;">💬 4人の読者からの期待コメント</h3>
+            <h3>4人の読者からの期待コメント</h3>
             <div id="reader-cards"></div>
 
             <div class="editor-feedback-area">
@@ -183,14 +247,14 @@
                     <h3>まとめ</h3>
                     <p id="overall-summary"></p>
                 </div>
-                <div class="editor-section" style="border-left-color: #e67e22;">
+                <div class="editor-section">
                     <h3>次に考えること</h3>
                     <ol class="next-steps" id="next-steps"></ol>
                 </div>
             </div>
 
             <div class="save-area">
-                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="save-image-btn">画像(JPG)をダウンロード</button>
                 <button id="share-btn" data-share-target="result" data-share-file="AI構想相談くん" data-share-cuts='[{"name":"グラフと評価"},{"selector":"#result > h3","name":"期待コメント"},{"selector":".editor-feedback-area","name":"まとめ"}]' data-share-text="AI構想相談くんに、構想を相談しました。">Xで共有</button>
             </div>
         </div>
@@ -198,9 +262,9 @@
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
-        <section class="editor-section" style="border-left-color: #e67e22;">
-            <h3>💡 こんな時に使ってみてください</h3>
-            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+        <section class="editor-section">
+            <h3>こんなときに使えます</h3>
+            <ul class="analysis-points">
                 <li>書き始める前に、構想の強みや可能性を確かめたいとき</li>
                 <li>次に何を決めればよいか、整理できていないとき</li>
                 <li>まだ形にならないアイデアを、誰かに聞いてもらいたいとき</li>
@@ -208,8 +272,8 @@
             </ul>
         </section>
 
-        <section class="editor-section" style="border-left-color: #95a5a6;">
-            <h3>❓ よくある質問</h3>
+        <section class="editor-section">
+            <h3>よくある質問</h3>
             <div class="faq-item">
                 <p class="faq-q">Q. どのくらい書けばいいですか？</p>
                 <p class="faq-a">A. 数行のメモでも相談できます。最大50,000文字まで入力できます。情報が少なくても、減点はされません。</p>
@@ -293,7 +357,46 @@
         window.addEventListener('resize', apply);
     })();
     </script>
-    <script src="./script.js" defer></script>
+
+    <script>
+    // 相談サンプルのレーダーチャート（結果画面と同じ見た目。数字は、サンプルの星と同じ：独創性4・展開3・一貫性4・形式4・発展性5）
+    (function () {
+        function draw() {
+            var el = document.getElementById('sample-chart');
+            if (!el || typeof Chart === 'undefined') return;
+            new Chart(el.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['独創性', '展開', '一貫性', '形式', '発展性'],
+                    datasets: [{
+                        data: [4, 3, 4, 4, 5],
+                        fill: true,
+                        backgroundColor: 'rgba(232, 100, 60, 0.2)',
+                        borderColor: 'rgb(232, 100, 60)',
+                        pointBackgroundColor: 'rgb(232, 100, 60)',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    animation: false,
+                    scales: {
+                        r: {
+                            ticks: { display: false, stepSize: 1 },
+                            pointLabels: { font: { family: "'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif", size: 16, weight: '600' }, color: '#26231f' },
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 5
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        var start = function () { if (document.fonts && document.fonts.load) { document.fonts.load("600 16px 'Shippori Mincho'").then(draw, draw); } else { draw(); } };
+        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
+    })();
+    </script>
+    <script src="./script.js?v=3" defer></script>
     <script src="../share.js?v=3" defer></script>
 </body>
 

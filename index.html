@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <!-- ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,9 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .ad-slot { text-align: center; margin: 40px auto; }
         #ad-slot-1 { min-height: 90px; }
@@ -31,6 +34,7 @@
             html:not(.is-mobile) .ad-wide { display: none !important; } /* 728px幅のバナーは、パソコンの狭い窓では隠す */
         }
     </style>
+    <link rel="stylesheet" href="./design.css?v=1">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -40,75 +44,71 @@
     </script>
 </head>
 
-<body>
+<body class="page-top">
     <div class="container">
-        <!-- 💡 29行目付近の <h1> を、以下のロゴ付きデザインに差し替え -->
+        <!-- 29行目付近の <h1> を、以下のロゴ付きデザインに差し替え -->
 <div class="site-logo-container">
     <svg class="site-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50">
         <!-- 外枠の知的なスクエア（濃紺） -->
-        <rect x="10" y="10" width="80" height="80" rx="18" fill="#2c3e50" />
+        <rect x="10" y="10" width="80" height="80" rx="18" fill="#26231f" />
         
         <!-- 万年筆のペン先（シャープな白抜き） -->
         <path d="M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z" fill="#ffffff" />
         
         <!-- ペン先のスリット（スリット自体がAIのラインを兼ねる） -->
-        <line x1="50" y1="32" x2="50" y2="52" stroke="#2c3e50" stroke-width="3" stroke-linecap="round" />
-        <circle cx="50" cy="55" r="3.5" fill="#2c3e50" />
+        <line x1="50" y1="32" x2="50" y2="52" stroke="#26231f" stroke-width="3" stroke-linecap="round" />
+        <circle cx="50" cy="55" r="3.5" fill="#26231f" />
         
         <!-- AIのデジタルノード（未来を照らすシアンブルーのドット光） -->
-        <circle cx="50" cy="22" r="5" fill="#3498db" />
-        <circle cx="75" cy="45" r="4" fill="#3498db" />
-        <circle cx="25" cy="45" r="4" fill="#3498db" />
-        <line x1="50" y1="22" x2="50" y2="25" stroke="#3498db" stroke-width="2" />
-        <line x1="72" y1="48" x2="75" y2="45" stroke="#3498db" stroke-width="2" />
-        <line x1="28" y1="48" x2="25" y2="45" stroke="#3498db" stroke-width="2" />
+        <circle cx="50" cy="22" r="5" fill="#e8643c" />
+        <circle cx="75" cy="45" r="4" fill="#e8643c" />
+        <circle cx="25" cy="45" r="4" fill="#e8643c" />
+        <line x1="50" y1="22" x2="50" y2="25" stroke="#e8643c" stroke-width="2" />
+        <line x1="72" y1="48" x2="75" y2="45" stroke="#e8643c" stroke-width="2" />
+        <line x1="28" y1="48" x2="25" y2="45" stroke="#e8643c" stroke-width="2" />
     </svg>
     <div class="site-logo-text">
         <h1 class="main-title"><span class="highlight-ai">AI</span>文芸チェッカーズ</h1>
-        <p class="sub-tagline">AI文芸下読み ＆ 感想シミュレーター</p>
+        <p class="sub-tagline">AI文芸下読み・感想シミュレーター・構想相談</p>
     </div>
 </div>
         
         <section class="service-description">
             <p class="lead-text">
-                「ainovelchecker.com」へようこそ。
-                最新のAI技術を用いて、あなたの創作活動を多角的にサポートする文芸総合支援プラットフォームです。
-                作品のジャンルや目的に合わせて、最適なチェッカーをお選びください。
+                ainovelchecker.com へようこそ。
+                AIが、あなたの創作を多角的に支えます。
+                作品のジャンルや目的に合わせて、使いたいツールをお選びください。
             </p>
         </section>
         
         <!-- 広告①（PCのみ）：概要の下 -->
         <div id="ad-slot-1" class="ad-slot ad-wide"></div>
 
-        <div class="role-section editor-role" style="margin-bottom: 40px;">
-            <h3>🔍 AI文芸下読みシリーズ</h3>
-            <p style="margin-bottom: 20px;">プロの編集者視点による厳格なスコアリングと、各ジャンルに特化したAI読者たちによる多角的な講評フィードバックを提供します。</p>
+        <div class="role-section editor-role">
+            <h3>AI文芸下読みシリーズ</h3>
+            <p>編集者の視点による採点と、ジャンルに合わせたAI読者たちの講評を、お届けします。</p>
             
 
             <div class="reader-intro-grid">
                 <a href="./novel/shitayomi.html" class="portal-tile-link text-blue">
-                    <span class="tile-icon">📚</span>
                     <div class="tile-main">
                         <h4>小説下読みくん</h4>
-                        <p>構成・キャラ・描写を総合ガチ分析</p>
+                        <p>構成・キャラ・描写を総合的に分析</p>
                     </div>
                 </a>
                 <a href="./poetry/shitayomi.html" class="portal-tile-link text-blue">
-                    <span class="tile-icon">✨</span>
                     <div class="tile-main">
                         <h4>詩下読みくん</h4>
                         <p>比喩の深さや言葉のリズムを精読</p>
                     </div>
                 </a>
                 <a href="./tanka/shitayomi.html" class="portal-tile-link text-blue">
-                    <span class="tile-icon">🍃</span>
                     <div class="tile-main">
                         <h4>短歌下読みくん</h4>
                         <p>三十一音の密度と言葉選びを精密レビュー</p>
                     </div>
                 </a>
                 <a href="./haiku/shitayomi.html" class="portal-tile-link text-blue">
-                    <span class="tile-icon">🌸</span>
                     <div class="tile-main">
                         <h4>俳句・川柳下読みくん</h4>
                         <p>切れ字の効果や五七五の余白の美を評価</p>
@@ -117,34 +117,30 @@
             </div>
         </div>
 
-        <div class="role-section reader-role" style="margin-bottom: 40px;">
-            <h3>💬 AI文芸コメント欄シリーズ</h3>
-            <p style="margin-bottom: 20px;">作品を投稿すると、様々な属性（熱狂的ファン、辛口批評家、通りすがり等）を持つAI読者がWeb上のコメント欄を再現し、賑やかに感想を書き込みます。</p>
+        <div class="role-section reader-role">
+            <h3>AI文芸コメント欄シリーズ</h3>
+            <p>作品を投稿すると、熱狂的ファンや辛口批評家、通りすがりなど、さまざまな読者が、ネットの感想欄のようにコメントを書き込みます。</p>
             
             <div class="reader-intro-grid">
                 <a href="./novel/comment.html" class="portal-tile-link text-green">
-                    <span class="tile-icon">📚</span>
                     <div class="tile-main">
                         <h4>小説コメント欄くん</h4>
                         <p>投稿サイト風の感想欄の熱量を再現</p>
                     </div>
                 </a>
                 <a href="./poetry/comment.html" class="portal-tile-link text-green">
-                    <span class="tile-icon">✨</span>
                     <div class="tile-main">
                         <h4>詩コメント欄くん</h4>
                         <p>一行に対する解釈やインスピレーション</p>
                     </div>
                 </a>
                 <a href="./tanka/comment.html" class="portal-tile-link text-green">
-                    <span class="tile-icon">🍃</span>
                     <div class="tile-main">
                         <h4>短歌コメント欄くん</h4>
                         <p>一首の背景を読者たちが語り合う</p>
                     </div>
                 </a>
                 <a href="./haiku/comment.html" class="portal-tile-link text-green">
-                    <span class="tile-icon">🌸</span>
                     <div class="tile-main">
                         <h4>俳句・川柳コメント欄くん</h4>
                         <p>一瞬の共感や風刺にクスッとした短い声</p>
@@ -153,13 +149,12 @@
             </div>
         </div>
 
-        <div class="role-section" style="margin-bottom: 40px; border-left-color: #e67e22;">
-            <h3>💡 AI構想相談シリーズ</h3>
-            <p style="margin-bottom: 20px;">書き始める前の構想やプロットを相談できます。5つの観点の評価と、4人の読者からの期待コメント、次に考えるべきことをお渡しします。</p>
+        <div class="role-section">
+            <h3>AI構想相談シリーズ</h3>
+            <p>書き始める前の構想やプロットを相談できます。5つの観点の評価と、4人の読者からの期待コメント、次に考えることをお渡しします。</p>
 
             <div class="reader-intro-grid">
                 <a href="./idea/consult.html" class="portal-tile-link text-orange">
-                    <span class="tile-icon">💡</span>
                     <div class="tile-main">
                         <h4>構想相談くん</h4>
                         <p>小説・シナリオ・詩歌など、あらゆる構想に対応</p>
@@ -171,10 +166,10 @@
         <!-- 広告②（PCのみ）：トップ下部 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
-        <div class="editor-section" style="background: #f8f9fa; border-left: 5px solid #2c3e50;">
+        <div class="editor-section">
             <h3>インフォメーション & ガイド</h3>
-            <ul class="analysis-points" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
-                <li>📂 <a href="./sitemap.html" style="color: #3498db; text-decoration: none; font-weight: bold;">サイトマップ（全機能一覧）</a></li>
+            <ul class="analysis-points">
+                <li><a href="./sitemap.html">サイトマップ（全機能一覧）</a></li>
             </ul>
         </div>
     </div>

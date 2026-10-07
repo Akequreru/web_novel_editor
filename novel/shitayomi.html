@@ -2,17 +2,20 @@
 <html lang="ja">
 
 <head>
-    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <!-- ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI小説下読みくん | AI文芸チェッカー</title>
-    <meta name="description" content="4人のAI読者と編集者があなたの小説をガチ評価。数秒で強み・弱みを分析し、画像を保存できます。データ収集なしで安心。">
+    <meta name="description" content="4人のAI読者と編集者が、あなたの小説を多角的に評価。数秒で強みと弱みを分析し、結果を画像で保存できます。入力した文章は保存されません。">
     <meta property="og:title" content="AI小説下読みくん">
-    <meta property="og:description" content="AIによる小説執筆支援ツール。">
+    <meta property="og:description" content="4人のAI読者と編集者が、あなたの小説を多角的に評価します。">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .ad-slot { text-align: center; margin: 20px auto; }
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
@@ -32,6 +35,7 @@
             .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
         }
     </style>
+    <link rel="stylesheet" href="../design.css?v=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
@@ -44,52 +48,52 @@
 
 <body>
     <div class="container">
-        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        <p class="nav-back"><a href="../index.html">← 総合トップへ戻る</a></p>
         
         <h1>AI小説下読みくん</h1>
         <section class="service-description">
             <p class="lead-text">
-                最新のAI（Gemini）を活用し、プロの編集者と4人の個性豊かな読者による多角的なフィードバックを提供する執筆支援ツールです。
-                投稿前のブラッシュアップや、客観的な評価が欲しい時にご活用ください。
-                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+                編集者と4人の読者、それぞれの目線から、あなたの小説を評価するAI（Gemini）ツールです。
+                投稿前の見直しや、客観的な意見がほしいときにご利用ください。
+                <br>※入力した文章は分析のためだけに使われ、サーバーには保存されません。
             </p>
 
             <!-- 広告（PCのみ）：リード文の下、「プロの編集者視点による厳格な分析」の上 -->
             <div id="ad-slot-4" class="ad-slot"></div>
 
             <div class="role-section editor-role">
-                <h3>🧐 プロの編集者視点による厳格な分析</h3>
-                <p>作品を「市場に出せるクオリティか」というプロの視点で評価します。物語の骨組みから細部の表現まで、以下の5項目を10点満点で厳しく採点します。</p>
+                <h3>プロの編集者視点による厳格な分析</h3>
+                <p>作品を「そのまま世に出せる水準か」という編集者の視点で評価します。物語の骨組みから細部の表現まで、次の5項目を10点満点で、厳しめに採点します。</p>
                 <ul class="analysis-points">
-                    <li><strong>構成・テンポ</strong>: 物語の起承転結、飽きさせない展開の速さ</li>
-                    <li><strong>キャラクター</strong>: 行動の動機、魅力、口調の一貫性</li>
-                    <li><strong>文章・表現</strong>: 語彙の豊かさ、情景描写の具体性</li>
-                    <li><strong>設定・独創性</strong>: アイデアの斬新さ、独自の世界観</li>
-                    <li><strong>ロジック</strong>: 物語の矛盾、リアリティ、納得感</li>
+                    <li><strong>構成・テンポ</strong>：物語の起承転結と、読者を飽きさせない展開の速さ</li>
+                    <li><strong>キャラクター</strong>：人物の魅力、行動の動機、口調の一貫性</li>
+                    <li><strong>文章・表現</strong>：語彙の豊かさ、情景描写の具体性</li>
+                    <li><strong>設定・独創性</strong>：アイデアの斬新さ、独自の世界観</li>
+                    <li><strong>ロジック</strong>：設定や展開に矛盾がないか、リアリティ、納得感</li>
                 </ul>
             </div>
 
             <hr class="section-divider">
 
             <div class="role-section reader-role">
-                <h3>👥 4人の読者による本音のレビュー</h3>
-                <p>作品を「一人の読者として楽しめるか」という観点で評価します。あえて極端な好みを持つ4人をシミュレートすることで、ターゲット層の反応を予測できます。</p>
+                <h3>4人の読者による本音のレビュー</h3>
+                <p>一人の読者として楽しめるか、という目線で読みます。好みがはっきり違う4人に読んでもらい、どんな人に刺さる作品なのかを探ります。</p>
                 <div class="reader-intro-grid">
                     <div class="intro-card">
-                        <h4>🎧 カイト（学生男性）</h4>
-                        <p>刺激とスピード感を重視。スカッとする展開や、勢いのある物語を好み、冗長な描写には厳しい読者です。</p>
+                        <h4>カイト（学生男性）</h4>
+                        <p>テンポ重視の読者。スカッとする展開や勢いのある話が好きで、だらだら続く描写はちょっと苦手です。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>✨ ミユ（学生女性）</h4>
-                        <p>心の機微やセンスを重視。エモい感情表現や、キャラクター間の繊細な関係性、透明感のある描写を評価します。</p>
+                        <h4>ミユ（学生女性）</h4>
+                        <p>気持ちの揺れや雰囲気を大事にする読者。繊細な感情表現や、人と人との距離感の描き方に注目します。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>👤 サトウ（社会人男性）</h4>
-                        <p>理屈と整合性を重視。設定の矛盾や、SF・ミステリーにおけるガジェットの説得力、論理的な帰結を求めます。</p>
+                        <h4>サトウ（社会人男性）</h4>
+                        <p>理屈派の読者。設定のつじつまや、SF・ミステリーの仕掛けに納得できるかを、しっかり見ます。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>📚 ハルカ（社会人女性）</h4>
-                        <p>深みと文章の品位を重視。テーマの深掘りや、重厚な日本語表現、読後に考えさせられるような余韻を好みます。</p>
+                        <h4>ハルカ（社会人女性）</h4>
+                        <p>じっくり読む派の読者。テーマの深さや、きれいな文章、読み終えたあとに残る余韻を大切にします。</p>
                     </div>
                 </div>
             </div>
@@ -97,9 +101,9 @@
 
 
         <p class="guide-text">
-            フォームに本文を入力するか、txtファイルをアップロードして「読んでもらう」ボタンを押してください。
+            本文を貼り付けるか、txtファイルを選んで、「読んでもらう」を押してください。
         </p>
-        <textarea id="novel-text" maxlength="50000" placeholder="ここに小説を貼り付けてください..."></textarea>
+        <textarea id="novel-text" maxlength="50000" placeholder="ここに小説の本文を貼り付けてください（最大50,000文字）"></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
@@ -110,10 +114,14 @@
         <div id="ad-slot-1" class="ad-slot"></div>
 
         <div class="role-section example-use" id="example-use-text-section">
-            <h3>📝 解析サンプル</h3>
+            <h3>解析サンプル</h3>
             <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
                 「巨大な猫が地球を滅ぼす」というSFショートショートを実際に分析した結果の例です。入力した小説が、このような形式で多角的に評価されます。
             </p>
+
+            <div class="chart-container">
+                <canvas id="sample-chart"></canvas>
+            </div>
 
             <div class="result-header">
                 <h2>総合：2.4 / 5.0</h2>
@@ -184,7 +192,7 @@
             <div class="editor-feedback-area">
                 <div class="editor-points">
                     <div class="point-box good">
-                        <h3>👍 良い点</h3>
+                        <h3>良い点</h3>
                         <ul>
                             <li>「猫が動くものを叩く」という習性を人類が「オペレーション・ネコダマシ」で逆手に取るアイデアは非常に独創的。</li>
                             <li>「ゴロゴロ音による地殻崩壊」という、猫の可愛さと破滅的被害のギャップが強いフックになっている。</li>
@@ -192,7 +200,7 @@
                         </ul>
                     </div>
                     <div class="point-box bad">
-                        <h3>⚠️ 悪い点</h3>
+                        <h3>悪い点</h3>
                         <ul>
                             <li>「なんと」「驚きました」などの説明的で単調な文体が物語の緊張感を削いでいる。</li>
                             <li>デシベルの理論的矛盾や、後半のガスの動きがご都合主義的でリアリティを損なっている。</li>
@@ -232,11 +240,11 @@
             <div class="editor-feedback-area">
                 <div class="editor-points">
                     <div class="point-box good">
-                        <h3>👍 良い点</h3>
+                        <h3>良い点</h3>
                         <ul id="good-list"></ul>
                     </div>
                     <div class="point-box bad">
-                        <h3>⚠️ 悪い点</h3>
+                        <h3>悪い点</h3>
                         <ul id="bad-list"></ul>
                     </div>
                 </div>
@@ -247,7 +255,7 @@
             </div>
 
             <div class="save-area">
-                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="save-image-btn">画像(JPG)をダウンロード</button>
                 <button id="share-btn" data-share-target="result" data-share-score-id="avg-score" data-share-file="AI小説下読みくん" data-share-parts='[{"selector":".score-overview","name":"グラフと総合"},{"selector":"#reader-cards","name":"コメント"},{"selector":".editor-feedback-area","name":"総評"}]' data-share-text="AI小説下読みくんに、作品を読んでもらいました。\n総合 {score} / 5.0">Xで共有</button>
             </div>
         </div>
@@ -255,33 +263,33 @@
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
-        <section class="editor-section" style="border-left-color: #3498db;">
-            <h3>💡 こんな時に使ってみてください</h3>
-            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
-                <li>小説投稿サイトに公開する前に、客観的な視点で作品をチェックしたいとき</li>
+        <section class="editor-section">
+            <h3>こんな時に使ってみてください</h3>
+            <ul class="analysis-points">
+                <li>小説投稿サイトに公開する前に、客観的な視点で作品を確認したいとき</li>
                 <li>改稿の前後でスコアを比較し、修正の効果を確認したいとき</li>
                 <li>自分の作品がどんな読者層に向いているかを知りたいとき</li>
                 <li>友人や編集者に見せる前に、強み・弱みを整理しておきたいとき</li>
             </ul>
         </section>
 
-        <section class="editor-section" style="border-left-color: #95a5a6;">
-            <h3>❓ よくある質問</h3>
+        <section class="editor-section">
+            <h3>よくある質問</h3>
             <div class="faq-item">
                 <p class="faq-q">Q. どのくらいの文字数を入力すればいいですか？</p>
-                <p class="faq-a">A. 短いシーンの一部でも分析できますが、文脈が伝わるようまとまった文章（1000文字程度〜）がおすすめです。最大50,000文字まで入力できます。</p>
+                <p class="faq-a">A. 短いシーンの一部でも分析できますが、文脈が伝わるよう、まとまった文章（1,000文字程度以上）がおすすめです。最大50,000文字まで入力できます。</p>
             </div>
             <div class="faq-item">
                 <p class="faq-q">Q. 評価結果は何度でもやり直せますか？</p>
-                <p class="faq-a">A. はい、何度でも無料で再分析できます。修正前後でスコアを比較しながら、改稿の効果を確認するのに便利です。</p>
+                <p class="faq-a">A. はい、何度でも無料で分析し直せます。改稿の前後でスコアを比べて、修正の効果を確かめるのに便利です。</p>
             </div>
             <div class="faq-item">
                 <p class="faq-q">Q. 4人の読者の評価が割れているのはなぜですか？</p>
-                <p class="faq-a">A. あえて好みが極端な読者を設定しているためです。全員に高評価でなくても、「どの層に刺さる作品か」を把握する手がかりとして活用してください。</p>
+                <p class="faq-a">A. あえて好みの偏った読者を設定しているためです。全員が高評価でなくても問題ありません。「どの読者層に刺さる作品か」を知る手がかりとしてご活用ください。</p>
             </div>
             <div class="faq-item">
                 <p class="faq-q">Q. 小説投稿サイトに投稿する前に使うとよいですか？</p>
-                <p class="faq-a">A. はい。投稿前のセルフチェックとして、誤字脱字以外の「構成」「キャラクター」「ロジック」面の弱点を客観的に把握するのに使うとよいでしょう。</p>
+                <p class="faq-a">A. はい。投稿前のセルフチェックとして、誤字脱字以外の「構成」「キャラクター」「ロジック」の弱点を、客観的に確かめるのに役立ちます。</p>
             </div>
         </section>
     </div>
@@ -351,7 +359,46 @@
         window.addEventListener('resize', apply);
     })();
     </script>
-    <script src="./script.js?v=2" defer></script>
+
+    <script>
+    // 解析サンプルのレーダーチャート（結果画面と同じ見た目）
+    (function () {
+        function draw() {
+            var el = document.getElementById('sample-chart');
+            if (!el || typeof Chart === 'undefined') return;
+            new Chart(el.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['構成', 'キャラ', '文章', '独創性', 'ロジック'],
+                    datasets: [{
+                        data: [6, 4, 5, 8, 2],
+                        fill: true,
+                        backgroundColor: 'rgba(232, 100, 60, 0.2)',
+                        borderColor: 'rgb(232, 100, 60)',
+                        pointBackgroundColor: 'rgb(232, 100, 60)',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    animation: false,
+                    scales: {
+                        r: {
+                            ticks: { display: false, stepSize: 1 },
+                            pointLabels: { font: { family: "'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif", size: 16, weight: '600' }, color: '#26231f' },
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        var start = function () { if (document.fonts && document.fonts.load) { document.fonts.load("600 16px 'Shippori Mincho'").then(draw, draw); } else { draw(); } };
+        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
+    })();
+    </script>
+    <script src="./script.js?v=3" defer></script>
     <script src="../share.js?v=3" defer></script>
 
     <div id="image-modal" class="hidden">

@@ -2,13 +2,16 @@
 <html lang="ja">
 
 <head>
-    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <!-- ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI小説コメント欄くん | AI文芸チェッカー</title>
-    <meta name="description" content="総勢20人の多種多様なAI読者が、あなたの作品にリアルな感想・コメントを書き込みます。ネットの感想欄やSNSのリアルな熱量を再現。">
+    <meta name="description" content="20人以上のAI読者が、あなたの作品に感想コメントを書き込みます。ネット小説の感想欄やSNSのような賑わいを、投稿前に体験できます。">
     <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .ad-slot { text-align: center; margin: 20px auto; }
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
@@ -32,7 +35,7 @@
             flex-direction: column;
             gap: 15px;
             margin-top: 25px;
-            /* 💡 max-height や overflow を削除したことで、下に限界なく並ぶようになります */
+            /* max-height や overflow を削除したことで、下に限界なく並ぶようになります */
             padding-right: 10px;
         }
         .comment-card {
@@ -83,7 +86,7 @@
             white-space: pre-wrap;
         }
 
-        /* 💡 追加：画像保存ボタン用のレイアウト */
+        /* 追加：画像保存ボタン用のレイアウト */
         .save-area {
             text-align: center;
             margin-top: 30px;
@@ -105,18 +108,19 @@
         }
         #share-btn { padding: 12px 25px; font-size: 1rem; font-weight: bold; }
     </style>
+    <link rel="stylesheet" href="../design.css?v=1">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        <p class="nav-back"><a href="../index.html">← 総合トップへ戻る</a></p>
         
         <h1>AI小説コメント欄くん</h1>
         <section class="service-description">
             <p class="lead-text">
-                あなたの作品を投稿すると、ネット小説の感想欄やSNSのタイムラインをシミュレートし、総勢20人の仮想読者から多種多様なコメントが届きます。
-                「信者系ファン」「辛口批評家」「通りすがりの浪漫派」「長文考察班」など、ネット風の空気感をお楽しみください。
+                作品を投稿すると、ネット小説の感想欄やSNSのような賑わいを、AIが再現します。20人以上の仮想読者から、さまざまなコメントが届きます。
+                「信者系ファン」「辛口批評家」「通りすがりの浪漫派」「長文考察班」など、ネットらしい空気をお楽しみください。
             </p>
         </section>
 
@@ -125,30 +129,20 @@
 
 
         <p class="guide-text">
-            フォームに小説のあらすじ、または本文（一部でも可）を入力して「投稿する」ボタンを押してください。
+            小説のあらすじか本文（一部でも可）を貼り付けて、「作品を投稿する」を押してください。
         </p>
 
-        <textarea id="novel-text" maxlength="50000" style="height: 250px;" placeholder="ここにあなたの小説、またはプロット・あらすじを入力してください..."></textarea>
+        <textarea id="novel-text" maxlength="50000" style="height: 250px;" placeholder="ここに小説の本文、またはあらすじを貼り付けてください（最大50,000文字）"></textarea>
 
         <div class="actions">
             <input type="file" id="novel-file" accept=".txt">
-            <button id="post-btn" style="background: #e67e22; color: white; padding: 12px 30px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">作品を投稿する</button>
+            <button id="post-btn">作品を投稿する</button>
         </div>
         <!-- 広告①（PCのみ）：サンプルの上。投稿ボタンから離して配置 -->
         <div id="ad-slot-1" class="ad-slot"></div>
 
-        <div class="role-section example-use" id="example-use-section">
-            <h3>📊 実際のコメント欄の例</h3>
-            <div class="example-grid" style="display: block; text-align: center;">
-                <div class="thumb-wrapper" style="max-width: 400px; margin: 0 auto; width: 100%;">
-                    <img src="example-comment.jpg" alt="コメント欄の出力例" class="zoomable" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    <span class="thumb-label">20人の読者感想タイムライン（イメージ）</span>
-                </div>
-            </div>
-        </div>
-
         <div class="role-section example-use" id="example-use-comment-section">
-            <h3>📝 コメント欄サンプル（テキスト版）</h3>
+            <h3>コメント欄サンプル（テキスト版）</h3>
             <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">「記憶を売って生きる少女」というSF短編を投稿した際に届いたコメントの例です。このような形でリアルな読者反応がシミュレートされます。</p>
             <div class="comment-timeline">
                 <div class="comment-card">
@@ -236,12 +230,12 @@
 
         <div id="loading" class="hidden">
             <div class="loading-spinner"></div>
-            <p>読者が集まっています。しばらくお待ちください...</p>
+            <p>読者が集まっています。しばらくお待ちください…</p>
         </div>
 
         <div id="comment-result" class="hidden">
-            <h2 style="border-bottom: 2px solid #e67e22; padding-bottom: 8px; margin-top: 30px; color: #2c3e50;">
-                💬 読者の感想・レビュー一覧（<span id="comment-count">0</span>件）
+            <h2>
+                読者の感想・レビュー一覧（<span id="comment-count">0</span>件）
             </h2>
             
             <div class="comment-timeline" id="comment-timeline-root">
@@ -256,28 +250,28 @@
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
-        <section class="editor-section" style="border-left-color: #27ae60;">
-            <h3>💡 こんな時に使ってみてください</h3>
-            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
-                <li>投稿前に、読者がどんな反応をするかをあらかじめ確認したいとき</li>
-                <li>作品の「刺さりやすい層」や気になるポイントを可視化したいとき</li>
-                <li>感想欄を見るのが初めての作品で、リアクションのイメージを掴みたいとき</li>
+        <section class="editor-section">
+            <h3>こんな時に使ってみてください</h3>
+            <ul class="analysis-points">
+                <li>投稿前に、読者の反応を確かめておきたいとき</li>
+                <li>作品が「どんな人に刺さるか」や、気になる点を見える形にしたいとき</li>
+                <li>公開したことのない作品の、反応のイメージをつかみたいとき</li>
             </ul>
         </section>
 
-        <section class="editor-section" style="border-left-color: #95a5a6;">
-            <h3>❓ よくある質問</h3>
+        <section class="editor-section">
+            <h3>よくある質問</h3>
             <div class="faq-item">
                 <p class="faq-q">Q. 生成されるコメントは実際の読者の声と同じですか？</p>
-                <p class="faq-a">A. AIが想定する仮想読者によるシミュレーションです。実際の感想とは異なる場合がありますが、作品の特徴を客観的に把握する参考材料としてご活用ください。</p>
+                <p class="faq-a">A. AIが想定する仮想読者による、シミュレーションです。実際の感想とは異なることがありますが、作品の特徴を客観的に知る手がかりとしてご活用ください。</p>
             </div>
             <div class="faq-item">
                 <p class="faq-q">Q. コメントの人数は変えられますか？</p>
-                <p class="faq-a">A. はい、人数を指定して生成できます。要点を絞った感想を見たい場合や、賑やかなコメント欄の雰囲気を再現したい場合など、用途に応じて調整してください。</p>
+                <p class="faq-a">A. 人数は、20〜30人の範囲で、自動で決まります。投稿のたびに、人数も、届くコメントも変わります。</p>
             </div>
             <div class="faq-item">
                 <p class="faq-q">Q. 辛口な意見が出たらどう受け止めればいいですか？</p>
-                <p class="faq-a">A. あえて批判的な視点を持つ読者も含めています。改善のヒントとして受け止めつつ、すべての意見に対応する必要はありません。</p>
+                <p class="faq-a">A. あえて批判的な読者も含めています。改善のヒントとして受け止めつつ、すべての意見に応える必要はありません。</p>
             </div>
             <div class="faq-item">
                 <p class="faq-q">Q. 小説投稿サイトに公開する前に使うとよいですか？</p>

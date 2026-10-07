@@ -2,17 +2,20 @@
 <html lang="ja">
 
 <head>
-    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <!-- ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI詩下読みくん | AI文芸チェッカー</title>
-    <meta name="description" content="独自のAI詩人と編集者があなたの詩をガチ評価。比喩表現の深さや言葉のリズム、世界観を数秒で分析し、結果を画像保存できます。">
+    <meta name="description" content="独自のAI詩人と編集者があなたの詩を評価。比喩表現の深さや言葉のリズム、世界観を数秒で分析し、結果を画像保存できます。">
     <meta property="og:title" content="AI詩下読みくん">
     <meta property="og:description" content="AIによる詩・詩集の推敲支援ツール。">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .ad-slot { text-align: center; margin: 20px auto; }
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
@@ -32,6 +35,7 @@
             .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
         }
     </style>
+    <link rel="stylesheet" href="../design.css?v=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
@@ -44,7 +48,7 @@
 
 <body>
     <div class="container">
-        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        <p class="nav-back"><a href="../index.html">← 総合トップへ戻る</a></p>
         
         <h1>AI詩下読みくん</h1>
         <section class="service-description">
@@ -58,37 +62,37 @@
             <div id="ad-slot-4" class="ad-slot"></div>
 
             <div class="role-section editor-role">
-                <h3>🧐 編集者視点による精密な詩評分析</h3>
+                <h3>編集者視点による精密な詩評分析</h3>
                 <p>一篇の詩（または連作詩・詩集）を現代詩・文芸の視点から厳格に評価します。言葉選びのセンスから全体の思想性まで、以下の5項目を10点満点で採点します。</p>
                 <ul class="analysis-points">
-                    <li><strong>比喩</strong>: 独自の言葉選びによって、新鮮なイメージや隠喩が喚起されているか</li>
-                    <li><strong>韻律</strong>: 心地よいテンポ、言葉のうねり、朗読したくなるような響きがあるか</li>
-                    <li><strong>独創性</strong>: 既存のありきたりな表現にとらわれない、唯一無二の視点が描かれているか</li>
-                    <li><strong>感情の深度</strong>: 言葉の奥底から湧き上がるような、強い情熱や切なさが伝わるか</li>
-                    <li><strong>文章</strong>: フレーズの美しさ、言葉を置く配置や「余白」の持たせ方が洗練されているか</li>
+                    <li><strong>比喩</strong>：独自の言葉選びによって、新鮮なイメージや隠喩が喚起されているか</li>
+                    <li><strong>韻律</strong>：心地よいテンポ、言葉のうねり、朗読したくなるような響きがあるか</li>
+                    <li><strong>独創性</strong>：既存のありきたりな表現にとらわれない、唯一無二の視点が描かれているか</li>
+                    <li><strong>感情の深度</strong>：言葉の奥底から湧き上がるような、強い情熱や切なさが伝わるか</li>
+                    <li><strong>文章</strong>：フレーズの美しさ、言葉を置く配置や「余白」の持たせ方が洗練されているか</li>
                 </ul>
             </div>
 
             <hr class="section-divider">
 
             <div class="role-section reader-role">
-                <h3>👥 4人の現代詩読者による本音レビュー</h3>
+                <h3>4人の現代詩読者による本音レビュー</h3>
                 <p>あえて異なる感性を持つ4人の読者をシミュレート。あなたの詩がどのような受け手に深く刺さるのか、本音の感想から予測できます。</p>
                 <div class="reader-intro-grid">
                     <div class="intro-card">
-                        <h4>🎧 カイト（ストリート派）</h4>
+                        <h4>カイト（ストリート派）</h4>
                         <p>難解な言葉を使わず、ダイレクトに心に刺さるポエトリーリーディング（朗読詩）のような熱量やリアルさを好む読者です。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>✨ ミユ（叙情派）</h4>
+                        <h4>ミユ（叙情派）</h4>
                         <p>美しい風景や切ない恋愛、言葉そのものが持つ「きらめき」や透明感のある世界観を愛する読者です。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>👤 サトウ（批評・現代詩派）</h4>
+                        <h4>サトウ（批評・現代詩派）</h4>
                         <p>現代詩の難解なロジックや、文章の裏に隠された鋭いメタファー（暗号）、文脈の構造美を読み解きたい知性派です。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>📚 ハルカ（思想・文学派）</h4>
+                        <h4>ハルカ（思想・文学派）</h4>
                         <p>思想の深さ、歴史や人間社会を鋭く見つめる重厚なテーマ性、文学としての格調の高さを求めるベテラン読者です。</p>
                     </div>
                 </div>
@@ -97,17 +101,17 @@
 
 
         <p class="guide-text">
-            フォームに詩を入力して「読んでもらう」ボタンを押してください。
+            詩を貼り付けて、「読んでもらう」を押してください。
         </p>
 
-        <div class="mode-select-container" style="margin-bottom: 15px; display: flex; gap: 20px; background: #eef7ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #d0e8ff;">
-            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <input type="radio" name="analyze-mode" value="single" checked style="transform: scale(1.2);"> 
-                🔮 一篇評モード
+        <div class="mode-select-container">
+            <label>
+                <input type="radio" name="analyze-mode" value="single" checked> 
+                一篇評モード
             </label>
-            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <input type="radio" name="analyze-mode" value="collection" style="transform: scale(1.2);"> 
-                📚 詩集・連作モード（複数一括）
+            <label>
+                <input type="radio" name="analyze-mode" value="collection"> 
+                詩集・連作モード（複数一括）
             </label>
         </div>
         <textarea id="novel-text" maxlength="50000" style="height: 300px;" placeholder="ここに詩を貼り付けてください..."></textarea>
@@ -121,10 +125,14 @@
         <div id="ad-slot-1" class="ad-slot"></div>
 
         <div class="role-section example-use" id="example-use-text-section">
-            <h3>📝 解析サンプル</h3>
+            <h3>解析サンプル</h3>
             <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
                 「硝子の雨」という一篇の詩を実際に分析した結果の例です。入力した詩が、このような形式で多角的に評価されます。
             </p>
+
+            <div class="chart-container">
+                <canvas id="sample-chart"></canvas>
+            </div>
 
             <div class="result-header">
                 <h2>総合：3.1 / 5.0</h2>
@@ -195,7 +203,7 @@
             <div class="editor-feedback-area">
                 <div class="editor-points">
                     <div class="point-box good">
-                        <h3>👍 良い点</h3>
+                        <h3>良い点</h3>
                         <ul>
                             <li>「昨日の言葉の残響」という、雨の滴に記憶を重ねる比喩が新鮮で印象的。</li>
                             <li>「落ちて、消えて、また満ちる」という循環のリズムが、詩全体に静かな余韻を生んでいる。</li>
@@ -203,7 +211,7 @@
                         </ul>
                     </div>
                     <div class="point-box bad">
-                        <h3>⚠️ 悪い点</h3>
+                        <h3>悪い点</h3>
                         <ul>
                             <li>全体的に抽象度が高く、読者によっては何を描いているのか掴みにくい。</li>
                             <li>「誰も傘を持たず」という設定の意図が、後半まで活かされていない。</li>
@@ -220,7 +228,7 @@
 
         <div id="loading" class="hidden">
             <div class="loading-spinner"></div>
-            <p>精読中...</p>
+            <p>精読しています。しばらくお待ちください…</p>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -243,11 +251,11 @@
             <div class="editor-feedback-area">
                 <div class="editor-points">
                     <div class="point-box good">
-                        <h3>👍 良い点</h3>
+                        <h3>良い点</h3>
                         <ul id="good-list"></ul>
                     </div>
                     <div class="point-box bad">
-                        <h3>⚠️ 悪い点</h3>
+                        <h3>悪い点</h3>
                         <ul id="bad-list"></ul>
                     </div>
                 </div>
@@ -258,7 +266,7 @@
             </div>
 
             <div class="save-area">
-                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="save-image-btn">画像(JPG)をダウンロード</button>
                 <button id="share-btn" data-share-target="result" data-share-score-id="avg-score" data-share-file="AI詩下読みくん" data-share-parts='[{"selector":".score-overview","name":"グラフと総合"},{"selector":"#reader-cards","name":"コメント"},{"selector":".editor-feedback-area","name":"総評"}]' data-share-text="AI詩下読みくんに、作品を読んでもらいました。\n総合 {score} / 5.0">Xで共有</button>
             </div>
         </div>
@@ -266,9 +274,9 @@
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
-        <section class="editor-section" style="border-left-color: #3498db;">
-            <h3>💡 こんな時に使ってみてください</h3>
-            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+        <section class="editor-section">
+            <h3>こんなときに使えます</h3>
+            <ul class="analysis-points">
                 <li>詩を書いたあと、表現や構成がきちんと伝わるか確認したいとき</li>
                 <li>同人誌やWeb詩誌に出す前に、客観的な評価を知りたいとき</li>
                 <li>改行やリズムが意図通りの効果を生んでいるか見直したいとき</li>
@@ -276,8 +284,8 @@
             </ul>
         </section>
 
-        <section class="editor-section" style="border-left-color: #95a5a6;">
-            <h3>❓ よくある質問</h3>
+        <section class="editor-section">
+            <h3>よくある質問</h3>
             <div class="faq-item">
                 <p class="faq-q">Q. 一篇だけでなく、詩集としてまとめて評価できますか？</p>
                 <p class="faq-a">A. はい。「一篇評」と「詩集・連作」のモードを切り替えることで、一篇単位の精読と、複数篇を通した世界観・テーマ性の評価の両方に対応しています。</p>
@@ -361,7 +369,46 @@
         window.addEventListener('resize', apply);
     })();
     </script>
-    <script src="./script.js?v=2" defer></script>
+
+    <script>
+    // 解析サンプルのレーダーチャート（結果画面と同じ見た目）
+    (function () {
+        function draw() {
+            var el = document.getElementById('sample-chart');
+            if (!el || typeof Chart === 'undefined') return;
+            new Chart(el.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['比喩', '韻律', '独創性', '感情の深度', '文章'],
+                    datasets: [{
+                        data: [7, 6, 6, 5, 7],
+                        fill: true,
+                        backgroundColor: 'rgba(232, 100, 60, 0.2)',
+                        borderColor: 'rgb(232, 100, 60)',
+                        pointBackgroundColor: 'rgb(232, 100, 60)',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    animation: false,
+                    scales: {
+                        r: {
+                            ticks: { display: false, stepSize: 1 },
+                            pointLabels: { font: { family: "'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif", size: 16, weight: '600' }, color: '#26231f' },
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        var start = function () { if (document.fonts && document.fonts.load) { document.fonts.load("600 16px 'Shippori Mincho'").then(draw, draw); } else { draw(); } };
+        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
+    })();
+    </script>
+    <script src="./script.js?v=3" defer></script>
     <script src="../share.js?v=3" defer></script>
 
     <div id="image-modal" class="hidden">

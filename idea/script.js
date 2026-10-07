@@ -21,7 +21,7 @@ async function saveAsImage() {
     const btn = document.getElementById('save-image-btn');
 
     btn.disabled = true;
-    btn.innerText = "📸 画像作成中...";
+    btn.innerText = "画像を作成中…";
 
     try {
         const canvas = await html2canvas(element, {
@@ -41,7 +41,7 @@ async function saveAsImage() {
         alert("保存に失敗しました。");
     } finally {
         btn.disabled = false;
-        btn.innerText = "🖼️ 画像(JPG)をダウンロード";
+        btn.innerText = "画像(JPG)をダウンロード";
     }
 }
 
@@ -68,9 +68,9 @@ function renderResult(data) {
             datasets: [{
                 data: values,
                 fill: true,
-                backgroundColor: 'rgba(230, 126, 34, 0.2)',
-                borderColor: 'rgb(230, 126, 34)',
-                pointBackgroundColor: 'rgb(230, 126, 34)',
+                backgroundColor: 'rgba(232, 100, 60, 0.2)',
+                borderColor: 'rgb(232, 100, 60)',
+                pointBackgroundColor: 'rgb(232, 100, 60)',
                 borderWidth: 3
             }]
         },
@@ -78,7 +78,7 @@ function renderResult(data) {
             scales: {
                 r: {
                     ticks: { display: false, stepSize: 1 },
-                    pointLabels: { font: { size: 16, weight: 'bold' }, color: '#2c3e50' },
+                    pointLabels: { font: { family: "'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif", size: 16, weight: '600' }, color: '#26231f' },
                     angleLines: { display: true },
                     suggestedMin: 0,
                     suggestedMax: 5
@@ -87,6 +87,11 @@ function renderResult(data) {
             plugins: { legend: { display: false } }
         }
     });
+
+    // 字体の読み込みが間に合わなかった場合に備え、読み込み後にグラフを描き直す
+    if (document.fonts && document.fonts.load) {
+        document.fonts.load("600 16px 'Shippori Mincho'").then(function () { if (myChart) { myChart.update(); } });
+    }
 
     // 観点ごとの評価
     const axisList = document.getElementById('axis-list');

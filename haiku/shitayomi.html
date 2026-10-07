@@ -2,17 +2,20 @@
 <html lang="ja">
 
 <head>
-    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <!-- ブラウザのタブにロゴを表示する魔法の1行 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI俳句・川柳評論くん | AI文芸チェッカー</title>
-    <meta name="description" content="独自のAI俳人と編集者があなたの俳句・川柳をガチ評価。五七五の規律や季語の活かし方、余白の美を数秒で分析し、結果を画像保存できます。">
+    <meta name="description" content="独自のAI俳人と編集者があなたの俳句・川柳を評価。五七五の規律や季語の活かし方、余白の美を数秒で分析し、結果を画像保存できます。">
     <meta property="og:title" content="AI俳句・川柳評論くん">
     <meta property="og:description" content="AIによる俳句・川柳・句集の推敲支援ツール。">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .ad-slot { text-align: center; margin: 20px auto; }
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
@@ -32,6 +35,7 @@
             .ad-wide { display: none !important; } /* 728px幅のバナーは狭い画面では隠す */
         }
     </style>
+    <link rel="stylesheet" href="../design.css?v=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
     <script>
@@ -44,7 +48,7 @@
 
 <body>
     <div class="container">
-        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+        <p class="nav-back"><a href="../index.html">← 総合トップへ戻る</a></p>
         
         <h1>AI俳句・川柳下読みくん</h1>
         <section class="service-description">
@@ -58,37 +62,37 @@
             <div id="ad-slot-4" class="ad-slot"></div>
 
             <div class="role-section editor-role">
-                <h3>🧐 編集者視点による精密な句評分析</h3>
+                <h3>編集者視点による精密な句評分析</h3>
                 <p>一句（または連句・句集）を文芸の視点から厳格に評価します。わずか十七音の構造から表現の余白まで、以下の5項目を10点満点で採点します。</p>
                 <ul class="analysis-points">
-                    <li><strong>言葉選び</strong>: 独自の視点で物事を捉えているか。心に刺さる言葉や、クスッと笑えるフレーズが選ばれているか</li>
-                    <li><strong>切れ字</strong>: 「や」「かな」「けり」等の切れ字による劇的な効果、または川柳における言葉の「間」やテンポが活きているか</li>
-                    <li><strong>リズム</strong>: 五七五の規律、心地よさ、またはあえての破調が効果的か</li>
-                    <li><strong>写生</strong>: 目の前の光景や感情の一瞬を鮮烈に切り取れているか</li>
-                    <li><strong>余白</strong>: 言葉を削ぎ落とした先に、どれほど深い世界観が広がっているか</li>
+                    <li><strong>言葉選び</strong>：独自の視点で物事を捉えているか。心に刺さる言葉や、クスッと笑えるフレーズが選ばれているか</li>
+                    <li><strong>切れ字</strong>：「や」「かな」「けり」等の切れ字による劇的な効果、または川柳における言葉の「間」やテンポが活きているか</li>
+                    <li><strong>リズム</strong>：五七五の規律、心地よさ、またはあえての破調が効果的か</li>
+                    <li><strong>写生</strong>：目の前の光景や感情の一瞬を鮮烈に切り取れているか</li>
+                    <li><strong>余白</strong>：言葉を削ぎ落とした先に、どれほど深い世界観が広がっているか</li>
                 </ul>
             </div>
 
             <hr class="section-divider">
 
             <div class="role-section reader-role">
-                <h3>👥 4人の現代俳句読者による本音レビュー</h3>
+                <h3>4人の現代俳句読者による本音レビュー</h3>
                 <p>あえて異なる好みを持つ4人のファンをシミュレート。あなたの句がどのような層に刺さるのか、ターゲット層の反応を予測できます。</p>
                 <div class="reader-intro-grid">
                     <div class="intro-card">
-                        <h4>🎧 カイト（学生・ライト層）</h4>
+                        <h4>カイト（学生・ライト層）</h4>
                         <p>日常の切り取りや、クスッと笑える川柳的なユーモア、親しみやすい現代語の軽快さを好む読者です。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>✨ ミユ（学生・情緒派）</h4>
+                        <h4>ミユ（学生・情緒派）</h4>
                         <p>日常のきらめきや切なさ、瑞々しい感性で詠まれた叙情的な句や恋の句を評価します。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>👤 サトウ（社会人・技巧派）</h4>
+                        <h4>サトウ（社会人・技巧派）</h4>
                         <p>仕掛けられたトリックや、高度な比喩・ダブルミーニングなど、知的な構成力を求めます。</p>
                     </div>
                     <div class="intro-card">
-                        <h4>📚 ハルカ（社会人・伝統派）</h4>
+                        <h4>ハルカ（社会人・伝統派）</h4>
                         <p>伝統的な歳時記の重み、厳格な写生、正統派の俳趣味を重視するベテラン読者です。</p>
                     </div>
                 </div>
@@ -97,17 +101,17 @@
 
 
         <p class="guide-text">
-            フォームに俳句・川柳を入力して「詠んでもらう」ボタンを押してください。
+            俳句・川柳を貼り付けて、「詠んでもらう」を押してください。
         </p>
 
-        <div class="mode-select-container" style="margin-bottom: 15px; display: flex; gap: 20px; background: #eef7ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #d0e8ff;">
-            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <input type="radio" name="analyze-mode" value="single" checked style="transform: scale(1.2);"> 
-                🔮 一句評モード
+        <div class="mode-select-container">
+            <label>
+                <input type="radio" name="analyze-mode" value="single" checked> 
+                一句評モード
             </label>
-            <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <input type="radio" name="analyze-mode" value="collection" style="transform: scale(1.2);"> 
-                📚 句集・連句モード（複数一括）
+            <label>
+                <input type="radio" name="analyze-mode" value="collection"> 
+                句集・連句モード（複数一括）
             </label>
         </div>
         <textarea id="novel-text" maxlength="50000" style="height: 120px;" placeholder="例：古池や 蛙飛びこむ 水の音"></textarea>
@@ -121,10 +125,14 @@
         <div id="ad-slot-1" class="ad-slot"></div>
 
         <div class="role-section example-use" id="example-use-text-section">
-            <h3>📝 解析サンプル</h3>
+            <h3>解析サンプル</h3>
             <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
                 「扇風機 一人分だけ 回る部屋」という一句を「一句評」モードで分析した結果の例です。
             </p>
+
+            <div class="chart-container">
+                <canvas id="sample-chart"></canvas>
+            </div>
 
             <div class="result-header">
                 <h2>総合：2.9 / 5.0</h2>
@@ -195,7 +203,7 @@
             <div class="editor-feedback-area">
                 <div class="editor-points">
                     <div class="point-box good">
-                        <h3>👍 良い点</h3>
+                        <h3>良い点</h3>
                         <ul>
                             <li>「一人分だけ」という言葉選びが、部屋の広さと詠み手の孤独感を同時に表現している。</li>
                             <li>夏の季語「扇風機」を、日常のワンシーンとして自然に取り入れている。</li>
@@ -203,7 +211,7 @@
                         </ul>
                     </div>
                     <div class="point-box bad">
-                        <h3>⚠️ 悪い点</h3>
+                        <h3>悪い点</h3>
                         <ul>
                             <li>切れ字が使われておらず、句全体のリズムがやや平坦になっている。</li>
                             <li>「一人分だけ」がやや説明的で、もう少し削ぎ落とした言葉でも伝わる可能性がある。</li>
@@ -220,7 +228,7 @@
 
         <div id="loading" class="hidden">
             <div class="loading-spinner"></div>
-            <p>精読中...</p>
+            <p>精読しています。しばらくお待ちください…</p>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -243,11 +251,11 @@
             <div class="editor-feedback-area">
                 <div class="editor-points">
                     <div class="point-box good">
-                        <h3>👍 良い点</h3>
+                        <h3>良い点</h3>
                         <ul id="good-list"></ul>
                     </div>
                     <div class="point-box bad">
-                        <h3>⚠️ 悪い点</h3>
+                        <h3>悪い点</h3>
                         <ul id="bad-list"></ul>
                     </div>
                 </div>
@@ -258,7 +266,7 @@
             </div>
 
             <div class="save-area">
-                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+                <button id="save-image-btn">画像(JPG)をダウンロード</button>
                 <button id="share-btn" data-share-target="result" data-share-score-id="avg-score" data-share-file="AI俳句・川柳下読みくん" data-share-parts='[{"selector":".score-overview","name":"グラフと総合"},{"selector":"#reader-cards","name":"コメント"},{"selector":".editor-feedback-area","name":"総評"}]' data-share-text="AI俳句・川柳下読みくんに、作品を読んでもらいました。\n総合 {score} / 5.0">Xで共有</button>
             </div>
         </div>
@@ -266,9 +274,9 @@
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
-        <section class="editor-section" style="border-left-color: #3498db;">
-            <h3>💡 こんな時に使ってみてください</h3>
-            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+        <section class="editor-section">
+            <h3>こんなときに使えます</h3>
+            <ul class="analysis-points">
                 <li>一句詠んだあと、季語や切れ字の効果を確認したいとき</li>
                 <li>句集・連句として、全体の流れや季節感を見直したいとき</li>
                 <li>俳句と川柳、どちらの方向性が強いかを知りたいとき</li>
@@ -276,8 +284,8 @@
             </ul>
         </section>
 
-        <section class="editor-section" style="border-left-color: #95a5a6;">
-            <h3>❓ よくある質問</h3>
+        <section class="editor-section">
+            <h3>よくある質問</h3>
             <div class="faq-item">
                 <p class="faq-q">Q. 俳句と川柳、どちらにも対応していますか？</p>
                 <p class="faq-a">A. はい。作品の内容に応じて、俳句的な情景描写と川柳的なユーモア・風刺の両方の観点から評価します。</p>
@@ -361,7 +369,46 @@
         window.addEventListener('resize', apply);
     })();
     </script>
-    <script src="./script.js?v=2" defer></script>
+
+    <script>
+    // 解析サンプルのレーダーチャート（結果画面と同じ見た目）
+    (function () {
+        function draw() {
+            var el = document.getElementById('sample-chart');
+            if (!el || typeof Chart === 'undefined') return;
+            new Chart(el.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['言葉選び', '切れ字', 'リズム', '写生', '余白の美'],
+                    datasets: [{
+                        data: [8, 9, 7, 8, 8],
+                        fill: true,
+                        backgroundColor: 'rgba(232, 100, 60, 0.2)',
+                        borderColor: 'rgb(232, 100, 60)',
+                        pointBackgroundColor: 'rgb(232, 100, 60)',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    animation: false,
+                    scales: {
+                        r: {
+                            ticks: { display: false, stepSize: 1 },
+                            pointLabels: { font: { family: "'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif", size: 16, weight: '600' }, color: '#26231f' },
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        var start = function () { if (document.fonts && document.fonts.load) { document.fonts.load("600 16px 'Shippori Mincho'").then(draw, draw); } else { draw(); } };
+        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
+    })();
+    </script>
+    <script src="./script.js?v=3" defer></script>
     <script src="../share.js?v=3" defer></script>
 
     <div id="image-modal" class="hidden">
