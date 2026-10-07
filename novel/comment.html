@@ -14,6 +14,7 @@
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
         #ad-slot-3 { min-height: 90px; }
         #ad-slot-4 { min-height: 250px; }
+        #ad-slot-2 { min-height: 250px; }
         .ad-sp { display: none; }
         .is-mobile .ad-pc { display: none !important; }
         .is-mobile .ad-sp {
@@ -250,8 +251,8 @@
             </div>
         </div>
 
-        <!-- 広告②（PCのみ・結果表示後に読み込み。画像保存に写らないよう comment-result の外に配置） -->
-        <div id="ad-slot-2" class="ad-slot ad-pc hidden"></div>
+        <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
+        <div id="ad-slot-2" class="ad-slot ad-pc"></div>
 
         <section class="editor-section" style="border-left-color: #27ae60;">
             <h3>💡 こんな時に使ってみてください</h3>
@@ -339,12 +340,8 @@
                 if (wideMq.matches) {
                     showAd('ad-slot-3', 596678, 1946943, 'im-023340f25e2e4ed39a1f60c6e3e865b7');
                 }
-                // ② 結果下：結果が表示されているときだけ読み込む
-                var result = document.getElementById('comment-result');
-                if (result && !result.classList.contains('hidden')) {
-                    document.getElementById('ad-slot-2').classList.remove('hidden');
-                    showAd('ad-slot-2', 596678, 1946942, 'im-0457de5045894802be1639a8cf877fd0');
-                }
+                // ② サンプルの下（解析後は結果の下）
+                showAd('ad-slot-2', 596678, 1946942, 'im-0457de5045894802be1639a8cf877fd0');
             } else {
                 showAd('ad-slot-sp', 596679, 1946944, 'im-584c9788b0544e2189b83100119327b6');
             }
@@ -353,8 +350,6 @@
         apply();
         if (wideMq.addEventListener) { wideMq.addEventListener('change', apply); } else { wideMq.addListener(apply); }
         window.addEventListener('resize', apply);
-        var resultEl = document.getElementById('comment-result');
-        if (resultEl) { new MutationObserver(apply).observe(resultEl, { attributes: true, attributeFilter: ['class'] }); }
     })();
     </script>
     <script src="./comment_script.js" defer></script>

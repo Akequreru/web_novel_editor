@@ -18,6 +18,7 @@
         #ad-slot-1 { min-height: 250px; margin-top: 40px; }
         #ad-slot-3 { min-height: 90px; }
         #ad-slot-4 { min-height: 250px; }
+        #ad-slot-2 { min-height: 250px; }
         .ad-sp { display: none; }
         .is-mobile .ad-pc { display: none !important; }
         .is-mobile .ad-sp {
@@ -261,8 +262,8 @@
             </div>
         </div>
 
-        <!-- 広告②（PCのみ・結果表示後に読み込み。画像保存に写らないよう結果の外に配置） -->
-        <div id="ad-slot-2" class="ad-slot ad-pc hidden"></div>
+        <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
+        <div id="ad-slot-2" class="ad-slot ad-pc"></div>
 
         <section class="editor-section" style="border-left-color: #3498db;">
             <h3>💡 こんな時に使ってみてください</h3>
@@ -343,12 +344,8 @@
                 if (wideMq.matches) {
                     showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
                 }
-                // ② 結果下：結果が表示されているときだけ読み込む
-                var result = document.getElementById('result');
-                if (result && !result.classList.contains('hidden')) {
-                    document.getElementById('ad-slot-2').classList.remove('hidden');
-                    showAd('ad-slot-2', 596678, 1946946, 'im-568aa2d3916a4c9389fe8bbf9e6403bd');
-                }
+                // ② サンプルの下（解析後は結果の下）
+                showAd('ad-slot-2', 596678, 1946946, 'im-568aa2d3916a4c9389fe8bbf9e6403bd');
             } else {
                 showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
             }
@@ -357,8 +354,6 @@
         apply();
         if (wideMq.addEventListener) { wideMq.addEventListener('change', apply); } else { wideMq.addListener(apply); }
         window.addEventListener('resize', apply);
-        var resultEl = document.getElementById('result');
-        if (resultEl) { new MutationObserver(apply).observe(resultEl, { attributes: true, attributeFilter: ['class'] }); }
     })();
     </script>
     <script src="./script.js" defer></script>
