@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- 👇 ブラウザのタブにロゴを表示する魔法の1行 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='18' fill='%232c3e50'/><path d='M50,25 L72,55 L62,55 L62,75 L38,75 L38,55 L28,55 Z' fill='%23ffffff'/><line x1='50' y1='32' x2='50' y2='52' stroke='%232c3e50' stroke-width='3' stroke-linecap='round'/><circle cx='50' cy='55' r='3.5' fill='%232c3e50'/><circle cx='50' cy='22' r='5' fill='%233498db'/><circle cx='75' cy='45' r='4' fill='%233498db'/><circle cx='25' cy='45' r='4' fill='%233498db'/><line x1='50' y1='22' x2='50' y2='25' stroke='%233498db' stroke-width='2'/><line x1='72' y1='48' x2='75' y2='45' stroke='%233498db' stroke-width='2'/><line x1='28' y1='48' x2='25' y2='45' stroke='%233498db' stroke-width='2'/></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI構想相談くん | AI文芸チェッカー</title>
+    <meta name="description" content="小説・シナリオ・詩・短歌・俳句などの構想やプロットをAIに相談。5つの観点の評価、4人の読者からの期待コメント、次に考えるべきことをまとめて受け取れます。画像保存も可能。">
+    <meta property="og:title" content="AI構想相談くん">
+    <meta property="og:description" content="文芸作品の構想・プロットをAIに相談できるツール。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .axis-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .axis-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; }
+        .axis-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .axis-name { font-weight: bold; color: #2c3e50; min-width: 4.5em; }
+        .axis-comment { margin: 8px 0 0; color: #444; line-height: 1.7; }
+        #overall-summary { white-space: pre-line; line-height: 1.8; }
+        .next-steps { margin: 10px 0 0; padding-left: 1.4em; line-height: 1.8; }
+        .next-steps li { margin-bottom: 8px; }
+        .overview-box { background: #fff8ec; border-left: 6px solid #e67e22; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; line-height: 1.7; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGFSC9SSPG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DGFSC9SSPG');
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <p class="nav-back"><a href="../index.html" style="color: #3498db; text-decoration: none;">← 総合トップへ戻る</a></p>
+
+        <h1>AI構想相談くん</h1>
+        <section class="service-description">
+            <p class="lead-text">
+                書き始める前の「構想」や「プロット」を、AIに相談できるツールです。
+                小説、シナリオ、詩、短歌、俳句など、どんな文芸作品でも構いません。
+                構想は粗くて当然なので、情報が足りなくても減点はしません。
+                <br>※入力されたテキストは解析の瞬間のみ使用され、サーバーに保存されることはありません。
+            </p>
+
+            <div class="role-section editor-role">
+                <h3>🧭 5つの観点で評価</h3>
+                <p>構想の現時点での見込みを、5段階の★で評価します。短歌・俳句・詩では、観点を言葉の流れやテーマに置き換えて評価します。</p>
+                <ul class="analysis-points">
+                    <li><strong>独創性</strong>: ありきたりでない切り口か</li>
+                    <li><strong>展開</strong>: 先が気になる流れ、起伏が作れそうか（短い作品では「言葉の流れ」）</li>
+                    <li><strong>一貫性</strong>: 設定や筋、テーマにぶれがないか（短い作品では「テーマの一貫性」）</li>
+                    <li><strong>形式</strong>: その形式に合った題材か</li>
+                    <li><strong>発展性</strong>: 長編化、連作、シリーズ化などの余地があるか</li>
+                </ul>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="role-section reader-role">
+                <h3>👥 4人の読者からの期待コメント</h3>
+                <p>4人の読者が、構想を読んで「読んでみたい」と感じた点を、前向きに伝えます。最後に、まとめと「次に考えること」もお渡しします。</p>
+                <div class="reader-intro-grid">
+                    <div class="intro-card">
+                        <h4>🎧 カイト（学生男性）</h4>
+                        <p>刺激と意外性が好き。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>✨ ミユ（学生女性）</h4>
+                        <p>心の機微とセンスが好き。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>👤 サトウ（社会人男性）</h4>
+                        <p>理屈と構成が好き。</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>📚 ハルカ（社会人女性）</h4>
+                        <p>深みと言葉の品位が好き。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <p class="guide-text">
+            考えている構想やプロットを入力して「相談する」ボタンを押してください。メモ書きや箇条書きでも構いません。
+        </p>
+        <textarea id="idea-text" maxlength="50000" placeholder="例：閉館間際の図書館で、返却されない本が一冊だけ増えていく。司書は、その本の持ち主を探し始める……"></textarea>
+
+        <div class="actions">
+            <button id="analyze-btn">相談する</button>
+        </div>
+
+        <div class="role-section example-use" id="example-use-section">
+            <h3>📝 相談サンプル</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
+                「返却されない本が増えていく図書館」という構想を相談した結果の例です。入力した構想が、このような形式で返ってきます。
+            </p>
+
+            <div class="overview-box">
+                <strong>見立て：</strong>図書館を舞台にした、ミステリー風の現代ファンタジー（小説）の構想ですね。
+            </div>
+
+            <div class="axis-list">
+                <div class="axis-item">
+                    <div class="axis-head"><span class="axis-name">独創性</span><div class="star-rating" style="--rating-width: 80%">☆☆☆☆☆</div></div>
+                    <p class="axis-comment">「返却されない本が増える」という逆転の発想が印象的です。増えていく本の正体を、どう仕立てるかが鍵になりそうです。</p>
+                </div>
+                <div class="axis-item">
+                    <div class="axis-head"><span class="axis-name">展開</span><div class="star-rating" style="--rating-width: 60%">☆☆☆☆☆</div></div>
+                    <p class="axis-comment">司書が持ち主を探す、という軸は動かしやすい形です。中盤の山場がまだ見えないので、そこが決まると流れが締まります。</p>
+                </div>
+                <div class="axis-item">
+                    <div class="axis-head"><span class="axis-name">一貫性</span><div class="star-rating" style="--rating-width: 80%">☆☆☆☆☆</div></div>
+                    <p class="axis-comment">図書館と「本」という舞台装置に統一感があります。不思議な現象のルールを早めに決めておくと、ぶれにくくなります。</p>
+                </div>
+                <div class="axis-item">
+                    <div class="axis-head"><span class="axis-name">形式</span><div class="star-rating" style="--rating-width: 80%">☆☆☆☆☆</div></div>
+                    <p class="axis-comment">短編から中編の小説に向いた題材です。一場面の雰囲気は、短歌や詩にもなりそうです。</p>
+                </div>
+                <div class="axis-item">
+                    <div class="axis-head"><span class="axis-name">発展性</span><div class="star-rating" style="--rating-width: 100%">☆☆☆☆☆</div></div>
+                    <p class="axis-comment">本ごとに持ち主の物語を描けば、連作短編にも広げられます。</p>
+                </div>
+            </div>
+
+            <h4 style="margin: 24px 0 8px; color: #2c3e50;">次に考えること（抜粋）</h4>
+            <ol class="next-steps">
+                <li>増えていく本は、誰が、何のために置いているのでしょうか？</li>
+                <li>司書は、なぜこの謎を自分で追うことになったのでしょうか？</li>
+            </ol>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="loading-spinner"></div>
+            <p>構想を読んでいます...</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div id="result" class="hidden">
+            <div class="overview-box" id="overview"></div>
+
+            <div class="score-overview">
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+            </div>
+
+            <div class="axis-list" id="axis-list"></div>
+
+            <h3 style="margin: 30px 0 0; color: #2c3e50;">💬 4人の読者からの期待コメント</h3>
+            <div id="reader-cards"></div>
+
+            <div class="editor-feedback-area">
+                <div class="editor-section">
+                    <h3>まとめ</h3>
+                    <p id="overall-summary"></p>
+                </div>
+                <div class="editor-section" style="border-left-color: #e67e22;">
+                    <h3>次に考えること</h3>
+                    <ol class="next-steps" id="next-steps"></ol>
+                </div>
+            </div>
+
+            <div class="save-area">
+                <button id="save-image-btn">🖼️ 画像(JPG)をダウンロード</button>
+            </div>
+        </div>
+
+        <section class="editor-section" style="border-left-color: #e67e22;">
+            <h3>💡 こんな時に使ってみてください</h3>
+            <ul class="analysis-points" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <li>書き始める前に、構想の強みや可能性を確かめたいとき</li>
+                <li>次に何を決めればよいか、整理できていないとき</li>
+                <li>まだ形にならないアイデアを、誰かに聞いてもらいたいとき</li>
+                <li>小説、詩、短歌など、どの形式で書くか迷っているとき</li>
+            </ul>
+        </section>
+
+        <section class="editor-section" style="border-left-color: #95a5a6;">
+            <h3>❓ よくある質問</h3>
+            <div class="faq-item">
+                <p class="faq-q">Q. どのくらい書けばいいですか？</p>
+                <p class="faq-a">A. 数行のメモでも相談できます。最大50,000文字まで入力できます。情報が少なくても、減点はされません。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 小説以外の構想でも使えますか？</p>
+                <p class="faq-a">A. はい。シナリオ、詩、短歌、俳句、川柳など、文芸作品であれば使えます。入力から形式を自動で判断します。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 期待コメントは実際の読者の声ですか？</p>
+                <p class="faq-a">A. いいえ。AIが想定する仮想読者によるコメントです。構想を進める励みや、気づきのきっかけとしてご活用ください。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-q">Q. 完成した作品も評価してもらえますか？</p>
+                <p class="faq-a">A. 完成した作品の採点には、各ジャンルの「下読みくん」がおすすめです。トップページからお選びください。</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 AI構想相談くん</p>
+            <div class="footer-links">
+                <a href="https://forms.gle/KT9CneuF4Z4AGE18A" target="_blank">お問い合わせ</a>
+                <a href="../privacy.html">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js" defer></script>
+</body>
+
+</html>

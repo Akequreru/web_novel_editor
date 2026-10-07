@@ -760,6 +760,16 @@ button:hover {
 .text-green:hover .tile-main h4 { color: #27ae60; }
 .text-green:hover .tile-icon { transform: scale(1.1); background: #e1f7e9; }
 
+/* 🟧 構想相談シリーズ（オレンジ）のホバー効果 */
+.text-orange:hover {
+    border-color: #e67e22;
+    background: #fff8ef;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(230, 126, 34, 0.15);
+}
+.text-orange:hover .tile-main h4 { color: #e67e22; }
+.text-orange:hover .tile-icon { transform: scale(1.1); background: #fdebd6; }
+
 /* ==========================================
    ❓ FAQ・利用シーン セクション
    ========================================== */
