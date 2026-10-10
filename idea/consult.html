@@ -309,6 +309,7 @@
     <!-- 広告④のスマホ用（画面下固定）。スマホの端末のときだけ読み込む -->
     <div id="ad-slot-sp" class="ad-sp"></div>
 
+    <script src="../affiliate.js?v=1"></script>
     <script>
     // i-mobile 広告：端末の種類（スマホ・タブレット／パソコン）で出し分ける。
     // パソコンでは、横幅が足りないときだけ728pxのバナーを読み込まない（CSSでも隠す）。
@@ -334,10 +335,23 @@
             box.appendChild(s);
         }
 
+        // 概要の下の枠：ページを開くたびに、アフィリエイトとi-mobileを、割合で選んで表示する（選び方は affiliate.js）
+        var slot4Choice = window.Slot4Affiliate ? window.Slot4Affiliate.pick() : null;
+        function showSlot4(showImobile) {
+            var slot = document.getElementById('ad-slot-4');
+            if (!slot || slot.getAttribute('data-loaded')) return;
+            if (slot4Choice) {
+                slot.setAttribute('data-loaded', '1');
+                window.Slot4Affiliate.render(slot, slot4Choice);
+            } else {
+                showImobile();
+            }
+        }
+
         function apply() {
             if (!isMobile) {
                 showAd('ad-slot-1', 596678, 1946945, 'im-b2260c11c0a64bb6824eff2d14a788ff');
-                showAd('ad-slot-4', 596678, 1947156, 'im-c2046639608d4e2c8a5b980896b42b2d');
+                showSlot4(function () { showAd('ad-slot-4', 596678, 1947156, 'im-c2046639608d4e2c8a5b980896b42b2d'); });
                 if (wideMq.matches) {
                     showAd('ad-slot-3', 596678, 1946947, 'im-4520db1a39104bf7ae3987b9e8e27773');
                 }
@@ -346,7 +360,7 @@
             } else {
                 showAd('ad-slot-sp', 596679, 1946948, 'im-1831796497c841aa9801c931f218a2f4');
                 // スマホ用の本文中の広告
-                showAd('ad-slot-4', 596679, 1947456, 'im-e9d35e480d664efa857d464c1d3a30ab');
+                showSlot4(function () { showAd('ad-slot-4', 596679, 1947456, 'im-e9d35e480d664efa857d464c1d3a30ab'); });
                 showAd('ad-slot-1', 596679, 1947455, 'im-9425152230d8434c8de8a5e8f9728af2');
                 showAd('ad-slot-2', 596679, 1947454, 'im-dfb46e3d11e04168ae4307903fc81217');
             }
