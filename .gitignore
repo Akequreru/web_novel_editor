@@ -1,3 +1,4 @@
 .env
-.venvtools/out/
+.venv
+tools/out/
 __pycache__/
