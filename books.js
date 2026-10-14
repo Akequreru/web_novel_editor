@@ -85,7 +85,8 @@
         }
     };
 
-    // 点数の低い項目を、低い順にcount個返す。同点のときは、毎回ランダムな順で並べる
+    // 点数の低い項目を、低い順に返す。基本は count 個だが、count 番目と同点の項目は、全部含める
+    // （例: 最低が3項目で同点なら3項目）。同点の中の並びは、毎回ランダム
     function weakest(kind, scores, count) {
         var table = BOOKS[kind] || {};
         var list = [];
@@ -94,7 +95,9 @@
             if (!isNaN(v)) { list.push({ key: key, score: v, r: Math.random() }); }
         });
         list.sort(function (x, y) { return x.score - y.score || x.r - y.r; });
-        return list.slice(0, count || 2).map(function (x) { return x.key; });
+        if (list.length <= count) { return list.map(function (x) { return x.key; }); }
+        var border = list[count - 1].score;
+        return list.filter(function (x) { return x.score <= border; }).map(function (x) { return x.key; });
     }
 
     function el(tag, css, text) {
@@ -105,7 +108,7 @@
     }
 
     // container に、おすすめの本を描く。scores は analysis_scores
-    // 点数の低い2項目から、1冊ずつ（その項目の本の中からランダムに）選ぶ
+    // 点数の低い2項目（同点は全部）から、1冊ずつ（その項目の本の中からランダムに）選ぶ
     function render(container, kind, scores) {
         container.textContent = '';
         var keys = weakest(kind, scores, 2);
