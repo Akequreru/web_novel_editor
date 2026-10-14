@@ -212,7 +212,7 @@ function renderResult(data) {
     });
 
     resultDiv.classList.remove('hidden');
-    // 一番点数の低い項目に合わせた本を、結果の下に表示（画像保存には写らない）
+    // 点数の低い2項目に合わせた本を、結果の下に表示（画像保存には写らない）
     if (window.BookRecommend) { BookRecommend.render(document.getElementById('book-recs'), 'novel', data.analysis_scores); }
 }
 

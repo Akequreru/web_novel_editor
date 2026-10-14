@@ -1,4 +1,4 @@
-// 結果の下に、一番点数の低い項目に合わせて、楽天の本（A8.net経由のアフィリエイト）を表示する。
+// 結果の下に、点数の低い2項目に合わせて、楽天の本（A8.net経由のアフィリエイト）を表示する。
 //
 // 本を足す・入れ替える場合は、下の BOOKS だけを書き換える。
 //   BOOKS.novel … 小説の項目ごと（キーは、解析結果の analysis_scores のキー）
@@ -85,16 +85,16 @@
         }
     };
 
-    // 一番点数の低い項目を返す（同点のときは、BOOKS に書いた順で先のもの）
-    function weakest(kind, scores) {
+    // 点数の低い項目を、低い順にcount個返す。同点のときは、毎回ランダムな順で並べる
+    function weakest(kind, scores, count) {
         var table = BOOKS[kind] || {};
-        var best = null;
+        var list = [];
         Object.keys(table).forEach(function (key) {
             var v = Number(scores && scores[key]);
-            if (isNaN(v)) { return; }
-            if (best === null || v < best.score) { best = { key: key, score: v }; }
+            if (!isNaN(v)) { list.push({ key: key, score: v, r: Math.random() }); }
         });
-        return best ? best.key : null;
+        list.sort(function (x, y) { return x.score - y.score || x.r - y.r; });
+        return list.slice(0, count || 2).map(function (x) { return x.key; });
     }
 
     function el(tag, css, text) {
@@ -105,21 +105,23 @@
     }
 
     // container に、おすすめの本を描く。scores は analysis_scores
+    // 点数の低い2項目から、1冊ずつ（その項目の本の中からランダムに）選ぶ
     function render(container, kind, scores) {
         container.textContent = '';
-        var key = weakest(kind, scores);
-        if (!key) { return; }
-        var group = BOOKS[kind][key];
+        var keys = weakest(kind, scores, 2);
+        if (!keys.length) { return; }
 
         // 直後の広告と混ざらないよう、枠で囲み、下に広めの余白と区切り線を置く
         var wrap = el('div', 'max-width:520px;margin:0 auto;padding:16px;text-align:left;' +
             'border:1px solid rgba(128,128,128,0.35);border-radius:10px;background:rgba(128,128,128,0.06);');
         wrap.appendChild(el('div', 'font-size:11px;letter-spacing:0.15em;color:#999;margin:0 0 4px;', 'PR'));
-        wrap.appendChild(el('h3', 'margin:0 0 4px;font-size:16px;', '「' + group.label + '」を学ぶならこれ！'));
+        wrap.appendChild(el('h3', 'margin:0 0 4px;font-size:16px;', '学ぶならこれ！'));
         wrap.appendChild(el('p', 'margin:0 0 10px;font-size:12px;color:#777;',
-            '今回いちばん点数が低かった項目に合わせた、おすすめの本です。'));
+            '今回、点数が低かった項目に合わせた、おすすめの本です。'));
 
-        group.items.forEach(function (b) {
+        keys.forEach(function (key) {
+            var group = BOOKS[kind][key];
+            var b = group.items[Math.floor(Math.random() * group.items.length)];
             var a = el('a', 'display:flex;align-items:center;gap:12px;padding:10px;margin:0 0 8px;' +
                 'border:1px solid rgba(128,128,128,0.35);border-radius:6px;background:rgba(255,255,255,0.5);' +
                 'text-decoration:none;color:inherit;');
@@ -134,6 +136,7 @@
             a.appendChild(img);
 
             var text = el('div', 'font-size:13px;line-height:1.5;');
+            text.appendChild(el('div', 'font-size:11px;color:#777;', '「' + group.label + '」を伸ばすなら'));
             text.appendChild(el('div', 'font-weight:600;', b.title));
             text.appendChild(el('div', 'font-size:11px;color:#777;margin-top:2px;', b.author));
             a.appendChild(text);
@@ -149,10 +152,9 @@
             wrap.appendChild(a);
         });
         container.appendChild(wrap);
-        container.style.margin = '32px auto 0';
+        container.style.margin = '32px auto 40px';
         container.style.paddingBottom = '40px';
         container.style.borderBottom = '1px solid rgba(128,128,128,0.25)';
-        container.style.marginBottom = '40px';
         container.classList.remove('hidden');
     }
 
