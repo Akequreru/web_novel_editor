@@ -260,6 +260,9 @@
             </div>
         </div>
 
+        <!-- おすすめの本（楽天・A8）：画像保存より下、結果の外に配置。解析後に script.js が描く -->
+        <div id="book-recs" class="ad-slot"></div>
+
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
 
@@ -312,6 +315,7 @@
     <div id="ad-slot-sp" class="ad-sp"></div>
 
     <script src="../affiliate.js?v=1"></script>
+    <script src="../books.js?v=1"></script>
     <script>
     // i-mobile 広告：端末の種類（スマホ・タブレット／パソコン）で出し分ける。
     // パソコンでは、横幅が足りないときだけ728pxのバナーを読み込まない（CSSでも隠す）。

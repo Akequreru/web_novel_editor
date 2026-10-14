@@ -212,6 +212,8 @@ function renderResult(data) {
     });
 
     resultDiv.classList.remove('hidden');
+    // 一番点数の低い項目に合わせた本を、結果の下に表示（画像保存には写らない）
+    if (window.BookRecommend) { BookRecommend.render(document.getElementById('book-recs'), 'novel', data.analysis_scores); }
 }
 
 
@@ -244,6 +246,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
     // 画面表示をリセット
     loading.classList.remove('hidden');
     resultDiv.classList.add('hidden');
+    if (window.BookRecommend) { BookRecommend.clear(document.getElementById('book-recs')); }
     if (exampleTextSection) {
         exampleTextSection.classList.add('hidden');
     }
