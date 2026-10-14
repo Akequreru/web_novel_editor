@@ -26,6 +26,10 @@ load_dotenv()
 
 # client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY")) # getenvよりenviron.getが確実です
+
+# 使用モデルと思考の設定（全エンドポイント共通）。思考は軽く制限してコストを抑える
+MODEL_NAME = 'gemini-3.1-flash-lite'
+THINKING_CONFIG = types.ThinkingConfig(thinking_level='low')
 # =================
 # 小説用
 # =================
@@ -486,10 +490,11 @@ async def analyze_novel(request: Request = None, text: str = Form(None), file: U
 
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_PROMPT_NOVEL,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=f"[[TEXT_START]]\n{content}\n[[TEXT_END]]"
         )
@@ -524,10 +529,11 @@ async def analyze_tanka(request: Request = None, text: str = Form(None), mode: s
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
         
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_PROMPT_TANKA,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -561,10 +567,11 @@ async def analyze_haiku(request: Request = None, text: str = Form(None), mode: s
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
         
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_PROMPT_HAIKU,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -598,10 +605,11 @@ async def analyze_poetry(request: Request = None, text: str = Form(None), mode: 
         user_input = f"【実行モード】: {mode}\n\n【提出された作品】:\n{content}"
         
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_PROMPT_POETRY,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -644,10 +652,11 @@ async def analyze_novel_comments(request: Request = None, text: str = Form(None)
 """
 
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=custom_instruction, # 💡 カスタムしたプロンプトを渡す
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -689,10 +698,11 @@ async def analyze_tanka_comments(request: Request = None, text: str = Form(None)
 """
 
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=custom_instruction,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -735,10 +745,11 @@ async def analyze_haiku_comments(request: Request = None, text: str = Form(None)
 """
 
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=custom_instruction,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -781,10 +792,11 @@ async def analyze_poetry_comments(request: Request = None, text: str = Form(None
 """
 
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=custom_instruction,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=user_input
         )
@@ -871,10 +883,11 @@ async def analyze_idea(request: Request = None, text: str = Form(None), file: Up
 
     def generate_idea_json():
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model=MODEL_NAME,
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_PROMPT_IDEA,
-                response_mime_type='application/json'
+                response_mime_type='application/json',
+                thinking_config=THINKING_CONFIG
             ),
             contents=f"[[TEXT_START]]\n{content}\n[[TEXT_END]]"
         )

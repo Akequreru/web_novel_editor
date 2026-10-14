@@ -1,2 +1,4 @@
 .env
 .venv
+tools/out/
+__pycache__/
