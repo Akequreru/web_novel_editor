@@ -3,7 +3,8 @@
 // 本を足す・入れ替える場合は、下の BOOKS だけを書き換える。
 //   BOOKS.novel … 小説の項目ごと（キーは、解析結果の analysis_scores のキー）
 //   label … 見出しに出す項目名
-//   items … 表示する本（rk() で、A8のリンクを作る）
+//   items … 表示する本（rk() で、A8のリンクを作る）。1回の表示で、この中から1つをランダムに選ぶ。
+//            本を配列 [ rk(...), rk(...) ] にすると、セットとして一緒に表示する
 (function () {
     'use strict';
 
@@ -49,10 +50,12 @@
                 items: [
                     rk('kobo', '6abb9f980643342385688dd644d625e9', '19307291', 'rakutenkobo-ebooks/cabinet/2934/2000008672934.jpg', 'www13',
                         'キャラクターからつくる物語創作再入門【電子書籍】', 'K.M.ワイランド'),
-                    rk('book', '14297902', '18072149', 'book/cabinet/6016/9784845916016_1_12.jpg', 'www17',
-                        '性格類語辞典 ポジティブ編', 'アンジェラ・アッカーマン'),
-                    rk('book', '14297903', '18072150', 'book/cabinet/6023/9784845916023_1_12.jpg', 'www13',
-                        '性格類語辞典 ネガティブ編', 'アンジェラ・アッカーマン')
+                    [   // 配列にした本は、セットとして、必ず一緒に表示する
+                        rk('book', '14297902', '18072149', 'book/cabinet/6016/9784845916016_1_12.jpg', 'www17',
+                            '性格類語辞典 ポジティブ編', 'アンジェラ・アッカーマン'),
+                        rk('book', '14297903', '18072150', 'book/cabinet/6023/9784845916023_1_12.jpg', 'www13',
+                            '性格類語辞典 ネガティブ編', 'アンジェラ・アッカーマン')
+                    ]
                 ]
             },
             writing: {
@@ -107,6 +110,37 @@
         return e;
     }
 
+    // 本1冊分の行（リンク付き）を作る。caption が空でなければ、題名の上に小さく添える
+    function bookRow(b, caption) {
+        var a = el('a', 'display:flex;align-items:center;gap:12px;padding:10px;margin:0 0 8px;' +
+            'border:1px solid rgba(128,128,128,0.35);border-radius:6px;background:rgba(255,255,255,0.5);' +
+            'text-decoration:none;color:inherit;');
+        a.href = b.href;
+        a.target = '_blank';
+        a.rel = 'nofollow sponsored noopener';
+
+        var img = el('img', 'width:64px;height:auto;flex:none;');
+        img.src = b.img;
+        img.alt = '';
+        img.loading = 'lazy';
+        a.appendChild(img);
+
+        var text = el('div', 'font-size:13px;line-height:1.5;');
+        if (caption) { text.appendChild(el('div', 'font-size:11px;color:#777;', caption)); }
+        text.appendChild(el('div', 'font-weight:600;', b.title));
+        text.appendChild(el('div', 'font-size:11px;color:#777;margin-top:2px;', b.author));
+        a.appendChild(text);
+
+        // 表示回数を数えるための、1×1の画像（A8のコードに含まれるもの）
+        var pixel = el('img');
+        pixel.width = 1;
+        pixel.height = 1;
+        pixel.alt = '';
+        pixel.src = b.pixel;
+        a.appendChild(pixel);
+        return a;
+    }
+
     // container に、おすすめの本を描く。scores は analysis_scores
     // 点数の低い2項目（同点は全部）から、1冊ずつ（その項目の本の中からランダムに）選ぶ
     function render(container, kind, scores) {
@@ -124,35 +158,12 @@
 
         keys.forEach(function (key) {
             var group = BOOKS[kind][key];
-            var b = group.items[Math.floor(Math.random() * group.items.length)];
-            var a = el('a', 'display:flex;align-items:center;gap:12px;padding:10px;margin:0 0 8px;' +
-                'border:1px solid rgba(128,128,128,0.35);border-radius:6px;background:rgba(255,255,255,0.5);' +
-                'text-decoration:none;color:inherit;');
-            a.href = b.href;
-            a.target = '_blank';
-            a.rel = 'nofollow sponsored noopener';
-
-            var img = el('img', 'width:64px;height:auto;flex:none;');
-            img.src = b.img;
-            img.alt = '';
-            img.loading = 'lazy';
-            a.appendChild(img);
-
-            var text = el('div', 'font-size:13px;line-height:1.5;');
-            text.appendChild(el('div', 'font-size:11px;color:#777;', '「' + group.label + '」を伸ばすなら'));
-            text.appendChild(el('div', 'font-weight:600;', b.title));
-            text.appendChild(el('div', 'font-size:11px;color:#777;margin-top:2px;', b.author));
-            a.appendChild(text);
-
-            // 表示回数を数えるための、1×1の画像（A8のコードに含まれるもの）
-            var pixel = el('img');
-            pixel.width = 1;
-            pixel.height = 1;
-            pixel.alt = '';
-            pixel.src = b.pixel;
-            a.appendChild(pixel);
-
-            wrap.appendChild(a);
+            var pick = group.items[Math.floor(Math.random() * group.items.length)];
+            var books = Array.isArray(pick) ? pick : [pick];
+            books.forEach(function (b, i) {
+                // 「〜を伸ばすなら」は、セットの先頭の本にだけ付ける
+                wrap.appendChild(bookRow(b, i === 0 ? '「' + group.label + '」を伸ばすなら' : ''));
+            });
         });
         container.appendChild(wrap);
         container.style.margin = '24px auto';
