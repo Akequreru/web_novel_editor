@@ -111,7 +111,9 @@
         if (!key) { return; }
         var group = BOOKS[kind][key];
 
-        var wrap = el('div', 'max-width:520px;margin:0 auto;text-align:left;');
+        // 直後の広告と混ざらないよう、枠で囲み、下に広めの余白と区切り線を置く
+        var wrap = el('div', 'max-width:520px;margin:0 auto;padding:16px;text-align:left;' +
+            'border:1px solid rgba(128,128,128,0.35);border-radius:10px;background:rgba(128,128,128,0.06);');
         wrap.appendChild(el('div', 'font-size:11px;letter-spacing:0.15em;color:#999;margin:0 0 4px;', 'PR'));
         wrap.appendChild(el('h3', 'margin:0 0 4px;font-size:16px;', '「' + group.label + '」を学ぶならこれ！'));
         wrap.appendChild(el('p', 'margin:0 0 10px;font-size:12px;color:#777;',
@@ -119,7 +121,8 @@
 
         group.items.forEach(function (b) {
             var a = el('a', 'display:flex;align-items:center;gap:12px;padding:10px;margin:0 0 8px;' +
-                'border:1px solid rgba(128,128,128,0.35);border-radius:6px;text-decoration:none;color:inherit;');
+                'border:1px solid rgba(128,128,128,0.35);border-radius:6px;background:rgba(255,255,255,0.5);' +
+                'text-decoration:none;color:inherit;');
             a.href = b.href;
             a.target = '_blank';
             a.rel = 'nofollow sponsored noopener';
@@ -146,11 +149,16 @@
             wrap.appendChild(a);
         });
         container.appendChild(wrap);
+        container.style.margin = '32px auto 0';
+        container.style.paddingBottom = '40px';
+        container.style.borderBottom = '1px solid rgba(128,128,128,0.25)';
+        container.style.marginBottom = '40px';
         container.classList.remove('hidden');
     }
 
     function clear(container) {
         container.textContent = '';
+        container.style.cssText = '';
     }
 
     window.BookRecommend = { render: render, clear: clear, weakest: weakest, BOOKS: BOOKS };

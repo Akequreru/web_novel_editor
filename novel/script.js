@@ -229,7 +229,7 @@ document.getElementById('novel-file').addEventListener('change', (e) => {
     }
 });
 document.getElementById('analyze-btn').addEventListener('click', async () => {
-    const DEBUG_MODE = false; // テスト時はtrue、本番はfalse
+    const DEBUG_MODE = true; // テスト時はtrue、本番はfalse
     const text = document.getElementById('novel-text').value;
     const file = document.getElementById('novel-file').files[0];
     const loading = document.getElementById('loading');
