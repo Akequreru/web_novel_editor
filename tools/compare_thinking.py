@@ -31,15 +31,16 @@ from google.genai import types
 # 単価(USD/100万トークン)。概算なので最新の料金表で要確認。思考トークンは出力単価で課金。
 PRICES = {
     "gemini-2.5-flash": {"in": 0.30, "out": 2.50},
-    "gemini-2.5-flash-lite": {"in": 0.10, "out": 0.40},
+    "gemini-3.1-flash-lite": {"in": 0.25, "out": 1.50},
 }
 JPY_PER_USD = 150
 
+# budget: 2.5系の thinking_budget / level: 3系の thinking_level (minimal|low|medium|high)
 CONDITIONS = {
-    "current": {"label": "現状 (flash・思考デフォルト)", "model": "gemini-2.5-flash", "budget": None},
-    "think512": {"label": "flash・思考上限512", "model": "gemini-2.5-flash", "budget": 512},
-    "think0": {"label": "flash・思考オフ", "model": "gemini-2.5-flash", "budget": 0},
-    "lite": {"label": "flash-lite (思考オフ)", "model": "gemini-2.5-flash-lite", "budget": 0},
+    "old": {"label": "旧本番 (2.5-flash・思考デフォルト)", "model": "gemini-2.5-flash"},
+    "minimal": {"label": "3.1-flash-lite・思考minimal", "model": "gemini-3.1-flash-lite", "level": "minimal"},
+    "low": {"label": "3.1-flash-lite・思考low (現本番)", "model": "gemini-3.1-flash-lite", "level": "low"},
+    "medium": {"label": "3.1-flash-lite・思考medium", "model": "gemini-3.1-flash-lite", "level": "medium"},
 }
 
 NOVEL = """　駅前の古い時計屋は、午後三時になると必ず店を閉める。
@@ -101,7 +102,9 @@ def run_one(client, case, cond_id, run_idx):
     cond = CONDITIONS[cond_id]
     system, contents = build_request(case)
     cfg = dict(system_instruction=system, response_mime_type="application/json")
-    if cond["budget"] is not None:
+    if "level" in cond:
+        cfg["thinking_config"] = types.ThinkingConfig(thinking_level=cond["level"])
+    elif "budget" in cond:
         cfg["thinking_config"] = types.ThinkingConfig(thinking_budget=cond["budget"])
     rec = {"case": case["id"], "cond": cond_id, "run": run_idx}
     t0 = time.time()
@@ -123,7 +126,7 @@ def run_one(client, case, cond_id, run_idx):
 
 def dry_record(case, cond_id, run_idx):
     return {"case": case["id"], "cond": cond_id, "run": run_idx, "sec": 0, "in_tok": 100, "out_tok": 200,
-            "think_tok": 0 if cond_id in ("think0", "lite") else 800, "jpy": 0.1,
+            "think_tok": 0 if cond_id == "minimal" else 800, "jpy": 0.1,
             "data": {"analysis_scores": {"rhythm": 5}, "comments": [{"comment": "dry"}] * case.get("count", 0)}}
 
 
