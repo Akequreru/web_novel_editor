@@ -212,7 +212,7 @@ function renderResult(data) {
     });
 
     resultDiv.classList.remove('hidden');
-    // 一番点数の低い項目に合わせた本を、結果の下に表示（画像保存には写らない）
+    // 点数の低い項目（同点は全部）に合わせた本を、保存ボタンの上に表示（data-html2canvas-ignore で画像には写らない）
     if (window.BookRecommend) { BookRecommend.render(document.getElementById('book-recs'), 'novel', data.analysis_scores); }
 }
 
@@ -256,7 +256,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
             "analysis_scores": {
                 "structure": 6,
                 "character": 4,
-                "writing": 5,
+                "writing": 4,
                 "originality": 8,
                 "logic": 4
             },

@@ -1,4 +1,4 @@
-// 結果の下に、点数の低い2項目に合わせて、楽天の本（A8.net経由のアフィリエイト）を表示する。
+// 結果の中の保存ボタンの上に、点数の低い2項目に合わせて、楽天の本（A8.net経由のアフィリエイト）を表示する。
 //
 // 本を足す・入れ替える場合は、下の BOOKS だけを書き換える。
 //   BOOKS.novel … 小説の項目ごと（キーは、解析結果の analysis_scores のキー）
@@ -114,7 +114,7 @@
         var keys = weakest(kind, scores, 2);
         if (!keys.length) { return; }
 
-        // 直後の広告と混ざらないよう、枠で囲み、下に広めの余白と区切り線を置く
+        // 結果と区別できるよう、枠で囲む
         var wrap = el('div', 'max-width:520px;margin:0 auto;padding:16px;text-align:left;' +
             'border:1px solid rgba(128,128,128,0.35);border-radius:10px;background:rgba(128,128,128,0.06);');
         wrap.appendChild(el('div', 'font-size:11px;letter-spacing:0.15em;color:#999;margin:0 0 4px;', 'PR'));
@@ -155,9 +155,7 @@
             wrap.appendChild(a);
         });
         container.appendChild(wrap);
-        container.style.margin = '32px auto 40px';
-        container.style.paddingBottom = '40px';
-        container.style.borderBottom = '1px solid rgba(128,128,128,0.25)';
+        container.style.margin = '24px auto';
         container.classList.remove('hidden');
     }
 

@@ -254,14 +254,14 @@
                 </div>
             </div>
 
+            <!-- おすすめの本（楽天・A8）：保存ボタンの上に表示するが、data-html2canvas-ignore で画像保存・共有には写さない。解析後に script.js が描く -->
+            <div id="book-recs" class="ad-slot" data-html2canvas-ignore="true"></div>
+
             <div class="save-area">
                 <button id="save-image-btn">画像(JPG)をダウンロード</button>
                 <button id="share-btn" data-share-target="result" data-share-score-id="avg-score" data-share-file="AI小説下読みくん" data-share-parts='[{"selector":".score-overview","name":"グラフと総合"},{"selector":"#reader-cards","name":"コメント"},{"selector":".editor-feedback-area","name":"総評"}]' data-share-text="AI小説下読みくんに、作品を読んでもらいました。\n総合 {score} / 5.0">Xで共有</button>
             </div>
         </div>
-
-        <!-- おすすめの本（楽天・A8）：画像保存より下、結果の外に配置。解析後に script.js が描く -->
-        <div id="book-recs" class="ad-slot"></div>
 
         <!-- 広告②（PCのみ）：サンプルの下（解析後は結果の下）。画像保存に写らないよう、結果の外に配置 -->
         <div id="ad-slot-2" class="ad-slot"></div>
